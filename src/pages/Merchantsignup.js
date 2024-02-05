@@ -1,3 +1,8 @@
-export const MerchantSignup = ()=>{
+export const Merchantsignup = ()=>{
+  return(
+    <div>
+      
+    </div>
+  )
   
 }
