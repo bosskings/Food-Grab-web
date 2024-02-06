@@ -22,7 +22,7 @@
   padding: 10px 20px;
   font-weight: 499;
   background-color:#fff ;
-  border: solid 1px rgba(34, 51, 31, 1);
+  border: solid 1px #22331f;
   border-radius: 5px;
 }
 .btn2{
@@ -32,4 +32,58 @@
   color: #fff;
   border-radius: 5px;
   border: none;
+}
+.iconbox{
+  display: none;
+}
+.hamburger{
+  display: none;
+}
+
+@media screen and (max-width: 699px){
+  .buttonholder{
+    display: none;
+  }
+  .navbar{
+    justify-content: flex-start;
+  }
+  .logobox{display: none;}
+  .hamburger{
+    position:absolute;
+    top: 53px;
+    left: -80%;
+    width: 70%;
+    height: 100%;
+    display: inline-block;
+    padding: 20px;
+  }
+  .hamburger div{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    flex-direction: column;
+  }
+  .iconbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .close.not-active{
+    position: absolute;
+    display: none;
+  }
+  .overlay{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .overlay.is-active{
+    display: block;
+  }
 }

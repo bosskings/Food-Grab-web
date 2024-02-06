@@ -11,9 +11,9 @@ function App() {
     <Router>
     <Navbar />
       <Routes>
-        <Route path='/' element={Home} />
-        <Route path='/Merchantsignup' element={Merchantsignup} />
-        <Route path='/Merchantlogin' element={Merchantlogin} />
+        <Route path={'/'} element={<Home />} />
+        <Route path={'/Merchantsignup'} element={<Merchantsignup />} />
+        <Route path={'/Merchantlogin'} element={<Merchantlogin />} />
       </Routes>
     </Router>
     </div>
