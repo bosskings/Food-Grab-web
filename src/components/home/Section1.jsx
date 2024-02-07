@@ -20,7 +20,7 @@ export const Section1 =() =>{
           Favorites
         </h1>
         <h1 className={"txt1"}>
-          Within <span className={"min"}>Minutes!</span>
+          Within <span className={"min"}>Minutes</span>
         </h1>
         <div className={"buttoncontainer"}>
           <Link>

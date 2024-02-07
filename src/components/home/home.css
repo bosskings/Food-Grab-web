@@ -1,8 +1,13 @@
-@import url('https://fonts.cdnfonts.com/css/sherika');
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+
  :root{ 
   --green:  #22331f;
   --red:#ec1c23;
   --lightpink:  #fbd2d3;
+  --seagreen: #c5e6d0;
+  --lightPurple: #e7e8fc;
+  --green: #0f973d;
+  --purple: #696eb4;
 
 }
 
@@ -23,11 +28,10 @@
   flex-direction: column;
   padding: 20px;
   justify-self: flex-start;
-  font-family: sherika;
-  gap: 10px;
+  gap: 6px;
 }
 .txt1{
-  font-weight: 400;
+  font-weight: 700;
   font-size: 75px;
   color: var(--green);
 }
@@ -130,4 +134,253 @@
 
 /* ============================sec1 end ================= */
 
+/* ============================sec2 start ================= */
 
+.sec2{
+  padding:40px 5% ;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.txtcont{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--green);
+  /* font-family: sherika; */
+  padding: 30px;
+  gap: 10px;
+  font-size: 24px;
+  height: 100%;
+}
+.txtcont p{
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.contianer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+}
+
+
+.card{
+  position: relative;
+  left: 10%;
+  display: flex;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+  padding: 20px;
+  overflow: hidden;
+}
+.A{
+  background-color: var(--lightpink);
+}
+.B{
+  background-color: var(--seagreen);
+}
+
+.C{
+  background-color: var(--lightPurple);
+}
+
+.MM{
+  color: var(--green);
+}
+.BB{
+  color: var(--purple);
+}
+.TT{
+  color: var(--red);
+}
+
+
+.content{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+}
+.content h1{
+  font-size: 30px;
+  font-weight: 700;
+}
+.content p{
+  font-size: 14px;
+}
+
+.circle{
+  margin-bottom:20px ;
+  width: 40px;
+  height: 40px;
+  background-color: var(--red);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-container{
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.J{
+  background-color: var(--purple);
+ }
+.J img{
+  width: 25px;
+}
+
+.I{
+ background-color: var(--green);
+}
+.image2{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height:100%;
+  
+}
+.image2 img{
+  margin-bottom: -113px;
+  width: 89%;
+}
+
+.phn1{
+  margin-bottom: -85px;
+  width: 89%;
+}
+.phn2{
+  margin-bottom: -85px;
+  width: 89%;
+}
+.swiperControl{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  height: 50px;
+  justify-content: space-between;
+}
+.prevslide, .nextslide{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px 2px lightgray;
+}
+
+/* ================= RWD sec2 ==================== */
+
+@media  screen and (max-width: 699px) {
+  .txtcont{
+    font-size: 20px;
+    text-align: center;
+  }
+  .contianer{
+    height: 70%;
+  }
+
+  .card{
+    flex-direction: column;
+    left: 5%;
+    width: 90%;
+    height: 450px;
+    padding: 20px;
+  }
+  .circle{
+    margin-bottom: 0;
+  }
+
+  .content h1{
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .content p{
+    font-size: 10px;
+  }
+  .content{
+    padding: 0px;
+    margin-bottom: -50px;
+  }
+  .image2{
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    
+  }
+  .image2 img{
+    margin-bottom: -120px;
+    width: 100%;
+  }
+  .phn1{
+    margin-bottom: -0;
+    width: 89%;
+  }
+  .phn2{
+    margin-bottom: -0;
+    width: 89%;
+  }
+}
+
+@media (min-width: 700px) and (max-Width:1050px){
+  .txtcont{
+    font-size: 20px;
+    text-align: center;
+  }
+  .contianer{
+    height: 100%;
+  }
+  .card{
+    width: 85%;
+    left: 8%;
+    height: 320px;
+    padding: 15px;
+  }
+  .content{
+    padding: 10px;
+  }
+  .content h1{
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .content p{
+    font-size: 10px;
+  }
+  .image2 img{
+    margin-bottom: -90px;
+    width: 100%;
+  }
+  .phn1{
+    margin-bottom: -25px;
+    width: 89%;
+  }
+  .phn2{
+    margin-bottom: -30px;
+    width: 89%;
+  }
+}
