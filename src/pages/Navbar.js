@@ -3,6 +3,10 @@ import LOGO from "../components/media/Landscape Logo II_1- Transparent.png"
 import { Link } from "react-router-dom"
 import { MenuButtonFill, XCircle } from "react-bootstrap-icons"
 import { useState } from "react"
+import { CgMenu } from "react-icons/cg";
+
+
+
 
 export const Navbar = ()=>{
   const [menu, setMenu] = useState('')
@@ -79,7 +83,7 @@ export const Navbar = ()=>{
       </Link>
       </div>
       <div className={"iconbox"}>
-        <MenuButtonFill className={`menubtn`} onClick={()=> {setMenu('menubtn1');setNav1('open');setMenu1('close');setOverlay('is-active')}} style={hamburger} />
+        <CgMenu className={`menubtn`} onClick={()=> {setMenu('menubtn1');setNav1('open');setMenu1('close');setOverlay('is-active')}} style={hamburger} />
         <XCircle className={`close ${menu1}`} onClick={()=> {setMenu('close');setNav1('close2');setOverlay('not-active')}} style={hamburger2} />
       </div>
       

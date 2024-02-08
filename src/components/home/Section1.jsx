@@ -3,6 +3,8 @@ import BIKE from "../media/Group 1.png"
 import PLAY from "../media/1664285914google-play-logo-png.png"
 import { Link } from "react-router-dom"
 import { Apple } from "react-bootstrap-icons"
+import { BsGooglePlay } from "react-icons/bs";
+import { BsApple } from "react-icons/bs";
 
 export const Section1 =() =>{
   
@@ -24,14 +26,16 @@ export const Section1 =() =>{
         </h1>
         <div className={"buttoncontainer"}>
           <Link>
-            <button className="ios">
-              <Apple /> Coming Soon
-            </button>
+            <div className="ios">
+              <BsApple />
+              <p>Coming Soon</p>
+            </div>
           </Link>
           <Link>
-            <button className="andriod">
-              <img src={PLAY} alt="" /> Coming Soon
-            </button>
+            <div className="andriod">
+              <img src={PLAY} alt="" />
+              <p>Coming Soon</p>
+            </div>
           </Link>
         </div>
         </div>

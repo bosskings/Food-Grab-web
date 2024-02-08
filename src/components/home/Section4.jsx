@@ -3,6 +3,8 @@ import "./home.css"
 import { useState, useEffect } from "react"
 import {Swiper, SwiperSlide, } from "swiper/react"
 import { ArrowBarLeft, ArrowBarRight } from "react-bootstrap-icons"
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 
 import "swiper/css";
 import "swiper/css/effect-cube";
@@ -46,7 +48,7 @@ export const Section4 = ()=>{
          effect={"cards"}
         grabCursor={ true }
         centeredSlides={ true }
-        autoplay={{delay: 2500,
+        autoplay={{delay: 2000,
           disableOnInteraction: false,
         }}
         loop= { true }
@@ -86,10 +88,10 @@ export const Section4 = ()=>{
                 </div>
               <div className={"swiperControl"}>
                 <div className={"prevslide"} >
-                  <ArrowBarLeft/>
+                  <IoIosArrowBack/>
                 </div> 
                 <div className={"nextslide"}  >
-                  <ArrowBarRight />
+                  <IoIosArrowForward />
                 </div> 
                 <div className={"swiper-pagination"}></div>
               </div>
@@ -114,10 +116,10 @@ export const Section4 = ()=>{
                 </div>
               <div className={"swiperControl"}>
                 <div className={"prevslide"} >
-                  <ArrowBarLeft/>
+                  <IoIosArrowBack/>
                 </div> 
                 <div className={"nextslide"}  >
-                  <ArrowBarRight />
+                  <IoIosArrowForward />
                 </div> 
                 <div className={"swiper-pagination"}></div>
               </div>
@@ -142,10 +144,10 @@ export const Section4 = ()=>{
                 </div>
               <div className={"swiperControl"}>
                 <div className={"prevslide"} >
-                  <ArrowBarLeft/>
+                  <IoIosArrowBack/>
                 </div> 
                 <div className={"nextslide"}  >
-                  <ArrowBarRight />
+                  <IoIosArrowForward />
                 </div> 
                 <div className={"swiper-pagination"}></div>
               </div>

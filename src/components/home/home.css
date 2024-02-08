@@ -60,6 +60,9 @@
 }
 .ios{
   background-color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 10px;
   border-radius: 8px;
   padding: 10px 20px;
   color: #fff;
@@ -70,6 +73,9 @@
   gap: 10px;
 }
 .andriod{
+  display: flex;
+  align-items: center;
+  gap: 10px;
   border-radius: 8px;
   padding: 10px 20px;
   color: #fff;
@@ -119,6 +125,19 @@
   }
   .img1{
     width: 100%;
+  }
+
+
+  .ios{
+    padding: 10px 10px;
+    font-size: 12px;
+    gap:5px;
+  }
+
+  .andriod{
+    padding: 10px 10px;
+    font-size: 12px;
+    gap:5px;
   }
 }
 
@@ -957,6 +976,27 @@
     flex-direction: column;
     gap: 20px;
   }
+
+  .container4{
+    padding: 0;
+  }
+
+  .card1{
+    padding: 0;
+  }
+
+  .swiper-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic, .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic{
+    left: 7% !important;
+  }
+
+  .swiperControl {
+    justify-content: flex-end;
+  }
+
+  .easier{
+    padding: 40px 30px;
+    height: 600px;
+  }
 }
 
 @media (min-width: 700px) and (max-width: 1050px){
@@ -969,6 +1009,22 @@
     width: 120%;
   }
   .easier{
-    padding: 20px 30px;
+    padding: 50px 30px;
+  }
+
+  .container4{
+    padding: 0;
+  }
+
+  .card1{
+    padding: 0;
+  }
+
+  .swiper-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic, .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic{
+    left: 7% !important;
+  }
+
+  .swiperControl {
+    justify-content: flex-end;
   }
 }
