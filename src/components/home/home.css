@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
 
+*{
+  font-family: "Oxygen", sans-serif;
+}
+
  :root{ 
   --green:  #22331f;
   --red:#ec1c23;
@@ -8,6 +12,8 @@
   --lightPurple: #e7e8fc;
   --green: #0f973d;
   --purple: #696eb4;
+  --lightgreen: #a8ff9a;
+  --darkgreen: #293929;
 
 }
 
@@ -170,21 +176,23 @@
   align-items: center;
   width: 100%;
   height: 400px;
+  background-color: none;
 }
 
 
 .card{
   position: relative;
-  left: 10%;
   display: flex;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   height: 100%;
   padding: 20px;
   overflow: hidden;
+  
 }
+
 .A{
   background-color: var(--lightpink);
 }
@@ -236,12 +244,18 @@
   align-items: center;
 }
 .swiper-container{
-  width: 100%;
+  width: 90%;
   height: 100%;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  border-radius: 20px;
 }
+.slide{
+  border-radius: 25px;
+  width: 90%;
+}
+
 .J{
   background-color: var(--purple);
  }
@@ -274,22 +288,7 @@
   margin-bottom: -85px;
   width: 89%;
 }
-.swiperControl{
-  display: flex;
-  align-items: center;
-  width: 90%;
-  height: 50px;
-  justify-content: space-between;
-}
-.prevslide, .nextslide{
-  display: none;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  box-shadow: 0 0 5px 2px lightgray;
-}
+
 
 /* ================= RWD sec2 ==================== */
 
@@ -382,5 +381,594 @@
   .phn2{
     margin-bottom: -30px;
     width: 89%;
+  }
+}
+/* ============================sec2 end ================= */
+/* ============================sec3 start ================= */
+
+.sec3{
+  display: flex;
+  height: auto;
+  width: 100%;
+  padding: 20px 5%;
+  
+}
+
+.cont5{
+  width:100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.container1{
+  width: 85%;
+  height: 680px;
+  background-color: var(--red);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  align-items: flex-start;
+  padding: 20px;
+}
+.cont3{
+  display: flex;
+  justify-content: center;
+}
+.cont3 div{
+  width:60%;
+}
+.container1 h1{
+  font-size: 45px;
+  font-weight: 700;
+  color: #fff;
+}
+.imgcont{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+}
+.downlaod{
+  padding: 10px 20px;
+  background-color: var(--lightpink);
+  color: var(--red);
+  border-radius: 10px;
+  border: none;
+}
+
+.LG3{
+  position:absolute;
+  width:  200px;
+  bottom: 0px;
+  right: 0px;
+  opacity: 50%;
+  
+}
+.spoon{
+  width: 80px;
+}
+.phonefull{
+  width: 270%;
+  z-index: 1;
+}
+
+.contanier2{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+}
+.explore{
+  width: 100%;
+  height: 360px;
+  background-color: var(--darkgreen);
+  border-radius: 20px ;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: var(--lightgreen);
+  padding: 20px;
+  gap: 10px;
+}
+.explore h1{
+  font-size:300%;
+  font-weight: 700;
+}
+.SF{
+  width: 70px;
+}
+
+.explore div{
+  
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.plate{
+  width: 150px;
+  margin-top: -50px;
+  z-index: 1;
+}
+
+.enjoy{
+  width: 100%;
+  height: 300px;
+  background-color: var(--lightgreen);
+  position: relative;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+}
+.enjoy h1{
+  font-size: 350%;
+}
+.mand{
+  position: relative;
+  width:250px;
+  height: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+.meal{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--darkgreen);
+  width:100%;
+  font-weight: 700;
+}
+.man{
+  margin-top: 100px;
+  width: 200px;
+  z-index: 1;
+}
+.PF{
+  width: 70px;
+}
+
+/* ============================ RWD start ================= */
+
+@media screen and (max-width:699px){
+  .sec3{
+    flex-direction: column;
+    gap: 20px;
+  }
+  .phonefull{
+    width: 150px;
+  }
+  .container1{
+    width: 100%;
+    height: auto;
+    gap: 10px;
+  }
+  .container1 h1{
+    font-size: 28px;
+  }
+  .cont3 div{
+    width: 150px;
+  }
+  .spoon{
+    width: 50px;
+  }
+  .explore{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .explore h1{
+    font-size: 28px;
+  }
+  .explore div{
+    height: 150px;
+    align-items: baseline;
+  }
+  .plate{
+    margin-top: 0px;
+    width: 150px;
+    height: 150px;
+  }
+  .enjoy{
+    flex-direction: column;
+    padding: 20px;
+  }
+  .enjoy h1{
+    font-size: 45px;
+  }
+  .mand{
+    width:100%;
+    margin-top: -60px;
+    justify-content:flex-end;
+    align-items: flex-end;
+  }
+  .man{
+    width: 160px;
+    margin-top: 0;
+    margin-right: -30px;
+  }
+  .meal{
+    width: 100%;
+  }
+}
+
+@media (min-width:700px) and (max-width: 1050px){
+  .sec3{
+    gap: 20px;
+  }
+  .phonefull{
+    width: 150px;
+  }
+  .container1{
+    width: 100%;
+    height: 520px;
+    gap: 50px
+  }
+  .container1 h1{
+    font-size: 28px;
+  }
+  .cont3 div{
+    width: 150px;
+  }
+  .spoon{
+    width: 50px;
+  }
+  .explore{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 250px;
+  }
+  .explore h1{
+    font-size: 200%;
+  }
+  .SF{
+    width: 50px;
+  }
+  .explore div{
+    height: 100px;
+    align-items: baseline;
+  }
+  .plate{
+    margin-top: -50px;
+    width: 100px;
+    height: 100px;
+  }
+  .enjoy{
+    padding: 20px;
+    flex-direction: column;
+    height: 250px;
+  }
+  .enjoy h1{
+    font-size: 45px;
+  }
+  .PF{
+    width: 50PX;
+  }
+  .mand{
+    width:100%;
+    justify-content:flex-end;
+    align-items: flex-end;
+  }
+  .man{
+    width: 160px;
+    margin-top: -95px;
+    margin-right: -40px;
+  }
+  .meal{
+    width: 100%;
+  }
+}
+/* ============================sec3 end ================= */
+
+/* ============================sec4 start ================= */
+
+.sec4{
+  width: 100%;
+  padding: 20px 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container4{
+  width: 100%;
+  height: auto;
+  padding: 20px;
+}
+.textcontent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+.textcontent h1{
+  font-size: 40px;
+}
+.textcontent p{
+  font-size: 16px;
+}
+
+.card1{
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  gap: 20px;
+  background-color: #fff;
+}
+
+  .user{
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+.user img{
+  width: 100%;
+}
+.cardcontent{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 20px;
+  
+}
+.testimony{
+  width: 100%;
+  height: 100%;
+  font-size: 22px;
+  text-align: justify;
+  line-height: 2em;
+}
+.userdetials h3{
+  color: var(--red);
+  font-size: 200%;
+}
+.swiperControl{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 20px;
+  cursor: pointer;
+}
+.prevslide, .nextslide{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px 2px lightgray;
+}
+.nextslide{
+  background-color: var(--red);
+  color: #fff;
+}
+.swiper-pagination-bullet{
+  background: var(--red 0.2);
+}
+.swiper-pagination-bullet-active{
+  background: var(--red);
+}
+.swiper-pagination{
+  top: -10px;
+  width: 100px;
+  height: 20px;
+}
+
+@media screen and (max-width:699px){
+  .textcontent h1{
+    font-size: 150%;
+    text-align: center;
+  }
+  .textcontent p{
+    font-size: 80%;
+    text-align: center;
+  }
+  .card1{
+    flex-direction: column;
+  }
+.testimony{
+  font-size: 12px;
+  }
+  .userdetials p{
+    font-size: 11px;
+  }
+  .swiperControl{
+    justify-content: center;
+  }
+}
+@media (min-width:700px) and (max-width: 1050px){
+  .cardcontent{
+    width: 80%;
+  }
+  .testimony{
+    font-size: 14px;
+  }
+}
+/* ==================== sec4 end ====================== */
+
+/* ==================== sec5 start ====================== */
+
+.sec5{
+  display: flex;
+  flex-direction: column;
+  padding: 20px 5%;
+  gap: 40px;
+}
+.downloadapp{
+  width: 100%;
+  height: 400px;
+  background-color: var(--darkgreen);
+  display: flex;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 50px;
+}
+.LGT{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.text{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+.text h1{
+  font-size: 400%;
+  color: #fff;
+}
+.buttons{
+  display: flex;
+  gap: 20px;
+  z-index: 1;
+}
+.apple1, .play1{
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  background-color: black;
+  border: none;
+}
+.play2{
+  width: 10px;
+}
+.half{
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  object-fit: cover;
+}
+.half img{
+  position: relative;
+  top: -75%;
+  width: 90%;
+}
+
+.easier{
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  background-color: black;
+  color: #fff;
+  padding: 20px 50px;
+  gap: 60px;
+}
+.text2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.text2 p{
+  width: 400px;
+  font-size: 12px;
+  text-align: center;
+}
+.contact{
+  padding: 10px 20px;
+  background-color: var(--red);
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+}
+.bottom{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid #3a3a3a;
+  padding: 20px 0;
+}
+
+.logoBT img{
+  width: 100px;
+}
+
+.bottom p {
+  font-size: 12px;
+}
+.icons{
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+}
+.circle2{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: var(--red);
+}
+/* ================ RWD start ==================== */
+@media screen and (max-width: 699px) {
+  .sec5{
+    gap: 30px;
+  }
+
+  .downloadapp{
+    flex-direction: column;
+    height: 500px;
+  }
+  .text h1{
+    font-size: 200%;
+  }
+  .buttons{
+    flex-direction: column;
+    width: 70%;
+  }
+  .text{
+    height: 100%;
+  }
+  .half img{
+    top: -57px;
+    width: 100%;
+  }
+  .easier{
+    height: 500px;
+    padding: 20px 30px;
+  }
+  .text2{
+    text-align: center;
+  }
+  .text2 p{
+    width: 100%;
+  }
+  .bottom{
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1050px){
+  .text h1{
+    font-size: 250%;
+  }
+  .half img{
+    top: -18%;
+    right: 10%;
+    width: 120%;
+  }
+  .easier{
+    padding: 20px 30px;
   }
 }
