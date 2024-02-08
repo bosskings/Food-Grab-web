@@ -39,7 +39,7 @@
 .txt1{
   font-weight: 700;
   font-size: 75px;
-  color: var(--green);
+  color: var(--darkgreen);
 }
 .delivers{
   display: flex;
