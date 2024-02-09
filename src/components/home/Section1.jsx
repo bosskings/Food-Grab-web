@@ -3,8 +3,7 @@ import BIKE from "../media/Group 1.png"
 import PLAY from "../media/1664285914google-play-logo-png.png"
 import { Link } from "react-router-dom"
 import { Apple } from "react-bootstrap-icons"
-import { BsGooglePlay } from "react-icons/bs";
-import { BsApple } from "react-icons/bs";
+
 
 export const Section1 =() =>{
   
