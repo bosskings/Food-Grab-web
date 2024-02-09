@@ -2,7 +2,7 @@ import "./nav.css"
 import LOGO from "../components/media/Landscape Logo II_1- Transparent.png"
 import { Link } from "react-router-dom"
 import { MenuButtonFill, XCircle } from "react-bootstrap-icons"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
 
@@ -12,7 +12,7 @@ export const Navbar = ()=>{
   const [nav1, setNav1] = useState('')
   const [menu1, setMenu1] = useState('not-active')
   const [overlay, setOverlay] = useState('not-active')
-
+  
   let hamburger = {}
   let hamburger2 = {}
   switch(menu){
@@ -41,10 +41,12 @@ export const Navbar = ()=>{
       mobilenav1 ={}
   }
 
+ 
+
 
   return(
     <div>
-    <div className={"hamburger"} style={mobilenav1}>
+    <div className={`hamburger`} style={mobilenav1}>
     <div>
     <Link to="/">
         <img className={"logo1"} src={LOGO} alt="" onClick={()=> { setNav1("close2"); setMenu('close');setOverlay('not-active')}}/>

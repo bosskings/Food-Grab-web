@@ -13,7 +13,7 @@
 
 /* ===================== sec1 start =============== */
 .sec1{
-  padding:10px 5% ;
+  padding:20px 5% ;
   width: 100%;
   height: auto;
   display: flex;
@@ -90,6 +90,9 @@
 /* =================== RWD sec1 mobile =============== */
 
 @media screen and (max-width: 699px) {
+  .sec1{
+    padding-top: 70px;
+  }
   .sec1{
     flex-direction: column;
     gap: 20px;
