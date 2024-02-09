@@ -87,4 +87,12 @@
   .overlay.is-active{
     display: block;
   }
+
+  .menubtn{
+    font-size: 22px;
+  }
+
+  .close{
+    font-size: 22px;
+  }
 }
