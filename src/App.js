@@ -5,6 +5,15 @@ import { Navbar } from "./pages/Navbar"
 import { Merchantsignup } from "./pages/Merchantsignup"
 import { Merchantlogin } from "./pages/Merchantlogin"
 
+//fonts
+
+import "./fonts/Sherika Black.ttf"
+import "./fonts/Sherika Regular.ttf"
+import "./fonts/Sherika Medium.ttf"
+import "./fonts/Sherika Bold.ttf"
+import "./fonts/Sherika ExtraBold.ttf"
+
+
 function App() {
   return (
     <div >

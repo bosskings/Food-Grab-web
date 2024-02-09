@@ -46,7 +46,7 @@ export const Section4 = ()=>{
          effect={"cards"}
         grabCursor={ true }
         centeredSlides={ true }
-        autoplay={{delay: 2500,
+        autoplay={{delay: 5000,
           disableOnInteraction: false,
         }}
         loop= { true }
