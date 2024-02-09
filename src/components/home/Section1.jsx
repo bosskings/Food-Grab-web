@@ -26,7 +26,7 @@ export const Section1 =() =>{
         <div className={"buttoncontainer"}>
           <Link>
             <div className="ios">
-              <BsApple />
+              <Apple />
               <p>Coming Soon</p>
             </div>
           </Link>
