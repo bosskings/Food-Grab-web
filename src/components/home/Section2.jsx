@@ -12,7 +12,7 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { EffectCards, Pagination, Navigation } from "swiper/modules";
+import { EffectCards, Pagination, Navigation, Autoplay } from "swiper/modules";
 
 
 
@@ -29,10 +29,13 @@ export const Section2 =()=>{
       <div className="div2">
         <div className={"contianer"}>
         <Swiper
-           modules={[EffectCards, Pagination, Navigation,]}
+           modules={[Autoplay, EffectCards, Pagination, Navigation,]}
          effect={"cards"}
         grabCursor={ true }
         loop= { true }
+        autoplay={{delay: 10000,
+          disableOnInteraction: false,
+        }}
         slidesPerView={ 'auto' }
         cardsEffect={{ 
           rotate: 2.0,
