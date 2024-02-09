@@ -26,14 +26,12 @@ export const Section1 =() =>{
         <div className={"buttoncontainer"}>
           <Link>
             <div className="ios">
-              <Apple />
-              <p>Coming Soon</p>
+              <Apple />Coming Soon
             </div>
           </Link>
           <Link>
             <div className="andriod">
-              <img src={PLAY} alt="" />
-              <p>Coming Soon</p>
+              <img src={PLAY} alt="" />Coming Soon
             </div>
           </Link>
         </div>
