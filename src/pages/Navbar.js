@@ -2,7 +2,7 @@ import "./nav.css"
 import LOGO from "../components/media/Landscape Logo II_1- Transparent.png"
 import { Link } from "react-router-dom"
 import { MenuButtonFill, XCircle } from "react-bootstrap-icons"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 
 
