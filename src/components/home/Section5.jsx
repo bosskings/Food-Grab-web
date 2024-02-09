@@ -24,7 +24,7 @@ export const Section5 = ()=>{
           </div>
         </div>
         <div className={"half"}>
-          <img src={half} alt="" /> 
+          <img className={"pic"} src={half} alt="" /> 
         </div>
         <img className={"LGT"} src={LGT} alt="" />
         <img className={"LG3"} src={LG} alt="" />

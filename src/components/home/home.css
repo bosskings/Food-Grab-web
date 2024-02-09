@@ -311,8 +311,9 @@
 
   .card{
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 90%;
-    height: 450px;
     padding: 20px;
   }
   .circle{
@@ -324,11 +325,11 @@
     font-weight: 700;
   }
   .content p{
-    font-size: 10px;
+    font-size: 14px;
+    text-align: justify;
   }
   .content{
     padding: 0px;
-    margin-bottom: -50px;
   }
   .image2{
     display: none;
@@ -374,6 +375,9 @@
   .phn2{
     margin-bottom: -30px;
     width: 89%;
+  }
+  .ios, .andriod{
+    padding: 10px;
   }
 }
 @media (Width:1920px){
@@ -940,15 +944,19 @@
   width: 10px;
 }
 .half{
+  position: relative;
+  bottom: -20px;
   width: 100%;
-  height: 100%;
+  height: 400px;
   z-index: 1;
   object-fit: cover;
 }
-.half img{
-  position: relative;
-  top: -75%;
-  width: 90%;
+.pic{
+  position: absolute;
+  bottom: 0;
+  left: -30px;
+  bottom: 0px ;
+  width: 100%;
 }
 
 .easier{
@@ -1021,7 +1029,11 @@
 
   .downloadapp{
     flex-direction: column;
-    height: 500px;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 20px;
+    gap: 20px;
   }
   .text h1{
     font-size: 200%;
@@ -1033,9 +1045,11 @@
   .text{
     height: 100%;
   }
-  .half img{
-    top: -57px;
-    width: 100%;
+  .half{
+    height: 200px;
+  }
+  .pic{
+    left: 0;
   }
   .easier{
     height: 100%;
@@ -1058,17 +1072,22 @@
 }
 
 @media (min-width: 700px) and (max-width: 1050px){
+  .downloadapp{
+    height: 350px;
+    padding: 20px;
+  }
+  .half{
+    bottom: 70px;
+  }
+  .pic{
+    left: -50px;
+    width: 120%;
+  }
   .text h1{
     font-size: 250%;
   }
-  .half img{
-    top: -18%;
-    right: 10%;
-    width: 120%;
-  }
   .buttons{
-    flex-direction: column;
-    width: 80%;
+    width: 100%;
   }
   .easier{
     padding: 20px 30px;
@@ -1081,10 +1100,14 @@
 }
 @media (Width:1920px){
   .downloadapp{
-    height: 540px;
+    height: 650px;
   }
   .text h1{
     font-size: 500%;
+  }
+  .half{
+    height: 100%;
+    bottom: -50px;
   }
   .easier{
     height: 540px;
