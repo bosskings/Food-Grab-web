@@ -4,15 +4,11 @@ import GOOGLE from "../media/google.png"
 import "./signup.css"
 import { Eye, EyeSlash, Twitter } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
-import { useTranslation } from "react-i18next";
+import useForm from '../../UseForm'
 
-
+const FORM_ENDPOINT = "http://foodgrab.africa/merchants/api/v1/signup"
 export const Signup = () => {
-  
 
-  const { t } = useTranslation();
-
-  const [password, setPassword]= useState()
   const [visible, setVisible] = useState(false)
   const [click, setToggle] = useState(false)
 
@@ -34,9 +30,10 @@ export const Signup = () => {
       ...prev,
       [name]: value
     }));
-    validateInput(e);
   }
- 
+ const onBlurValidate = e =>{
+  validateInput(e)
+ }
   const validateInput = e => {
     let { name, value } = e.target;
     setError(prev => {
@@ -82,30 +79,71 @@ export const Signup = () => {
   const handleVisible = ()=>{
     setVisible(!visible)
   }
-  const handleSubmit =() =>{
+
+  const additionalData={
+    sent: new Date().toISOString()
+  }
+  const { handleSubmit, status, message } = useForm({
+    additionalData,
+
+  });
+
+  if (status === "success") {
+
+    return (
+
+      <>
+
+        <div className="text-2xl">Thank you!</div>
+
+        <div className="text-md">{message}</div>
+
+      </>
+
+    );
 
   }
 
+
+  if (status === "error") {
+
+    return (
+
+      <>
+
+        <div className="text-2xl">Something bad happened!</div>
+
+        <div className="text-md">{message}</div>
+
+      </>
+
+    );
+
+  }
   return (
     <div className='signupbody'>
     <h1>Sign Up</h1>
       <p>Create account</p>
-      <form className='formcont2' onSubmit={handleSubmit}>
+      <form 
+      className='formcont2'
+      action={FORM_ENDPOINT}
+      method='POST'
+      onSubmit={handleSubmit}>
 
       <label className='lab2'> FULL NAME</label>
         <div className={"mailbox"} >
         <input 
-        type='text' 
+        type='username' 
         name="username"
         value={input.username}
         onChange={onInputChange}
-        onBlur={validateInput}
+        onBlur={onBlurValidate}
         placeholder='Enter Name' 
         className='in a' 
         required
         />
-    
         </div>
+        {error.password && <span className='err'>{error.username}</span>}
 
         <label className='lab2'>EMAIL ADDRESS</label>
         <div className={"mailbox"} >
@@ -119,7 +157,7 @@ export const Signup = () => {
         <input 
         value={input.password} 
         onChange={onInputChange}
-        onBlur={validateInput}
+        onBlur={onBlurValidate}
         type={visible ? "text": "password"}
         name='password'
         placeholder='enter password' 
@@ -166,9 +204,12 @@ export const Signup = () => {
         </div>
         </div>
         {error.password && <span className='err'>{error.password}</span>}
-        <button type='submit' className={"login"} >
+        {status!== 'loading' && (
+        <button type='submit' className={"login"} onClick={validateInput} >
           Create Account
         </button>
+        )}
+       
       </form>
       <div className={"bottom2"}>
       <div className={"linebox"} >

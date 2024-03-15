@@ -14,13 +14,11 @@ export const Navbar = () => {
       const path = window.location.pathname;
       if (path === "/"){
         setNavbar(<Navbar1 />)
-      } else if (path === "/Merchantlogin"){
-        setNavbar(<Navbar2 />)
-      }else if (path === "/Merchantsignup"){
+      } else if (path === "/Merchantlogin" ||path === "/Merchantsignup" ){
         setNavbar(<Navbar2 />)
       }
       
-  }, [refresh])
+  }, [])
   
 
   return (
