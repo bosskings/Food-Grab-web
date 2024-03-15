@@ -90,5 +90,3 @@ export const Navbar2 = () => {
     </div>
   )
 }
-
-
