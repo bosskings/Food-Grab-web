@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import MAIL from "../media/mail.png"
 import GOOGLE from "../media/google.png"
+import ERROR from "../media/error.jpg"
 import "./signup.css"
 import { Eye, EyeSlash, Twitter } from 'react-bootstrap-icons'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useForm from '../../UseForm'
+import { use } from 'i18next'
 
 const FORM_ENDPOINT = "http://foodgrab.africa/merchants/api/v1/signup"
 export const Signup = () => {
-
+  const navigate =  useNavigate();
   const [visible, setVisible] = useState(false)
   const [click, setToggle] = useState(false)
 
@@ -105,7 +107,7 @@ export const Signup = () => {
     }));
 
     if (!error.username && !error.password && !error.confirmPassword) {
-
+      navigate ('/Merchantlogin')
       handleSubmit(e);
     }
   };
@@ -131,13 +133,16 @@ export const Signup = () => {
 
     return (
 
-      <>
+      <div className={"errorpage"}>
+      <div className='errorimage'>
+        <img src={ERROR} alt='' />
+      </div>
+      <div className='errorcontent'>
+      <p className="text">Something bad happened!</p>
+      <p className="text">{message}</p>
+      </div>
 
-        <div className="text">Something bad happened!</div>
-
-        <div className="text">{message}</div>
-
-      </>
+      </div>
 
     );
 
@@ -247,7 +252,7 @@ export const Signup = () => {
         </button>
         <div className={"signlink"}>
           <p>Already Have an Account</p>
-          <Link to={"/Merchantlgin"}>
+          <Link to={"/Merchantlogin"}>
             Login
           </Link>
         </div>

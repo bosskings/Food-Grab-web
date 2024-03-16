@@ -3,17 +3,21 @@ import MAIL from "../media/mail.png"
 import GOOGLE from "../media/google.png"
 import "./login.css"
 import { Eye, EyeSlash, Twitter } from 'react-bootstrap-icons'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import { useTranslation } from "react-i18next";
 
 
 
 export const Login = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
+  const navigate = useNavigate()
 
-  const [password, setPassword]= useState()
+  const [password, setPassword]= useState('')
+  const [email, setEmail] = useState()
   const [visible, setVisible] = useState(false)
   const [click, setToggle] = useState(false)
+  const [error, setError] = useState("")
+  const [rememberMe, setRememberMe] = useState(false);
   
 
   const handleClick = ()=>{
@@ -22,8 +26,29 @@ export const Login = () => {
   const handleVisible = ()=>{
     setVisible(!visible)
   }
-  const handleSubmit =() =>{
+  const handleSubmit = async (e)=>{
+    e.preventDefault()
+    setError('')
 
+    try{
+      const response = await fetch('http://foodgrab.africa/merchants/api/v1/signin',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'applicatio/json'
+        },
+        body:JSON.stringify({email,password,rememberMe})
+      })
+      if (response.ok){
+        navigate('/Dashboard')
+      }else{
+        const data = await response.json();
+        setError(data.message)
+
+      }
+    } catch(error) {
+      console.error('Error:', error);
+      setError('An error occurred while logging in.')
+    }
   }
 
 
@@ -34,7 +59,13 @@ export const Login = () => {
       <form className='formcont' onSubmit={handleSubmit}>
         <label className='lab'>EMAIL ADDRESS</label>
         <div className={"mailbox"} >
-        <input type='email' placeholder='email' className='in a' required/>
+        <input 
+        type='email' 
+        placeholder='email' 
+        className='in a' 
+        required
+        onChange={(e)=> setEmail(e.target.value)}
+        />
         <div className={"mail"}>
         <img src={MAIL} alt=''/>
         </div>
@@ -63,7 +94,12 @@ export const Login = () => {
         </div>
         </div>
         <div className={'boxcont'}>
-          <input type='checkbox' className={"check"}/>
+          <input 
+          type='checkbox' 
+          className={"check"}
+          checked={rememberMe} 
+          onChange={(e) => setRememberMe(e.target.checked)}
+          />
           <p>Remember me for 30 days</p>
           <Link to={""}>
           <div className='forgot'>
