@@ -72,6 +72,14 @@ a{
   border: solid 1px lightgray;
   border-radius: 8px;
 }
+.linebox{
+  display: flex;
+  width: 400px;
+  padding: 20px 0px;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
 .boxcont{
   display: flex;
   align-items: center;

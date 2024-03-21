@@ -1,21 +1,43 @@
+:root{
+  --medium: rgba(249, 250, 251, 1)
+}
+a{
+  color: #FFF;
+}
 .dashboardbox{
   display: flex;
   width: 100%;
   height: 100vh;
 }
+.dashbox{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+/* ======== side bar ======== */
 .sidebar{
   width: 300px;
   height: 100%;
   background-color: black;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 20px;
-  gap: 20px;
 }
-.logobox{
-  width: 150px;
+.sidebarsmall{
+  display: none;
 }
-.logobox img{
+.navigation{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 15px;
+}
+.logobox1{
+  width: 70px;
+}
+.logobox1 img{
   width: 100%;
 }
 .sidebar ul{
@@ -28,11 +50,142 @@
   color: #fff;
   cursor: pointer;
   display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
   gap: 10px;
   padding: 10px;
   border-radius: 5px;
+  border: none;
+  background: none;
 }
 .list:hover{
   background-color: #606060;
+}
+
+.dashicon{
+  font-size: 20px;
+  color: #fff;
+}
+.dashHome{
+  background-color:  var(--medium);
   ;
+  width: 100%;
+  height: 100vh;
+}
+.pref{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pp{
+  display: inline-flex;
+  width: 100%;
+  gap: 10px;
+  align-items: center ;
+  color: #fff;
+}
+.profilepic{
+  width: 45px;
+  height: 45px;
+  background: #606060;
+  border-radius: 50%;
+}
+.profiledetials{
+  color: #fff;
+  font-size: 16px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.username {
+  color: var(--medium);
+  font-size: 12px;
+}
+.profileicon{
+  position: relative;
+  left: 80px; 
+}
+.dashHam{
+  display: none;
+}
+@media screen and (max-width: 699px) {
+  .sidebar{
+    display: none;
+  }
+  .sidebarsmall{
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    z-index: 1;
+    transition: all ease-in 0.5s;
+  }
+  .navigation{
+    gap: 8px;
+    position: relative;
+  }
+.active{
+    left: 0;
+    transition: all ease-in 0.5s;
+  }
+  .logobox1{
+    width: 80px;
+  }
+  .profileicon{
+    left: 50px; 
+  }
+  .dashHam{
+    display: block;
+    cursor: pointer;
+    position: fixed;
+    top: 13px;
+    left: 20px;
+  }
+  .overlay{
+    width:100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 30%;
+    display: block;
+  }
+  .overlay.not-active{
+    display: none;
+  }
+}
+/* ======== side bar ======== */
+/* ======== pages ======= */
+.menu{
+  background-color: var(--medium);
+  width: 100%;
+  height: 100vh;
+}
+.wallet{
+  background-color: var(--medium);
+  width: 100%;
+  height: 100vh;
+}
+.order{
+  background-color: var(--medium);
+  width: 100%;
+  height: 100vh;
+}
+.support{
+  background-color: var(--medium);
+  width: 100%;
+  height: 100vh;
+}
+.settings{
+  background-color: var(--medium);
+  width: 100%;
+  height: 100vh;
 }

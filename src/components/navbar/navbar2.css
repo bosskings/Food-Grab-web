@@ -50,13 +50,6 @@
   padding: 20px;
 
 }
-.linebox{
-  display: flex;
-  width: 400px;
-  padding: 20px 0px;
-  align-items: center;
-  gap: 20px;
-}
 .line{
   background-color: gray;
   width: 100%;

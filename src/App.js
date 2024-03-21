@@ -1,10 +1,17 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from "./pages/Home"
-import { Navbar } from "./pages/Navbar"
 import { Merchantsignup } from "./pages/Merchantsignup"
 import { Merchantlogin } from "./pages/Merchantlogin"
 import { Dashboard } from './pages/Dashboard';
+import OrderPage from './pages/OrderPage';
+import { MenuPage } from './pages/MenuPage';
+import { WalletPage } from './pages/WalletPage';
+import { SupportPage } from './pages/SupportPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { SettingsPage } from './pages/SettingsPage';
+
+
 //fonts
 
 import "./fonts/Sherika Black.ttf"
@@ -15,16 +22,22 @@ import "./fonts/Sherika ExtraBold.ttf"
 
 
 
+
 function App() {
   return (
     <div >
     <Router>
-    <Navbar />
       <Routes>
         <Route path={'/'} element={<Home />} />
         <Route path={'/Merchantsignup'} element={<Merchantsignup />} />
         <Route path={'/Merchantlogin'} element={<Merchantlogin />} />
         <Route path={'/Dashboard'} element= { <Dashboard />} />
+        <Route path={'/order'} element= { <OrderPage />} />
+        <Route path={'/menu'} element= { <MenuPage />} />
+        <Route path={'/wallet'} element= { <WalletPage />} />
+        <Route path={'/support'} element = {<SupportPage /> } />
+        <Route path={'/profile'} element = {<ProfilePage /> } />
+        <Route path={"/settings"} element = {<SettingsPage/>} />
       </Routes>
     </Router>
     </div>
