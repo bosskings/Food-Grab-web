@@ -299,8 +299,8 @@ export const Sidebar = () => {
       </div>
       <div className={"sidebar"}>
       <div className={"navigation"} >
-      <div className='logobox'>
-        <Link to={'/' + '/Dashboard'}>
+      <div className='logobox1'>
+        <Link to={'/' + 'Dashboard'}>
           <img src={LOGO} alt=''/>
         </Link>
       </div>

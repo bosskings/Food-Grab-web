@@ -144,3 +144,12 @@ a{
 .errorimage img{
   width: 100%;
 }
+
+@media screen and (max-width: 699px) {
+  .signupbody{
+    padding: 0 5%;
+  }
+  .formcont2{
+    width: 100%;
+  }
+}

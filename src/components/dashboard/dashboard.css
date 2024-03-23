@@ -8,6 +8,7 @@ a{
   display: flex;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
 }
 .dashbox{
   width: 100%;
@@ -35,7 +36,7 @@ a{
   gap: 15px;
 }
 .logobox1{
-  width: 70px;
+  width: 100px;
 }
 .logobox1 img{
   width: 100%;
@@ -67,12 +68,7 @@ a{
   font-size: 20px;
   color: #fff;
 }
-.dashHome{
-  background-color:  var(--medium);
-  ;
-  width: 100%;
-  height: 100vh;
-}
+
 .pref{
   display: flex;
   flex-direction: column;
@@ -164,6 +160,15 @@ a{
 }
 /* ======== side bar ======== */
 /* ======== pages ======= */
+.dashHome{
+  background-color:  var(--medium);
+  width: 100%;
+  height: 100vh;
+  padding: 20px 3%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
 .menu{
   background-color: var(--medium);
   width: 100%;
@@ -188,4 +193,198 @@ a{
   background-color: var(--medium);
   width: 100%;
   height: 100vh;
+}
+/* ======== dash home ====== */
+
+.dashsec1{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+}
+.dashcardcont{
+  display: flex;
+  justify-content: space-between;
+}
+.money{
+  font-size: 24px;
+}
+.money span{
+  font-size: 18px;
+  font-weight: 400;
+  color: lightgray;
+}
+.txt2{
+ color: #101928;
+ font-size: 20px;
+ font-weight: 600;
+}
+.cd{
+  background: black;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 25px 40px;
+  color: #fff;
+  border-radius: 10px;
+  gap: 10px;
+  position: relative;
+  object-fit: cover;
+}
+.bgimg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 15%;
+} 
+.init1{
+  font-size: 12px;
+  font-weight: 400;
+}
+.balance{
+  font-size: 10px;
+  display: inline-flex;
+  gap:5px;
+}
+.balicon{
+  color: red;
+  transform: rotate(180deg);
+}
+.s{
+  background: #ffece5;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 25px 40px;
+  color: #383838;
+  border-radius: 10px;
+  gap: 10px;
+  position: relative;
+  object-fit: cover;
+}
+.t{
+  background: #e7f6ec;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 25px 40px;
+  color: #383838;
+  border-radius: 10px;
+  gap: 10px;
+  position: relative;
+  object-fit: cover;
+}
+.u{
+  background: rgba(227, 239, 252, 1);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 25px 40px;
+  color: #383838;
+  border-radius: 10px;
+  gap: 10px;
+  position: relative;
+  object-fit: cover;
+}
+/* ===============sec2====================== */
+.dashsec2{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.tablebox{
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  width: 100%;
+  max-height: 370px;
+  border-radius: 20px;
+  flex: 2;
+  gap: 10px;
+  padding: 10px;
+  overflow-y: hidden;
+}
+.toptb{
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  background-color: #FFF;
+}
+.toptb h2{
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(16, 25, 40, 1);
+
+}
+.toptb p{
+  color: red;
+}
+.topbicon{
+  color: red;
+}
+.toptb div{
+  display: inline-flex;
+  gap: 5px;
+}
+.tablecont{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: hidden;
+}
+.seeallModal{
+  display: flex;
+  width: 70%;
+  height: 80%;
+  position: fixed;
+  top: 10%;
+  left: 26.5%;
+  justify-content: center;
+  align-items: center;
+}
+.overlay{
+  width:100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 30%;
+  display: block;
+}
+.overlay.not-active{
+  display: none;
+}
+.seealltable{
+  position: absolute;
+  background-color: #fff;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  padding: 20px;
+  overflow-y: hidden;
+}
+.closeModal{
+  color: red;
+  margin: 2px;
+}
+.toporder{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 20px;
+  flex: 1;
+}
+.toporder h1{
+  color: rgba(16, 25, 40, 1);
+   font-size: 20px;
+  font-weight: 700;
 }

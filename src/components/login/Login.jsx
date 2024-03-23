@@ -94,6 +94,7 @@ export const Login = () => {
         </div>
         </div>
         <div className={'boxcont'}>
+        <div className={"first"}>
           <input 
           type='checkbox' 
           className={"check"}
@@ -101,6 +102,7 @@ export const Login = () => {
           onChange={(e) => setRememberMe(e.target.checked)}
           />
           <p>Remember me for 30 days</p>
+          </div>
           <Link to={""}>
           <div className='forgot'>
             Forgot password?
