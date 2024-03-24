@@ -16,7 +16,7 @@ export const Signup = () => {
   const [input, setInput] = useState({
     firstname: '',
     lastname:'',
-    emial: '',
+    email: '',
     phone: "",
     NIN: "",
     password: '',
@@ -26,7 +26,7 @@ export const Signup = () => {
   const [error, setError] = useState({
     firstname: '',
     lastname:'',
-    emial: '',
+    email: '',
     phone: "",
     NIN: "",
     password: '',
@@ -135,7 +135,7 @@ export const Signup = () => {
 
     validateInput({ target: { name: 'firstname', value: input.firstname } });
     validateInput({ target: { name: 'lastname', value: input.lastname } });
-    validateInput({ target: { name: 'email', value: input.emial } });
+    validateInput({ target: { name: 'email', value: input.email } });
     validateInput({ target: { name: 'phone', value: input.phone } });
     validateInput({ target: { name: 'NIN', value: input.NIN } });
     validateInput({ target: { name: 'password', value: input.password } });
@@ -145,6 +145,7 @@ export const Signup = () => {
       ...prevError,
       firstname: error.firstname,
       lastname: error.lastname,
+      email: error.email,
       phone: error.phone,
       NIN: error.NIN,
       password: error.password,
@@ -161,7 +162,7 @@ export const Signup = () => {
           body: JSON.stringify({
             firstname: input.firstname,
             lastname: input.lastname,
-            email: input.emial,
+            email: input.email,
             phone: input.phone,
             NIN: input.NIN,
             password: input.password
@@ -173,7 +174,7 @@ export const Signup = () => {
         setInput({
           firstname: '',
           lastname:'',
-          emial: '',
+          email: '',
           phone: "",
           NIN: "",
           password: '',
@@ -234,7 +235,7 @@ export const Signup = () => {
             type='email' // Keep type as 'email' for email input
             placeholder='email' 
             className='in a' 
-            value={input.emial}
+            value={input.email}
             onChange={onInputChange}
             onBlur={onBlurValidate}
             required
@@ -243,7 +244,7 @@ export const Signup = () => {
             <img src={MAIL} alt=''/>
           </div>
         </div>
-        {error.emial && <span className='err'>{error.emial}</span>}
+        {error.emial && <span className='err'>{error.email}</span>}
 
         <label className='lab2'> PHONE </label>
         <div className={"mailbox"} >
