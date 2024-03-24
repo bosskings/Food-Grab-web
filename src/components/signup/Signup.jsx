@@ -50,13 +50,14 @@ export const Signup = () => {
           stateObj[name] = ""; 
         }
         break;
+
       case "email":
         if(!value){
           stateObj[name]= "please enter an email"
         }else {
-        stateObj=[name]=""
+          stateObj=[name] = "";
         }
-        break
+        break;
 
       case "password":
         if (!value) {
@@ -133,6 +134,7 @@ export const Signup = () => {
         });
 
         navigate ('/Merchantlogin')
+        
       }catch{
        console.error("signup failed", error)
       }
@@ -225,7 +227,7 @@ export const Signup = () => {
           </div>
         </div>
         {error.confirmPassword && <span className='err'>{error.confirmPassword}</span>}
-        
+        {}
           <button type='submit' className={"login"}>
             Create Account
           </button>
