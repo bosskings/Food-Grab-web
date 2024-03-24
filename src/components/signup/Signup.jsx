@@ -133,8 +133,8 @@ export const Signup = () => {
           confirmPassword: ''
         });
 
-        navigate ('/Merchantlogin')
-        
+        navigate('/Merchantlogin')
+
       }catch{
        console.error("signup failed", error)
       }
