@@ -172,6 +172,9 @@ export const Signup = () => {
             type='email' // Keep type as 'email' for email input
             placeholder='email' 
             className='in a' 
+            value={input.email}
+            onChange={onInputChange}
+            onBlur={onBlurValidate}
             required
           />
           <div className={"mail"}>
