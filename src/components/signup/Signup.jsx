@@ -68,8 +68,10 @@ export const Signup = () => {
       case "phone":
         if (!value) {
           stateObj[name] = "Please enter a valid phone number.";
-        } else {
-          stateObj[name] = ""; 
+        } else if(value.length < 0 || value.length > 11 ){
+          stateObj[name] = "Please enter a valid phone number."; 
+        }else{
+          stateObj[name]= ""
         }
         break;
 
