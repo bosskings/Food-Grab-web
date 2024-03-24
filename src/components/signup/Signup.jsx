@@ -248,7 +248,7 @@ export const Signup = () => {
         <label className='lab2'> PHONE </label>
         <div className={"mailbox"} >
           <input 
-            type='number' // Changed type to 'text'
+            type='text' // Changed type to 'text'
             name="phone"
             value={input.phone}
             onChange={onInputChange}
@@ -263,7 +263,7 @@ export const Signup = () => {
         <label className='lab2'> NIN </label>
         <div className={"mailbox"} >
           <input 
-            type='number' // Changed type to 'text'
+            type='text' // Changed type to 'text'
             name="NIN"
             value={input.NIN}
             onChange={onInputChange}
