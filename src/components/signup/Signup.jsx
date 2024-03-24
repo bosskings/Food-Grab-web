@@ -196,7 +196,7 @@ export const Signup = () => {
         method='POST'
         onSubmit={handleSubmitForm}
       >
-        <label className='lab2'> FULL NAME</label>
+        <label className='lab2'> FIRST NAME</label>
         <div className={"mailbox"} >
           <input 
             type='text' // Changed type to 'text'
@@ -211,7 +211,7 @@ export const Signup = () => {
         </div>
         {error.firstname && <span className='err'>{error.firstname}</span>}
 
-        <label className='lab2'> FULL NAME</label>
+        <label className='lab2'> LAST NAME</label>
         <div className={"mailbox"} >
           <input 
             type='text' // Changed type to 'text'
@@ -243,7 +243,7 @@ export const Signup = () => {
         </div>
         {error.emial && <span className='err'>{error.emial}</span>}
 
-        <label className='lab2'> FULL NAME</label>
+        <label className='lab2'> PHONE </label>
         <div className={"mailbox"} >
           <input 
             type='number' // Changed type to 'text'
@@ -258,7 +258,7 @@ export const Signup = () => {
         </div>
         {error.phone && <span className='err'>{error.phone}</span>}
 
-        <label className='lab2'> FULL NAME</label>
+        <label className='lab2'> NIN </label>
         <div className={"mailbox"} >
           <input 
             type='number' // Changed type to 'text'
