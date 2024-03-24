@@ -53,7 +53,7 @@ export const Signup = () => {
 
       case "email":
         if(!value){
-          stateObj[name]= "please enter an email"
+          stateObj[name] = "please enter an email";
         }else {
           stateObj=[name] = "";
         }
