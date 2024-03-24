@@ -244,7 +244,7 @@ export const Signup = () => {
             <img src={MAIL} alt=''/>
           </div>
         </div>
-        {error.emial && <span className='err'>{error.email}</span>}
+        {error.email && <span className='err'>{error.email}</span>}
 
         <label className='lab2'> PHONE </label>
         <div className={"mailbox"} >
