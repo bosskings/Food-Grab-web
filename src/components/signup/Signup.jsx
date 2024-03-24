@@ -5,10 +5,9 @@ import ERROR from "../media/error.jpg"
 import "./signup.css"
 import { Eye, EyeSlash, Twitter } from 'react-bootstrap-icons'
 import { Link, useNavigate } from 'react-router-dom'
-import useForm from '../../UseForm'
 import { use } from 'i18next'
 
-const FORM_ENDPOINT = "https://foodgrab.africa/merchants/api/v1/signup"
+
 export const Signup = () => {
   const navigate =  useNavigate();
   const [visible, setVisible] = useState(false)
@@ -16,12 +15,14 @@ export const Signup = () => {
 
   const [input, setInput] = useState({
     username: '',
+    emial: '',
     password: '',
     confirmPassword: ''
   });
  
   const [error, setError] = useState({
     username: '',
+    email: '',
     password: '',
     confirmPassword: ''
   })
@@ -49,6 +50,13 @@ export const Signup = () => {
           stateObj[name] = ""; 
         }
         break;
+      case "email":
+        if(!value){
+          stateObj[name]= "please enter an email"
+        }else {
+        stateObj=[name]=""
+        }
+        break
 
       case "password":
         if (!value) {
@@ -85,17 +93,13 @@ export const Signup = () => {
     setVisible(!visible)
   }
 
-  const additionalData={
-    sent: new Date().toISOString()
-  }
-  const { handleSubmit, status, message } = useForm({
-    additionalData,
+  
 
-  });
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault(); 
 
     validateInput({ target: { name: 'username', value: input.username } });
+    validateInput({ target: { name: 'email', value: input.emial } });
     validateInput({ target: { name: 'password', value: input.password } });
     validateInput({ target: { name: 'confirmPassword', value: input.confirmPassword } });
 
@@ -107,53 +111,41 @@ export const Signup = () => {
     }));
 
     if (!error.username && !error.password && !error.confirmPassword) {
-      navigate ('/Merchantlogin')
-      handleSubmit(e);
+      try{
+        const response = await fetch("https://foodgrab.africa/merchants/api/v1/signup",{
+          method: 'POST',
+          headers:{
+            'content-Type':'application/json'
+          },
+          body: JSON.stringify({
+            username: input.username,
+            email: input.emial,
+            password: input.password
+          })
+        })
+        if (!response.ok){
+          throw new Error('Signup request failed');
+        }
+        setInput({
+          username: '',
+          password: '',
+          confirmPassword: ''
+        });
+
+        navigate ('/Merchantlogin')
+      }catch{
+       console.error("signup failed", error)
+      }
     }
   };
 
-  if (status === "success") {
-
-    return (
-
-      <>
-
-        <div className="text">Thank you!</div>
-
-        <div className="text">{message}</div>
-
-      </>
-
-    );
-
-  }
-
-
-  if (status === "error") {
-
-    return (
-
-      <div className={"errorpage"}>
-      <div className='errorimage'>
-        <img src={ERROR} alt='' />
-      </div>
-      <div className='errorcontent'>
-      <p className="text">Something bad happened!</p>
-      <p className="text">{message}</p>
-      </div>
-
-      </div>
-
-    );
-
-  }
+  
   return (
     <div className='signupbody'>
       <h1>Sign Up</h1>
       <p>Create account</p>
       <form 
         className='formcont2'
-        action={FORM_ENDPOINT}
         method='POST'
         onSubmit={handleSubmitForm}
       >
@@ -234,11 +226,9 @@ export const Signup = () => {
         </div>
         {error.confirmPassword && <span className='err'>{error.confirmPassword}</span>}
         
-        {status !== 'loading' && (
           <button type='submit' className={"login"}>
             Create Account
           </button>
-        )}
       </form>
       <div className={"bottom2"}>
         <div className={"linebox"} >

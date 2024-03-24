@@ -34,7 +34,7 @@ export const Login = () => {
       const response = await fetch('https://foodgrab.africa/merchants/api/v1/signin',{
         method: 'POST',
         headers: {
-          'Content-Type': 'applicatio/json'
+          'Content-Type': 'application/json'
         },
         body:JSON.stringify({email,password,rememberMe})
       })
