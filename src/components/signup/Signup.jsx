@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import useForm from '../../UseForm'
 import { use } from 'i18next'
 
-const FORM_ENDPOINT = "http://foodgrab.africa/merchants/api/v1/signup"
+const FORM_ENDPOINT = "https://foodgrab.africa/merchants/api/v1/signup"
 export const Signup = () => {
   const navigate =  useNavigate();
   const [visible, setVisible] = useState(false)
