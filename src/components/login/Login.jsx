@@ -39,6 +39,9 @@ export const Login = () => {
         body:JSON.stringify({email,password,rememberMe})
       })
       if (response.ok){
+
+        const data = await response.json();
+        localStorage.setItem('sessionToken', data.token);
         navigate('/Dashboard')
       }else{
         const data = await response.json();
