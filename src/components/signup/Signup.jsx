@@ -14,15 +14,21 @@ export const Signup = () => {
   const [click, setToggle] = useState(false)
 
   const [input, setInput] = useState({
-    username: '',
+    firstname: '',
+    lastname:'',
     emial: '',
+    phone: "",
+    NIN: "",
     password: '',
     confirmPassword: ''
   });
  
   const [error, setError] = useState({
-    username: '',
-    email: '',
+    firstname: '',
+    lastname:'',
+    emial: '',
+    phone: "",
+    NIN: "",
     password: '',
     confirmPassword: ''
   })
@@ -43,11 +49,37 @@ export const Signup = () => {
     const stateObj = { ...prev, [name]: "" };
 
     switch (name) {
-      case "username":
+      case "firstname":
         if (!value) {
-          stateObj[name] = "Please enter Username.";
+          stateObj[name] = "Please enter firstname.";
         } else {
           stateObj[name] = ""; 
+        }
+        break;
+
+      case "lastname":
+        if (!value) {
+          stateObj[name] = "Please enter lastname.";
+        } else {
+          stateObj[name] = ""; 
+        }
+        break;
+
+      case "phone":
+        if (!value) {
+          stateObj[name] = "Please enter a valid phone number.";
+        } else {
+          stateObj[name] = ""; 
+        }
+        break;
+
+      case "NIN":
+        if (!value) {
+          stateObj[name] = "Please enter a valid NIN.";
+        } else if(value.length > 10 || value.length < 10 ){
+          stateObj[name] = "Please enter a valid NIN"; 
+        } else{
+          stateObj[name]=""
         }
         break;
 
@@ -62,7 +94,7 @@ export const Signup = () => {
       case "password":
         if (!value) {
           stateObj[name] = "Please enter a Password.";
-        } else {
+        } else { 
           stateObj[name] = ""; 
         }
         break;
@@ -99,14 +131,20 @@ export const Signup = () => {
   const handleSubmitForm = async (e) => {
     e.preventDefault(); 
 
-    validateInput({ target: { name: 'username', value: input.username } });
+    validateInput({ target: { name: 'firstname', value: input.firstname } });
+    validateInput({ target: { name: 'lastname', value: input.lastname } });
     validateInput({ target: { name: 'email', value: input.emial } });
+    validateInput({ target: { name: 'phone', value: input.phone } });
+    validateInput({ target: { name: 'NIN', value: input.NIN } });
     validateInput({ target: { name: 'password', value: input.password } });
     validateInput({ target: { name: 'confirmPassword', value: input.confirmPassword } });
 
     setError(prevError => ({
       ...prevError,
-      username: error.username,
+      firstname: error.firstname,
+      lastname: error.lastname,
+      phone: error.phone,
+      NIN: error.NIN,
       password: error.password,
       confirmPassword: error.confirmPassword
     }));
@@ -119,8 +157,11 @@ export const Signup = () => {
             'content-Type':'application/json'
           },
           body: JSON.stringify({
-            username: input.username,
+            firstname: input.firstname,
+            lastname: input.lastname,
             email: input.emial,
+            phone: input.phone,
+            NIN: input.NIN,
             password: input.password
           })
         })
@@ -128,7 +169,11 @@ export const Signup = () => {
           throw new Error('Signup request failed');
         }
         setInput({
-          username: '',
+          firstname: '',
+          lastname:'',
+          emial: '',
+          phone: "",
+          NIN: "",
           password: '',
           confirmPassword: ''
         });
@@ -155,16 +200,31 @@ export const Signup = () => {
         <div className={"mailbox"} >
           <input 
             type='text' // Changed type to 'text'
-            name="username"
+            name="firstname"
             value={input.username}
             onChange={onInputChange}
             onBlur={onBlurValidate}
-            placeholder='Enter Name' 
+            placeholder='Enter Firstname' 
             className='in a' 
             required
           />
         </div>
-        {error.username && <span className='err'>{error.username}</span>}
+        {error.firstname && <span className='err'>{error.firstname}</span>}
+
+        <label className='lab2'> FULL NAME</label>
+        <div className={"mailbox"} >
+          <input 
+            type='text' // Changed type to 'text'
+            name="lastname"
+            value={input.lastname}
+            onChange={onInputChange}
+            onBlur={onBlurValidate}
+            placeholder='Enter Lastname' 
+            className='in a' 
+            required
+          />
+        </div>
+        {error.lastname && <span className='err'>{error.lastname}</span>}
   
         <label className='lab2'>EMAIL ADDRESS</label>
         <div className={"mailbox"} >
@@ -172,7 +232,7 @@ export const Signup = () => {
             type='email' // Keep type as 'email' for email input
             placeholder='email' 
             className='in a' 
-            value={input.email}
+            value={input.emial}
             onChange={onInputChange}
             onBlur={onBlurValidate}
             required
@@ -181,6 +241,37 @@ export const Signup = () => {
             <img src={MAIL} alt=''/>
           </div>
         </div>
+        {error.emial && <span className='err'>{error.emial}</span>}
+
+        <label className='lab2'> FULL NAME</label>
+        <div className={"mailbox"} >
+          <input 
+            type='number' // Changed type to 'text'
+            name="phone"
+            value={input.phone}
+            onChange={onInputChange}
+            onBlur={onBlurValidate}
+            placeholder='Enter Phone Number' 
+            className='in a' 
+            required
+          />
+        </div>
+        {error.phone && <span className='err'>{error.phone}</span>}
+
+        <label className='lab2'> FULL NAME</label>
+        <div className={"mailbox"} >
+          <input 
+            type='number' // Changed type to 'text'
+            name="NIN"
+            value={input.NIN}
+            onChange={onInputChange}
+            onBlur={onBlurValidate}
+            placeholder='Enter NIN' 
+            className='in a' 
+            required
+          />
+        </div>
+        {error.NIN && <span className='err'>{error.NIN}</span>}
   
         <label className='lab2'>PASSWORD</label>
         <div className={"pass"} >
