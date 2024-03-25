@@ -89,7 +89,7 @@ export const Signup = () => {
         if(!value){
           stateObj[name] = "please enter an email";
         }else {
-          stateObj=[name] = "";
+          stateObj[name] = "";
         }
         break;
 
