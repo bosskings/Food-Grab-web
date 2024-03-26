@@ -6,6 +6,15 @@ import { FaChevronRight } from "react-icons/fa6";
 import { Table } from '../table/Table';
 import { all } from 'axios';
 import { XCircle } from 'react-bootstrap-icons';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+
+import "swiper/css";
+import "swiper/css/effect-cube";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { EffectCube, Pagination, Navigation, Autoplay, } from "swiper/modules";
+
 
 const data = [
   {id:1, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
@@ -43,6 +52,14 @@ export const DashboardHome = () => {
      <div className={show? "overlay":"not-active"} onClick={handleShow}></div>
     </div>
   )}
+  const pagination = ('.swiper-pagination', {
+    dynamicBullets: false,
+    clickable:true,
+
+  renderBullet: function ( index ,className) {
+    return '<span class="' + className + '">' + (index + 1)+ '</span>';
+  }
+});
 
   return (
     <div className='dashHome'>
@@ -51,9 +68,77 @@ export const DashboardHome = () => {
       <p className="txt2">Dashboard</p>
     </div>
 
-    <div className={"dashcardcont"}>
+    
+    <div className={"dashcardcont2"}>
+    <Swiper
+    className={"dashswiper"}
+        modules={[Autoplay,EffectCube, Pagination, Navigation,]}
+         effect={"cards"}
+        grabCursor={ true }
+        centeredSlides={ true }
+        // autoplay={{delay: 5000,
+        //   disableOnInteraction: true,
+        // }}
+        loop= { true }
+        slidesPerView={ 'auto' }
+        cardsEffect={{ 
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 7.0,
+  
+          }}
+
+          pagination={pagination}
+    >
+      <SwiperSlide className={'dashslide'}>
       <div className="cd">
         <p className='init1'>Available Balance</p>
+        <h3 className='money'>₦ 140,000<span>.00</span> </h3>
+        <div className='balance'>
+        <p>Payout Balance:</p><span>$139,900.99</span> <RiInformationFill className={"balicon"}/>
+        <img src={BOXES} alt='' className='bgimg' />
+        </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={'dashslide'}>
+      <div className="s">
+        <p className='init1'>Total Orders</p>
+        <h3 className='money'>100 </h3>
+        <div className='balance'>
+        <p>Payout Balance:</p><span>$139,900.99</span>
+        </div>
+      </div>
+      </SwiperSlide> 
+      <SwiperSlide className={'dashslide'}>
+     
+      <div className="t">
+        <p className='init1'>Available Balance</p>
+        <h3 className='money'> 20 </h3>
+        <div className='balance'>
+        <p>Payout Balance:</p><span>$139,900.99</span>
+        </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={'dashslide'}>
+      <div className="u">
+        <p className='init1'>Available Balance</p>
+        <h3 className='money'>80 </h3>
+        <div className='balance'>
+        <p>Payout Balance:</p><span>$139,900.99</span>
+        </div>
+      </div>
+      </SwiperSlide>
+    
+  
+      </Swiper>
+   
+    </div>
+    
+
+    <div className={"dashcardcont"}>
+      <div className="cd">
+      <p className='init1'>Available Balance</p>
         <h3 className='money'>₦ 140,000<span>.00</span> </h3>
         <div className='balance'>
         <p>Payout Balance:</p><span>$139,900.99</span> <RiInformationFill className={"balicon"}/>

@@ -1,9 +1,12 @@
 .navbar3{
   position: relative;
+  width: 100%;
   display: flex;
   padding: 10px 5%;
   justify-content: space-between;
   gap: 25px;
+  background-color: #fff;
+  z-index: 0.5;
 }
 .navbar3 div{
   display: flex;
@@ -50,4 +53,9 @@
   justify-content: center;
   align-items: center;
 }
-
+@media screen and (max-width: 699px) {
+  .navbar3{
+    position:fixed;
+    z-index: 4;
+  }
+}

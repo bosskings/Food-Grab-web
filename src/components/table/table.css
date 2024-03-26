@@ -72,3 +72,13 @@
   color:#0068a3;
 
 }
+@media screen and (max-width:699px){
+  .rowcont{
+    max-height:600px ;
+  }
+}
+@media (min-width: 700px) and (max-width: 1050px){
+  .rowcont{
+    max-height:450px ;
+  }
+}
