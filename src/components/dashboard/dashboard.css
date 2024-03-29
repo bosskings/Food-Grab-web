@@ -224,7 +224,7 @@ a{
 }
 .cd{
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   background: black;
   flex-direction: column;
@@ -259,7 +259,7 @@ a{
 .s{
   background: #ffece5; 
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   padding: 30px 40px;
@@ -270,7 +270,7 @@ a{
 .t{
   background: #e7f6ec; 
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   padding: 30px 40px;
@@ -281,7 +281,7 @@ a{
 .u{
   background: rgba(227, 239, 252, 1);
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   padding: 30px 40px;
