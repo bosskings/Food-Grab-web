@@ -1,16 +1,14 @@
 import React, { useState, useEffect ,useRef} from 'react';
 import './table.css';
 import { Dropdown } from '../dashboard/dropdown/Dropdown';
-import { FaChevronDown } from 'react-icons/fa';
 import OrderModal from '../modal/OrderModal';
 
 const OrderTable = (props) => {
   const { columns, data } = props;
   const [checkedItems, setCheckedItems] = useState({});
-  const [dropdownStates, setDropdownStates] = useState(Array(data.length).fill(false));
   const [productImages, setProductImages] = useState({});
-  const [seeMmodal, setSeeModal] = useState({})
-  // const dropdownRefs = useRef([]);
+  // const [selectedRowIndex, setSelectedRowIndex] = useState(null);
+  const dropdownRefs = useRef([]);
 
   
   const handleCheckboxChange = (event, id) => {
@@ -34,25 +32,16 @@ const OrderTable = (props) => {
     fetchProductImages();
   }, []);
 
-  // useEffect(() => {
-  //   dropdownRefs.current = Array(data.length).fill().map((_, index) => dropdownRefs.current[index] || React.createRef());
-  // }, [data]);
-
-  const handleDropdown = (index) => {
-    setDropdownStates((prevState) => {
-      const newDropdownStates = [...prevState];
-      newDropdownStates[index] = !newDropdownStates[index];
-      return newDropdownStates;
-    });
-  };
+  useEffect(() => {
+    dropdownRefs.current = Array(data.length).fill().map(( _, index) => dropdownRefs.current[index] || React.createRef());
+  }, [data]);
   
-  const Seemodal = ()=>{
-    <OrderModal/>
-  }
+  const handleDropdownItemClick = (index, rowData) => {
+    // Open modal with specific row data
+    dropdownRefs.current[index].current.handleOpenModal(rowData);
+  };
 
-  const handleSeeModal = ()=>{
-    setSeeModal(<Seemodal />)
-  }
+
 
   const getFourthContentStyle = (value) => {
     if (value === 'Delivered') {
@@ -67,6 +56,9 @@ const OrderTable = (props) => {
       return '';
     }
   };
+  // const handleDropdownClick = (index) => {
+  //   setSelectedRowIndex(index);
+  // };
 
   return (
     <div>
@@ -82,7 +74,7 @@ const OrderTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, rowIndex) => (
+          {data.map((row) => (
             <tr key={row.id} className={'row2'}>
               <td>
                 <input
@@ -91,22 +83,17 @@ const OrderTable = (props) => {
                   onChange={(e) => handleCheckboxChange(e, row.id)}
                 />
               </td>
-              {columns.map((column, index) => (
-                <td key={index} className={`rowcontent2 ${index === 3 ? getFourthContentStyle(row[column]) : ''}`}>
+              {columns.map((column, index, rowIndex) => (
+                <td key={index} className={`rowcontent2 ${index === 3 ? getFourthContentStyle(row[column]) : ''}`} 
+                ref={dropdownRefs.current[rowIndex]}>
                   {index === 2 && column === 'Product' && (
                     <img src={productImages[row.id]} alt='' className={'productimage'} />
                   )}
                   {row[column]}
                    {index === 5 && column === 'Action' && (
-                    <div className={'dropbox'} onClick={() => handleDropdown(rowIndex)}>
-                      More <FaChevronDown />
-                      {dropdownStates[rowIndex]&&
-                        <Dropdown xPos={1230} yPos={306}  />
-                      }
-
-                      {/* && dropdownRefs.current[rowIndex].current && ( */}
-{/* parentRef={dropdownRefs.current[rowIndex].current} */}
-                    </div>
+                    <Dropdown rowData={row} 
+                     onDropdownItemClick={() => handleDropdownItemClick(rowIndex, row)}
+                    modalComponent={<OrderModal row={row} />} />
                   )}
                 </td>
               ))}

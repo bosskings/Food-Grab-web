@@ -5,7 +5,7 @@ import  OrderTable  from '../table/OrderTable'
 
 const data = [
   {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "Yam Porridge", Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021" },
-  {id:2, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "Yam Porridge", Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: "Yam Porridge", Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
   {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "Yam Porridge", Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
   {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "Yam Porridge", Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
 ]

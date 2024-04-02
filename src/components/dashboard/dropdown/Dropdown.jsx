@@ -1,31 +1,77 @@
-/* eslint-disable no-undef */
-import React, { useState } from 'react';
-import { OrderItem } from "./OrderItem";
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "./dropdown.css";
+import { FaChevronDown } from 'react-icons/fa';
+import OrderModal from '../../modal/OrderModal';
+import "./dropdown.css"
 
-export const Dropdown = ({xPos, yPos  }) => {
-  const [click, setClick] =  useState(false);
+export const Dropdown = ({ parentRef, rowData, modalComponent}) => {
+  const [click, setClick] = useState(false);
+  const [open,setOpen]= useState(false)
+  const dropdownMenuRef = useRef(null);
 
-  const handleClick = () => setClick(!click);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownMenuRef.current && !dropdownMenuRef.current.contains(event.target)) {
+        setClick(false);
+      }
+    };
 
-  // const { top, left, height } = parentRef.current.getBoundingClientRect();
-  // const xPos = left;
-  // const yPos = top + height;
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  const handleOpen = ()=>{
+    setOpen(!open) 
+  }
+  const handleDropdown = () => {
+    setClick(!click);
+  };
 
+  const handleItemClick = () => {
+    setClick(false);
+  };
+
+  const OrderItem = [
+    {
+      title: 'View Details',
+      path: "",
+      cName: 'View Details'
+    },
+    {
+      title: 'Confirm Order',
+      path: "",
+      cName: 'Confirm Order'
+    }
+  ];
   return (
-    <>
-      <ul onClick={handleClick} className={click ? "dropdown-menu clicked" : 'dropdown-menu'}
-      style={{ top: yPos, left: xPos}}
-      >
-        {OrderItem.map((item, index) => (
-          <li key={index}>
-            <Link className={item.cName} to={item.path} onClick={() => { setClick(false) }}>
-              {item.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className='dpbox'>
+      <div className={'dropbox'} onClick={handleDropdown}>
+        More <FaChevronDown />
+      </div>
+      {click && (
+        <ul
+          ref={dropdownMenuRef}
+          className="dropdown-menu"
+          style={{ top: parentRef ? parentRef.current.getBoundingClientRect().top + parentRef.current.getBoundingClientRect().height : 20,left: parentRef ? parentRef.current.getBoundingClientRect().left :20 }}
+          >
+          {OrderItem.map((item, index) => (
+            <li key={index} onClick={()=>{handleItemClick(); handleOpen()}}>
+              <Link className={item.cName} to={item.path}>
+                {item.title}
+              </Link>
+            </li>
+          ))}
+        </ul> 
+      )}
+      {open && rowData && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            {rowData && React.cloneElement(modalComponent, { data: rowData })}
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
+
