@@ -52,8 +52,8 @@ const OrderTable = (props) => {
       return 'packaged';
     } else if (value === 'In-transit') {
       return 'in-transit';
-    } else {
-      return '';
+    } else if (value === "Processing") {
+      return 'processing';
     }
   };
   // const handleDropdownClick = (index) => {
@@ -86,9 +86,9 @@ const OrderTable = (props) => {
               {columns.map((column, index, rowIndex) => (
                 <td key={index} className={`rowcontent2 ${index === 3 ? getFourthContentStyle(row[column]) : ''}`} 
                 ref={dropdownRefs.current[rowIndex]}>
-                  {index === 2 && column === 'Product' && (
+                  {index === 2 && column === 'Product' ? (
                     <img src={productImages[row.id]} alt='' className={'productimage'} />
-                  )}
+                  ):("")}
                   {row[column]}
                    {index === 5 && column === 'Action' && (
                     <Dropdown rowData={row} 

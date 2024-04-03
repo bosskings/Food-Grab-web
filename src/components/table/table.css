@@ -53,7 +53,7 @@
   background: #dfffe6;
   color: #00ef18;
 }
-.canclled{
+.cancelled{
   padding: 10px;
   border-radius: 20px;
   background: #fbd2d3;
@@ -64,6 +64,12 @@
   border-radius: 20px;
   background: #d4d7d4;
   color: gray;
+}
+.processing{
+  padding: 10px;
+  border-radius: 20px;
+  background: #fff7d2;
+  color: #efc200; 
 }
 .in-transit{
   padding: 10px;
@@ -130,10 +136,12 @@
   justify-content: center;
 }
 .rowcontent2:nth-child(4){
-  display: grid;
-  grid-template-columns: 20px 100px;
+  display: flex;
+  gap: 10px;
   align-items: center;
   justify-content: center;
+  position: relative;
+  left: -12px;  
 }
 .rowcontent2:nth-child(2){
 position: relative;

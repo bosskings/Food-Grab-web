@@ -9,18 +9,7 @@ export const Dropdown = ({ parentRef, rowData, modalComponent}) => {
   const [open,setOpen]= useState(false)
   const dropdownMenuRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownMenuRef.current && !dropdownMenuRef.current.contains(event.target)) {
-        setClick(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  
   const handleOpen = ()=>{
     setOpen(!open) 
   }
