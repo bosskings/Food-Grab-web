@@ -47,6 +47,8 @@ export const Signup = () => {
   let { name, value } = e.target;
   setError(prev => {
     const stateObj = { ...prev, [name]: "" };
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 
     switch (name) {
       case "firstname":
@@ -86,12 +88,15 @@ export const Signup = () => {
         break;
 
       case "email":
-        if(!value){
-          stateObj[name] = "please enter an email";
-        }else {
+        if (!value) {
+          stateObj[name] = "Please enter an email.";
+        } else if (!emailPattern.test(value)) {
+          stateObj[name] = "Please enter a valid email address.";
+        } else {
           stateObj[name] = "";
         }
         break;
+        
 
       case "password":
         if (!value) {
@@ -184,7 +189,7 @@ export const Signup = () => {
         navigate('/Merchantlogin')
 
       }catch{
-       console.error("signup failed", error)
+       console.log(error("signup failed", error))
       }
     }
   };
@@ -231,15 +236,17 @@ export const Signup = () => {
   
         <label className='lab2'>EMAIL ADDRESS</label>
         <div className={"mailbox"} >
-          <input 
-            type='email' // Keep type as 'email' for email input
-            placeholder='email' 
-            className='in a' 
-            value={input.email}
-            onChange={onInputChange}
-            onBlur={onBlurValidate}
-            required
-          />
+        <input 
+          type='email'
+          placeholder='Enter Email'
+          name="email"
+          className='in a' 
+          value={input.email}
+          onChange={onInputChange}
+          onBlur={onBlurValidate}
+          required
+        />
+
           <div className={"mail"}>
             <img src={MAIL} alt=''/>
           </div>

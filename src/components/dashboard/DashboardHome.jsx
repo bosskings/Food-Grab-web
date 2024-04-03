@@ -19,19 +19,19 @@ import { EffectCube, Pagination, Navigation, Autoplay, } from "swiper/modules";
 const data = [
   {id:1, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
   {id:2, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
-  {id:3, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Canclled" },
+  {id:3, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
   {id:4, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "In-transit" },
   {id:5, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Packaged" },
-  {id:6, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Canclled" },
+  {id:6, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
   {id:7, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Packaged" },
   {id:8, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Packaged" },
   {id:9, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Packaged" },
   {id:10, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
-  {id:11, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Canclled" },
+  {id:11, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
   {id:12, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
-  {id:13, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Canclled" },
+  {id:13, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
   {id:14, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
-  {id:15, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Canclled" },
+  {id:15, 'Order ID': "Order#585939", Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
 ]
 const columns = ['Order ID', 'Price', 'Order Date', 'Status'];
 

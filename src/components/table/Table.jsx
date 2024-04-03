@@ -8,8 +8,8 @@ export const Table = ({columns, data}) => {
   const getFourthContentStyle = (value) => {
     if (value === 'Delivered') {
       return 'delivered'; 
-    } else if (value === 'Canclled') {
-      return 'canclled'; 
+    } else if (value === 'Cancelled') {
+      return 'cancelled'; 
     } else if (value === "Packaged"){
       return 'packaged';
     }else if (value === "In-transit"){

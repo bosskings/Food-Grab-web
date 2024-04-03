@@ -56,9 +56,6 @@ const OrderTable = (props) => {
       return 'processing';
     }
   };
-  // const handleDropdownClick = (index) => {
-  //   setSelectedRowIndex(index);
-  // };
 
   return (
     <div>

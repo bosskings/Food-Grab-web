@@ -1,7 +1,7 @@
 :root{
   --lightdark: #b8b8b8;
   --darkmedium:#383838;
-  --border-mine: border: 2px solid rgba(56, 56, 56, 1)
+  --border-mine: solid 2px  rgba(56, 56, 56, 1)
 }
 .ordersec1{
   display: flex;
@@ -21,6 +21,7 @@
 }
 .headerTxt{
   color: var(--lightdark);
+  border-bottom: solid 2px  #fff;
 }
 .headerTxt.active{
   color: var(--darkmedium);

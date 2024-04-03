@@ -67,8 +67,8 @@ export const Orders = () => {
 
   useEffect(()=>{
     const tableLoca = tables
-  const defaultStlyes = {color: "##b8b8b8", borderBottom: "2px solid #fff"}
-  const activeStyles = {color: "#383838", borderBottom: "2px solid rgba(56, 56, 56, 1)" }
+  const defaultStlyes = {color: "##b8b8b8", borderBottom: "solid 2px #fff"}
+  const activeStyles = {color: "#383838", borderBottom: "solid 2px rgba(56, 56, 56, 1)" }
   switch (active){
     case 'border1':
       setBorder({...border, border1: activeStyles})
@@ -159,12 +159,12 @@ export const Orders = () => {
     <section className='ordersec1'>
     <p className='txt2'>Orders</p>
     <div className='headers'>
-      <p className={`headerTxt ${active}`} onClick={()=> {handleTables('table1'); setBorder("border1")}} style={border.border1} >New Orders</p>
-      <p className={`headerTxt ${active}`} onClick={()=> {handleTables('table2'); setBorder("border2")}} style={border.border2} >Processing</p>
-      <p className={`headerTxt ${active}`} onClick={()=> {handleTables('table3'); setBorder("border3")}} style={border.border3} >Package & Ready</p>
-      <p className={`headerTxt ${active}`} onClick={()=> {handleTables('table4'); setBorder("border4")}} style={border.border4} >In-transit</p>
-      <p className={`headerTxt ${active}`} onClick={()=> {handleTables('table5'); setBorder("border5")}} style={border.border5} >Delivered Order</p>
-      <p className={`headerTxt ${active}`} onClick={()=> {handleTables('table6'); setBorder("border6")}} style={border.border6} >Cancelled Order</p>
+      <p className={`headerTxt ${active === 'table1' ? 'active' : ''}`} onClick={()=> {handleTables('table1'); setBorder("border1")}} style={border.border1} >New Orders</p>
+      <p className={`headerTxt ${active === 'table2' ? 'active' : ''}`} onClick={()=> {handleTables('table2'); setBorder("border2")}} style={border.border2} >Processing</p> 
+      <p className={`headerTxt ${active === 'table3' ? 'active' : ''}`} onClick={()=> {handleTables('table3'); setBorder("border3")}} style={border.border3} >Package & Ready</p>
+      <p className={`headerTxt ${active === 'table4' ? 'active' : ''}`} onClick={()=> {handleTables('table4'); setBorder("border4")}} style={border.border4} >In-transit</p>
+      <p className={`headerTxt ${active === 'table5' ? 'active' : ''}`} onClick={()=> {handleTables('table5'); setBorder("border5")}} style={border.border5} >Delivered Order</p>
+      <p className={`headerTxt ${active === 'table6' ? 'active' : ''}`} onClick={()=> {handleTables('table6'); setBorder("border6")}} style={border.border6} >Cancelled Order</p>
     </div>
     </section>
     <section className={"ordersec2"}>
