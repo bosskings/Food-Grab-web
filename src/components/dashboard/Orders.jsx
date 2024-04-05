@@ -46,6 +46,7 @@ export const Orders = () => {
 
 
   const[active, setactive]= useState('table1')
+  const [activeHeader, setActiveHeader] = useState("New Order")
   const [border, setBorder]= useState([
     {
       border1:{},
@@ -63,6 +64,18 @@ export const Orders = () => {
     table4: <OrderTable columns={columns2} data={data4} />,
     table5: <OrderTable columns={columns2} data={data5} />,
     table6: <OrderTable columns={columns2} data={data6} />,
+  }
+
+  const selcetedTable = {
+    tableA : <p>New Order</p>,
+    tableB : <p>Processing</p>,
+    tableC : <p>Packaged & Ready </p>,
+    tableD : <p>In-transit </p>,
+    tableE : <p>Delivered Order</p>,
+    tableF : <p>Cancelled Order</p>,
+  }
+  const handleSelectedTable= (tableKey)=>{
+    setActiveHeader(tableKey)
   }
 
   useEffect(()=>{
@@ -169,6 +182,7 @@ export const Orders = () => {
     </section>
     <section className={"ordersec2"}>
       <div className={"orderTablebox"}>
+      <p className={'txt2'}>{selcetedTable[activeHeader]}</p>
       {tables[active]}
       </div>
     </section>

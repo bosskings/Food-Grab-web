@@ -189,7 +189,7 @@ export const Signup = () => {
         navigate('/Merchantlogin')
 
       }catch{
-       console.log(error("signup failed", error))
+       console.error("signup failed", error)
       }
     }
   };
@@ -207,7 +207,7 @@ export const Signup = () => {
         <label className='lab2'> FIRST NAME</label>
         <div className={"mailbox"} >
           <input 
-            type='text' // Changed type to 'text'
+            type='text'
             name="firstname"
             value={input.username}
             onChange={onInputChange}
@@ -222,7 +222,7 @@ export const Signup = () => {
         <label className='lab2'> LAST NAME</label>
         <div className={"mailbox"} >
           <input 
-            type='text' // Changed type to 'text'
+            type='text' 
             name="lastname"
             value={input.lastname}
             onChange={onInputChange}

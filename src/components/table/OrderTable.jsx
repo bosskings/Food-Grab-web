@@ -7,7 +7,6 @@ const OrderTable = (props) => {
   const { columns, data } = props;
   const [checkedItems, setCheckedItems] = useState({});
   const [productImages, setProductImages] = useState({});
-  // const [selectedRowIndex, setSelectedRowIndex] = useState(null);
   const dropdownRefs = useRef([]);
 
   
@@ -37,7 +36,6 @@ const OrderTable = (props) => {
   }, [data]);
   
   const handleDropdownItemClick = (index, rowData) => {
-    // Open modal with specific row data
     dropdownRefs.current[index].current.handleOpenModal(rowData);
   };
 
@@ -59,7 +57,6 @@ const OrderTable = (props) => {
 
   return (
     <div>
-      <p className={'txt2'}>New Order</p>
       <table className='table11'>
         <thead className={'colbox2'}>
           <tr className={'colwrapper2'}>
