@@ -1,0 +1,141 @@
+a{
+  text-decoration: none;
+}
+
+.loginbody{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.loginbody h1{
+  padding: 15px;
+}
+.loginbody p{
+  font-size: 16px;
+  color: gray;
+}
+.formcont{
+  width: 400px;
+  height: ato;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.lab{
+  font-size: 12px;
+  font-weight: 500;
+}
+.in{
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%;
+}
+.a{
+  border: solid 1px #0f973d;
+}
+.b{
+  border: solid 1px #cfcfcf;
+}
+.mailbox{
+  position: relative;
+  display: flex;
+}
+.mail{
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+.pass{
+  display: flex;
+  position: relative;
+}
+.eye{
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+.unsee{
+  position: absolute;
+  display: none;
+}
+.unsee.is-vivible{
+  display: block;
+}
+.see.not-visible{
+  display: none;
+}
+.check{
+  width: 18px;
+  height: 18px;
+  border: solid 1px lightgray;
+  border-radius: 8px;
+}
+.linebox{
+  display: flex;
+  width: 400px;
+  padding: 20px 0px;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.boxcont{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.boxcont p{
+  font-size: 14px;
+  font-weight: 400;
+}
+.first{
+  display: inline-flex;
+  gap: 15px;
+  align-items: center;
+}
+.forgot{
+  position: relative;
+  right: 0px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #202020;
+}
+.login{
+  width: 100%;
+  padding: 20px;
+  color: #fff;
+  background-color: black;
+  border-radius: 8px;
+  border: none;
+}
+
+
+@media Screen and (max-width: 699px){
+  .loginbody{
+    padding: 0 5%;
+  }
+  .formcont{
+    width: 100%;
+  }
+  .bottom2{
+    width: 100%;
+    padding: 0;
+    padding-bottom: 20px;
+  }
+  .linebox{
+    width: 100%;
+  }
+  .loginbody p{
+    font-size: 12px ;
+    text-align: center;
+  }
+  .forgot{
+    font-size: 12px;
+    right: 0;
+  }
+  .boxcont{
+
+  }
+}

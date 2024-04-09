@@ -4,7 +4,7 @@ import half from "../media/phone half2.png"
 import logoBT from "../media/Landscape Logo - White_1- Transparent.png"
 import "./home.css"
 import PLAY from "../media/1664285914google-play-logo-png.png"
-import { Apple, Linkedin, Twiter,Facebook, Instagram, Twitter } from "react-bootstrap-icons"
+import { Apple, Linkedin,Facebook, Instagram, Twitter } from "react-bootstrap-icons"
 import { Link } from "react-router-dom"
 
 export const Section5 = ()=>{
@@ -24,7 +24,7 @@ export const Section5 = ()=>{
           </div>
         </div>
         <div className={"half"}>
-          <img src={half} alt="" /> 
+          <img className={"pic"} src={half} alt="" /> 
         </div>
         <img className={"LGT"} src={LGT} alt="" />
         <img className={"LG3"} src={LG} alt="" />

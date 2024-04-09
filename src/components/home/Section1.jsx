@@ -4,6 +4,7 @@ import PLAY from "../media/1664285914google-play-logo-png.png"
 import { Link } from "react-router-dom"
 import { Apple } from "react-bootstrap-icons"
 
+
 export const Section1 =() =>{
   
   return(
@@ -24,14 +25,14 @@ export const Section1 =() =>{
         </h1>
         <div className={"buttoncontainer"}>
           <Link>
-            <button className="ios">
-              <Apple /> Coming Soon
-            </button>
+            <div className="ios">
+              <Apple />Coming Soon
+            </div>
           </Link>
           <Link>
-            <button className="andriod">
-              <img src={PLAY} alt="" /> Coming Soon
-            </button>
+            <div className="andriod">
+              <img src={PLAY} alt="" />Coming Soon
+            </div>
           </Link>
         </div>
         </div>

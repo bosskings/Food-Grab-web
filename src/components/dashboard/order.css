@@ -1,0 +1,38 @@
+:root{
+  --lightdark: #b8b8b8;
+  --darkmedium:#383838;
+  --border-mine: solid 2px  rgba(56, 56, 56, 1)
+}
+.ordersec1{
+  display: flex;
+  padding: 20px 2%;
+  flex-direction: column;
+  width: 100%;
+  gap:10px;
+}
+.headers{
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px;
+}
+.headerTxt{
+  color: var(--lightdark);
+  border-bottom: solid 2px  #fff;
+}
+.headerTxt.active{
+  color: var(--darkmedium);
+  border-bottom: var(--border-mine);
+}
+.ordersec2{
+  padding: 10px 2%;
+}
+.orderTablebox{
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 100%;
+}

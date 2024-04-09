@@ -1,0 +1,153 @@
+.tabledsh{
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  gap: 10px;
+}
+.table-container-expanded {
+  max-height: none; 
+}
+.colbox{
+  background: rgba(255, 236, 229, 1);
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+}
+.colwrapper{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.col{
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight:500 ;
+}
+.rowcont{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+  height: 100%;
+  max-height:390px ;
+  padding: 12px;
+  overflow-y: auto;
+}
+.row{
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10;
+}
+.rowcontent{
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+}
+.delivered{
+  padding: 10px;
+  border-radius: 20px;
+  background: #dfffe6;
+  color: #00ef18;
+}
+.cancelled{
+  padding: 10px;
+  border-radius: 20px;
+  background: #fbd2d3;
+  color: #ff0000;
+}
+.packaged{
+  padding: 10px;
+  border-radius: 20px;
+  background: #d4d7d4;
+  color: gray;
+}
+.processing{
+  padding: 10px;
+  border-radius: 20px;
+  background: #fff7d2;
+  color: #efc200; 
+}
+.in-transit{
+  padding: 10px;
+  border-radius: 20px;
+  background: #c2e9ff;
+  color:#0068a3;
+
+}
+@media screen and (max-width:699px){
+  .rowcont{
+    max-height:600px ;
+  }
+}
+@media (min-width: 700px) and (max-width: 1050px){
+  .rowcont{
+    max-height:450px ;
+  }
+}
+/* ============ order table =============== */
+
+.colbox2{
+  background: rgba(255, 236, 229, 1);
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+}
+.colwrapper2{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.col2{
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight:500 ;
+}
+.table11{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.productimage{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #dfffe6;
+}
+.row2{
+  display: inline-flex;
+  width: 100%;
+  gap: 5px;
+  height: 100%;
+  max-height:390px ;
+  padding: 12px;
+  overflow-y: auto;
+  align-items: center;
+}
+.rowcontent2{
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.rowcontent2:nth-child(4){
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: -12px;  
+}
+.rowcontent2:nth-child(2){
+position: relative;
+left: -12px;
+}
+.rowcontent2:nth-child(3){
+  position: relative;
+  left: -15px;
+}

@@ -1,8 +1,9 @@
 import user1 from "../media/Frame 1261155455.png"
+import left from "../media/left.png"
+import right from "../media/right.png"
 import "./home.css"
 import { useState, useEffect } from "react"
 import {Swiper, SwiperSlide, } from "swiper/react"
-import { ArrowBarLeft, ArrowBarRight } from "react-bootstrap-icons"
 
 import "swiper/css";
 import "swiper/css/effect-cube";
@@ -46,7 +47,7 @@ export const Section4 = ()=>{
          effect={"cards"}
         grabCursor={ true }
         centeredSlides={ true }
-        autoplay={{delay: 2500,
+        autoplay={{delay: 5000,
           disableOnInteraction: false,
         }}
         loop= { true }
@@ -86,10 +87,10 @@ export const Section4 = ()=>{
                 </div>
               <div className={"swiperControl"}>
                 <div className={"prevslide"} >
-                  <ArrowBarLeft/>
+                  <img src={left} alt="" />
                 </div> 
                 <div className={"nextslide"}  >
-                  <ArrowBarRight />
+                  <img src={right} alt="" />
                 </div> 
                 <div className={"swiper-pagination"}></div>
               </div>
@@ -114,10 +115,10 @@ export const Section4 = ()=>{
                 </div>
               <div className={"swiperControl"}>
                 <div className={"prevslide"} >
-                  <ArrowBarLeft/>
+                <img src={left} alt="" />
                 </div> 
                 <div className={"nextslide"}  >
-                  <ArrowBarRight />
+                <img src={right} alt="" />
                 </div> 
                 <div className={"swiper-pagination"}></div>
               </div>
@@ -142,10 +143,10 @@ export const Section4 = ()=>{
                 </div>
               <div className={"swiperControl"}>
                 <div className={"prevslide"} >
-                  <ArrowBarLeft/>
+                <img src={left} alt="" />
                 </div> 
                 <div className={"nextslide"}  >
-                  <ArrowBarRight />
+                <img src={right} alt="" />
                 </div> 
                 <div className={"swiper-pagination"}></div>
               </div>
