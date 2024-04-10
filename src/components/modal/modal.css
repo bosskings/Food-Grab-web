@@ -61,14 +61,16 @@
 }
 .orderdetailcontent{
   display: flex;
+  flex-direction: column;
+  gap: 7px;
   width: 100%;
   justify-content: space-between;
 }
-.orderdetailcontent div{
-  display: inline-flex;
-  gap: 5px;
-  flex-direction: column;
-  align-items: flex-start;
+.rwprod{
+  gap: 2px;
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 .quantity{
   display: flex;

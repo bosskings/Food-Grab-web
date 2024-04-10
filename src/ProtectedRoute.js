@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from './AuthContext';
 
-export const ProtectedRoute = ({ element, ...rest }) => {
-  const { isLoggedIn } = useAuth();
+export const ProtectedRoute = () => {
+  const  [user, setUser]  = useState(()=>localStorage.getItem('token')? JSON.parse(localStorage.getItem('token')):null);
 
-  return isLoggedIn ? <Outlet /> : <Navigate to="/Merchantlogin"/>;
+  return user ? <Outlet /> : <Navigate to="/Merchantlogin"/>;
 };

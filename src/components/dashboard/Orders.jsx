@@ -4,49 +4,49 @@ import "./order.css"
 import  OrderTable  from '../table/OrderTable'
 
 const data = [
-  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021" },
-  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: "Yam Porridge", Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "Yam Porridge", Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "Yam Porridge", Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge','Rice'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021" },
+  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge','Rice'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
 ]
 const data2 = [
-  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: 'yam porridge', Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021" },
-  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: "yam porridge", Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "yam porridge", Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "yam porridge", Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021" },
+  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ["yam porridge"], Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ["yam porridge"], Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ["yam porridge"], Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021"},
 ]
 const data3 = [
-  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: 'yam porridge', Status: "Packaged", 'Order Date': "08:00 PM, 02 Dec, 2021" },
-  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: "yam porridge", Status: "Packaged", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "yam porridge", Status: "Packaged", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "yam porridge", Status: "Packaged", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Packaged", 'Order Date': "08:00 PM, 02 Dec, 2021" },
+  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ["yam porridge"], Status: "Packaged", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ["yam porridge"], Status: "Packaged", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ["yam porridge"], Status: "Packaged", 'Order Date': "08:00 PM, 02 Dec, 2021"},
 ]
 const data4 = [
-  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: 'yam porridge', Status: "In-transit", 'Order Date': "08:00 PM, 02 Dec, 2021" },
-  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: "yam porridge", Status: "In-transit", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "yam porridge", Status: "In-transit", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "yam porridge", Status: "In-transit", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "In-transit", 'Order Date': "08:00 PM, 02 Dec, 2021" },
+  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ["yam porridge"], Status: "In-transit", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ["yam porridge"], Status: "In-transit", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ["yam porridge"], Status: "In-transit", 'Order Date': "08:00 PM, 02 Dec, 2021"},
 ]
 const data5 = [
-  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: 'yam porridge', Status: "Delivered", 'Order Date': "08:00 PM, 02 Dec, 2021" },
-  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: "yam porridge", Status: "Delivered", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "yam porridge", Status: "Delivered", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "yam porridge", Status: "Delivered", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Delivered", 'Order Date': "08:00 PM, 02 Dec, 2021" },
+  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ['yam porridge'], Status: "Delivered", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Delivered", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Delivered", 'Order Date': "08:00 PM, 02 Dec, 2021"},
 ]
 const data6 = [
-  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: 'yam porridge', Status: "Cancelled", 'Order Date': "08:00 PM, 02 Dec, 2021" },
-  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: "yam porridge", Status: "Cancelled", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "yam porridge", Status: "Cancelled", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: "yam porridge", Status: "Cancelled", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Cancelled", 'Order Date': "08:00 PM, 02 Dec, 2021" },
+  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ['yam porridge'], Status: "Cancelled", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Cancelled", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Cancelled", 'Order Date': "08:00 PM, 02 Dec, 2021"},
 ]
 
-export const Orders = () => {
+export const Orders = ( n) => {
   const columns = ['Order ID', 'Customer', 'Product', 'Quantity', 'Order Date','Action'];
   const columns2 = ['Order ID', 'Customer', 'Product', 'Status', 'Order Date','Action'];
 
 
   const[active, setactive]= useState('table1')
-  const [activeHeader, setActiveHeader] = useState("New Order")
+  const [activeHeader, setActiveHeader] = useState("tableA")
   const [border, setBorder]= useState([
     {
       border1:{},
@@ -57,6 +57,7 @@ export const Orders = () => {
       border6:{}
     }
   ])
+
   const tables={
     table1: <OrderTable columns={columns} data={data} />,
     table2: <OrderTable columns={columns2} data={data2} />,
@@ -66,16 +67,13 @@ export const Orders = () => {
     table6: <OrderTable columns={columns2} data={data6} />,
   }
 
-  const selcetedTable = {
-    tableA : <p>New Order</p>,
-    tableB : <p>Processing</p>,
-    tableC : <p>Packaged & Ready </p>,
-    tableD : <p>In-transit </p>,
-    tableE : <p>Delivered Order</p>,
-    tableF : <p>Cancelled Order</p>,
-  }
-  const handleSelectedTable= (tableKey)=>{
-    setActiveHeader(tableKey)
+  const selectedTable = {
+    tableA : "New Order",
+    tableB : "Processing",
+    tableC : "Packaged & ready",
+    tableD : "In-transit",
+    tableE : "Delivered Order",
+    tableF : "Cancelled Order",
   }
 
   useEffect(()=>{
@@ -84,10 +82,10 @@ export const Orders = () => {
   const activeStyles = {color: "#383838", borderBottom: "solid 2px rgba(56, 56, 56, 1)" }
   switch (active){
     case 'border1':
-      setBorder({...border, border1: activeStyles})
+      setBorder({...border, border1: activeStyles}); 
       break
     case 'border2':
-      setBorder({...border, border2: activeStyles})
+      setBorder({...border, border2: activeStyles}); 
       break
     case 'border3':
       setBorder({...border, border3: activeStyles})
@@ -159,11 +157,12 @@ export const Orders = () => {
         })
       }
   }
+  console.log(activeHeader)
   },[active])
   
 
   const handleTables = (tableKey) =>{
-    setactive(tableKey)
+    setactive(tableKey) && setActiveHeader(tableKey)
   }
 
 
@@ -172,18 +171,40 @@ export const Orders = () => {
     <section className='ordersec1'>
     <p className='txt2'>Orders</p>
     <div className='headers'>
-      <p className={`headerTxt ${active === 'table1' ? 'active' : ''}`} onClick={()=> {handleTables('table1'); setBorder("border1")}} style={border.border1} >New Orders</p>
-      <p className={`headerTxt ${active === 'table2' ? 'active' : ''}`} onClick={()=> {handleTables('table2'); setBorder("border2")}} style={border.border2} >Processing</p> 
-      <p className={`headerTxt ${active === 'table3' ? 'active' : ''}`} onClick={()=> {handleTables('table3'); setBorder("border3")}} style={border.border3} >Package & Ready</p>
-      <p className={`headerTxt ${active === 'table4' ? 'active' : ''}`} onClick={()=> {handleTables('table4'); setBorder("border4")}} style={border.border4} >In-transit</p>
-      <p className={`headerTxt ${active === 'table5' ? 'active' : ''}`} onClick={()=> {handleTables('table5'); setBorder("border5")}} style={border.border5} >Delivered Order</p>
-      <p className={`headerTxt ${active === 'table6' ? 'active' : ''}`} onClick={()=> {handleTables('table6'); setBorder("border6")}} style={border.border6} >Cancelled Order</p>
+      <p 
+      className={`headerTxt ${active === 'table1' ? 'active' : ''}`} 
+      onClick={()=> 
+      {handleTables('table1'); 
+      setBorder("border1");
+      setActiveHeader("tableA");
+      }} 
+      style={border.border1} >New Orders</p>
+
+
+      <p 
+      className={`headerTxt ${active === 'table2' ? 'active' : ''}`} 
+      onClick={()=> {handleTables('table2'); setBorder("border2");setActiveHeader("tableB")}} style={border.border2} >Processing</p> 
+
+
+      <p className={`headerTxt ${active === 'table3' ? 'active' : ''}`} onClick={()=> {handleTables('table3'); setBorder("border3");setActiveHeader("tableC")}} style={border.border3} >Package & Ready</p>
+
+
+      <p className={`headerTxt ${active === 'table4' ? 'active' : ''}`} onClick={()=> {handleTables('table4'); setBorder("border4");setActiveHeader("tableD")}} style={border.border4} >In-transit</p>
+
+
+      <p className={`headerTxt ${active === 'table5' ? 'active' : ''}`} onClick={()=> {handleTables('table5'); setBorder("border5");setActiveHeader("tableE")}} style={border.border5} >Delivered Order</p>
+
+
+      <p className={`headerTxt ${active === 'table6' ? 'active' : ''}`} onClick={()=> {handleTables('table6'); setBorder("border6");setActiveHeader("tableF")}} style={border.border6} >Cancelled Order</p>
+
+
     </div>
     </section>
     <section className={"ordersec2"}>
       <div className={"orderTablebox"}>
-      <p className={'txt2'}>{selcetedTable[activeHeader]}</p>
+      <p className={'txt2'}>{selectedTable[activeHeader]}</p>
       {tables[active]}
+
       </div>
     </section>
     </div>

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaChevronDown } from 'react-icons/fa';
-import OrderModal from '../../modal/OrderModal';
 import "./dropdown.css"
 
 export const Dropdown = ({ parentRef, rowData, modalComponent}) => {
@@ -42,7 +41,7 @@ export const Dropdown = ({ parentRef, rowData, modalComponent}) => {
         <ul
           ref={dropdownMenuRef}
           className="dropdown-menu"
-          style={{ top: parentRef ? parentRef.current.getBoundingClientRect().top + parentRef.current.getBoundingClientRect().height : 20,left: parentRef ? parentRef.current.getBoundingClientRect().left :20 }}
+          style={{ top: parentRef ? parentRef.current.getBoundingClientRect().top + parentRef.current.getBoundingClientRect().height : 15,left: parentRef ? parentRef.current.getBoundingClientRect().left :0 }}
           >
           {OrderItem.map((item, index) => (
             <li key={index} onClick={()=>{handleItemClick(); handleOpen()}}>

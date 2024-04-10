@@ -11,7 +11,6 @@ import { WalletPage } from './pages/WalletPage';
 import { SupportPage } from './pages/SupportPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { SettingsPage } from './pages/SettingsPage';
-import { AuthProvider } from './AuthContext';
 import { ProtectedRoute } from './ProtectedRoute';
 
 //fonts
@@ -29,22 +28,22 @@ function App() {
   return (
     <div >
     <Router>
-    <AuthProvider>
       <Routes>
         <Route path={'/'} element={<Home />} />
         <Route path={'/Merchantsignup'} element={<Merchantsignup />} />
         <Route path={'/Merchantlogin'} element={<Merchantlogin />} />
+
         <Route element = {<ProtectedRoute/>}>
-        <Route path={'/Dashboard'} element= { <Dashboard />} />
-        <Route path={'/order'} element= {<OrderPage /> }  />
-        <Route path={'/menu'} element= {<MenuPage />}  />
-        <Route path={'/wallet'} element= { <WalletPage />} />
-        <Route path={'/support'} element = {<SupportPage /> } />
-        <Route path={'/profile'} element = {<ProfilePage /> }  />
-        <Route path={"/settings"} element = {<SettingsPage/>} />
+          <Route path={'/Dashboard'} element= { <Dashboard />} />
+          <Route path={'/order'} element= {<OrderPage /> }  />
+          <Route path={'/menu'} element= {<MenuPage />}  />
+          <Route path={'/wallet'} element= { <WalletPage />} />
+          <Route path={'/support'} element = {<SupportPage /> } />
+          <Route path={'/profile'} element = {<ProfilePage /> }  />
+          <Route path={"/settings"} element = {<SettingsPage/>} />
         </Route>
-      </Routes>       
-    </AuthProvider>
+
+      </Routes> 
     </Router>
     </div>
   );

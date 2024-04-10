@@ -62,12 +62,16 @@ const OrderModal = ({row}) => {
           <div className="orderDet">
           <h3>Ordered Items</h3>
           <div className={"orderdetailcontent"}>
-          <div>
-          <p>{row && row.Product ? row.Product : 'No product data'}</p>
-          </div>
-          <div>
-          <p>{row && row.Price ? row.Price : 'No price data'}</p>
-          </div>
+            {row && row.Product && Array.isArray(row.Product) ? (
+              row.Product.map((product, index) => (
+                <div key={index} className={"rwprod"}>
+                  <span>{product}</span>
+                  <span>{row.Price && row.Price[index] ? ` - $${row.Price[index]}` : 'no price data'}</span>
+                </div>
+              ))
+            ) : (
+              <span>No product data</span>
+            )}
           </div>
           <div className={"quantity"}>
           <p>Quantity</p>

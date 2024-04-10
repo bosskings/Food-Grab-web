@@ -5,23 +5,19 @@ import "./login.css"
 import { Eye, EyeSlash, Twitter } from 'react-bootstrap-icons'
 import { Link, useNavigate} from 'react-router-dom'
 import { useTranslation } from "react-i18next";
-import { useAuth } from '../../AuthContext'
 
 
 
-export const Login = ({onLogin}) => {
-  // const { t } = useTranslation();
+export const Login = () => {
   const navigate = useNavigate()
-  const { login } = useAuth()
 
-  const [password, setPassword]= useState('')
+  const [password, setPassword]= useState("")
   const [email, setEmail] = useState("")
   const [visible, setVisible] = useState(false)
   const [click, setToggle] = useState(false)
   const [error, setError] = useState("")
   const [rememberMe, setRememberMe] = useState(false);
   
-
   const handleClick = ()=>{
     setToggle(!click)
   }
@@ -31,27 +27,22 @@ export const Login = ({onLogin}) => {
     const handleSubmit = async (e)=>{
       e.preventDefault()
       setError('')
-      
-      const formData = new FormData(e.target);
-      const email = formData.get('email');
-      const password = formData.get('password');
     
-      login()
   
       try{
-        const token = ""
+  
         const response = await fetch('https://foodgrab.africa/merchants/api/v1/signin',{
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Content-Type': 'application/json'
           },
           body:JSON.stringify({email,password,rememberMe})
         })
-        if (response.ok){
+        if (response.ok || response.status === 200){
   
           const data = await response.json();
-          localStorage.setItem('sessionToken', data.token);
+          localStorage.setItem('token', JSON.stringify(data));
+          console.log(data)
           navigate('/Dashboard')
         }else{
           const data = await response.json();
@@ -70,6 +61,7 @@ export const Login = ({onLogin}) => {
   return (
     <div className='loginbody'>
       <h1>Log In</h1>
+
       <p>Enter your credentials to access your account</p>
       <form className='formcont' onSubmit={handleSubmit}>
         <label className='lab'>EMAIL ADDRESS</label>

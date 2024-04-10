@@ -8,7 +8,10 @@ const OrderTable = (props) => {
   const [checkedItems, setCheckedItems] = useState({});
   const [productImages, setProductImages] = useState({});
   const dropdownRefs = useRef([]);
-
+  const [show,setShow] = useState(true)
+  const handleShow = ()=>{
+    setShow(!show)
+  }
   
   const handleCheckboxChange = (event, id) => {
     setCheckedItems(prevState => ({
@@ -74,16 +77,21 @@ const OrderTable = (props) => {
                 <input
                   type='checkbox'
                   checked={checkedItems[row.id] || false}
-                  onChange={(e) => handleCheckboxChange(e, row.id)}
+                  onChange={(e) =>{ handleCheckboxChange(e, row.id)}}
                 />
               </td>
               {columns.map((column, index, rowIndex) => (
                 <td key={index} className={`rowcontent2 ${index === 3 ? getFourthContentStyle(row[column]) : ''}`} 
                 ref={dropdownRefs.current[rowIndex]}>
-                  {index === 2 && column === 'Product' ? (
-                    <img src={productImages[row.id]} alt='' className={'productimage'} />
-                  ):("")}
-                  {row[column]}
+                  {index === 2 && column === 'Product' && (
+                    <>
+                    {<img src={productImages[row.id]} alt='' className={'productimage'} />}
+                    {Array.isArray(row.Product) && row.Product.length > 0 && show ?(
+                      <div>{row.Product[0]}</div>
+                    ):("")}
+                    </>
+                  )}
+                  {index !== 2 &column !== 'Product' ? (row[column]) : ""}
                    {index === 5 && column === 'Action' && (
                     <Dropdown rowData={row} 
                      onDropdownItemClick={() => handleDropdownItemClick(rowIndex, row)}
