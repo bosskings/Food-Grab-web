@@ -14,6 +14,7 @@ export const Dropdown = ({ parentRef, rowData, modalComponent}) => {
   }
   const handleDropdown = () => {
     setClick(!click);
+    setOpen(false)
   };
 
   const handleItemClick = () => {

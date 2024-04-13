@@ -204,7 +204,6 @@ export const Orders = ( n) => {
       <div className={"orderTablebox"}>
       <p className={'txt2'}>{selectedTable[activeHeader]}</p>
       {tables[active]}
-
       </div>
     </section>
     </div>

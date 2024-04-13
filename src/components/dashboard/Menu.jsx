@@ -1,6 +1,8 @@
 import React, { useRef } from 'react'
 import "./menu.css"
 import { MenuAddDropdown } from './dropdown/MenuAddDropdown'
+import { MenuDropdown } from './dropdown/MenuDropdown'
+import { FormModal } from '../modal/FormModal'
 
 export const Menu = () => {
   const dropdownRefs=useRef([])
@@ -18,10 +20,12 @@ export const Menu = () => {
       <div className={"menubox"}>
       <div className={"firstsec"}>
       <p>My Menu</p>
-      <MenuAddDropdown onDropdownItemClick = {() => handleDropdownItemClick()} />
+      <MenuAddDropdown onDropdownItemClick = {() => handleDropdownItemClick()} 
+        modalComponent={<FormModal />}
+      />
       </div>
       <div className={'secondsec'}>
-      
+      <MenuDropdown />
       </div>
       </div>
       </section>
