@@ -1,11 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./formmodal.css"
 
 export const FormModal = () => {
   const [ click, setClick] = useState(false)
+  const [food, setFood] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
   const handleClick = ()=>{
     setClick(!click)
   }
+
+    const handleSubmit = async (e)=>{
+      e.preventDefault();
+     
+      try{
+        const response = await fetch('lksdlsak',{
+      
+          method:'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body:JSON.stringify({food, description, price})
+        })
+        if (response.ok || response.status === 200){
+          const data = await response.json()
+          console.log(data)
+        }else{
+          const data = await response.json();
+          // setError(data.message)
+        }
+      }
+    catch (error) {
+      console.error('Error:', error);
+        // setError('An error occurred while logging in.')
+    }
+  }
+
 
   return (
     <div>
@@ -17,26 +47,28 @@ export const FormModal = () => {
        </div>
         <form 
         className='modalForm'
-        onSubmit={""}
+        onSubmit={handleSubmit}
         method='POST'>
         <label>
           Name
         </label>
         <input 
           type='text'
+          name={"food"}
           placeholder='Food Name'
         />
 
         <label>Description</label>
         <textarea 
+        name={"description"}
         placeholder='write a short descripton'
         />
         <label>Price</label>
         <div className={"numHold"}>
-        <p className='fl'>N</p>
+        <h6 className={'fl'}>N</h6>
         <input 
-        className={"priceinput"}
           type='text'
+          name={"price"}
           placeholder='0.00'
         />
         </div>
@@ -45,7 +77,7 @@ export const FormModal = () => {
           <button type='submit' className={"buttn1"}>
             Save
           </button>
-          <button className={"buttn1 c"}>
+          <button className={"buttn1 c"} onClick={handleClick}>
             Close
           </button>
         </div>

@@ -35,13 +35,10 @@
 .fl{
   position: absolute;
   left: 3.2%;
-  top: 29%;
-  color: black;
+  top: 32%;
+  color: #000000;
   z-index: 1;
   font-weight: 400;
-}
-.priceinput{
-  padding-left: 20px;
 }
 .modalForm{
   width: 100%;
@@ -58,6 +55,9 @@
   border: solid 2px lightgrey;
   font-size: 12px;
 }
+.modalForm input:nth-child(2){
+  padding-left: 20px;
+}
 
 .modalForm textarea{
   min-width: 60%;
@@ -66,6 +66,7 @@
   max-height: 180px ;
   font-size: 12px;
   border-radius: 8px;
+  border: solid 2px lightgrey;
   padding: 10px;
 }
 .buttn{
