@@ -42,7 +42,7 @@ export const Dropdown = ({ parentRef, rowData, modalComponent}) => {
         <ul
           ref={dropdownMenuRef}
           className="dropdown-menu"
-          style={{ top: parentRef ? parentRef.current.getBoundingClientRect().top + parentRef.current.getBoundingClientRect().height : 15,left: parentRef ? parentRef.current.getBoundingClientRect().left :0 }}
+          style={{ top: parentRef ? parentRef.current.getBoundingClientRect().top + parentRef.current.getBoundingClientRect().height : 13,left: parentRef ? parentRef.current.getBoundingClientRect().left :-25 }}
           >
           {OrderItem.map((item, index) => (
             <li key={index} onClick={()=>{handleItemClick(); handleOpen()}}>

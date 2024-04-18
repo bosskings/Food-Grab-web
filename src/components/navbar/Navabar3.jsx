@@ -20,7 +20,7 @@ export const Navabar3 = () => {
       </div>
       <IoNotifications className={"dashicons"} />
       </div>
-      <Link to={""}>
+      <Link to={"/profile"}>
         <button className={"profile"}>
         <IoPerson className={"person"} />
         </button>

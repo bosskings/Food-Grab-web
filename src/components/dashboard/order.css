@@ -43,3 +43,23 @@
   gap: 5px;
   flex-direction: column;
 }
+
+@media screen and (max-width: 699px){
+  .scrollheader{
+    overflow: auto;
+    border-radius: 10px;
+  }
+  .ordersec1{
+    margin-top: 40px;
+  }
+  .headers{
+    width: 800px;
+    justify-content: space-evenly;
+  }
+  .orderTablebox{
+    overflow: auto;
+  }
+  .headerTxt{
+    font-size: 14px;
+  }
+}

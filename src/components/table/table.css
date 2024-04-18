@@ -151,3 +151,15 @@ left: -12px;
   position: relative;
   left: -15px;
 }
+@media screen and (max-width: 699px){
+.table11{
+  overflow-x: auto;
+  position: relative;
+}
+.colbox2{
+  width: 900px;
+}
+.row2{
+  width: 900px;
+}
+}

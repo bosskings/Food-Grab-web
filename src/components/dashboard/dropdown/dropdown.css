@@ -56,3 +56,8 @@
 .dpbox{
   position: absolute;
 }
+@media screen and (max-width: 699px) {
+  .dpbox{
+    position: absolute static;
+  }
+}

@@ -356,13 +356,13 @@ export const Sidebar = () => {
             <img src={""} alt=''/>
           </div>
         </Link>
-      <div className={"profiledetials"}>
+        <Link to={"/profile"}>  
+          <div className={"profiledetials"}>
           <p>Alison Eyo</p>
           <p className={"username"}>@thealisoneyo</p>
         </div>
-        <Link to={""}>
-        <RxExit className={"profileicon"} />
         </Link>
+        <RxExit className={"profileicon"} />
         </div>
       </div>  
       </div>

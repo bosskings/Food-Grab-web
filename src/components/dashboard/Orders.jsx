@@ -170,7 +170,9 @@ export const Orders = ( n) => {
     <div className='order'>
     <section className='ordersec1'>
     <p className='txt2'>Orders</p>
-    <div className='headers'>
+    <div className={"scrollheader"}>
+      <div className='headers'>
+
       <p 
       className={`headerTxt ${active === 'table1' ? 'active' : ''}`} 
       onClick={()=> 
@@ -196,9 +198,9 @@ export const Orders = ( n) => {
 
 
       <p className={`headerTxt ${active === 'table6' ? 'active' : ''}`} onClick={()=> {handleTables('table6'); setBorder("border6");setActiveHeader("tableF")}} style={border.border6} >Cancelled Order</p>
-
-
     </div>
+    </div>
+    
     </section>
     <section className={"ordersec2"}>
       <div className={"orderTablebox"}>

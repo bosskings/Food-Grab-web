@@ -108,7 +108,7 @@ const Group = ({parentRef}) => {
     </div>
     {click && (
         <div className={"grouploader"} style={{top:parentRef ? parentRef.current.getBoundingclient().top+parentRef.current.getBoundingclient().height:0,left : parentRef ? parentRef.current.getBoundingclient().left :0}}>{
-           tableData.length > 0 ?  <MenuTable columns={columns} data={tableData}/> : <NoData />
+          tableData.length > 0 ?  <MenuTable columns={columns} data={tableData}/> : <NoData />
         }
         </div>
       )
