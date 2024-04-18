@@ -77,9 +77,9 @@ export const FormModal = () => {
           <button type='submit' className={"buttn1"}>
             Save
           </button>
-          <button className={"buttn1 c"} onClick={handleClick}>
+          <div className={"c"} onClick={handleClick}>
             Close
-          </button>
+          </div>
         </div>
         </form>
       </div>

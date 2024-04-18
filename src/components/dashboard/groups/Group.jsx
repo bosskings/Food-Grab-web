@@ -11,7 +11,7 @@ const columns=['Product', 'Price', 'Stock']
 // const data = [{Product: "yam", Price: "300"}]
 
 const Group = ({parentRef}) => {
-  const [click, setClick] = useState(false)
+  const [click, setClick] = useState(true)
   const [tableData, setTableData] = useState([]);
   // const [openSub, setOpenSub] = useState(false)
   // const [image, setImage] = useState(null)
@@ -98,7 +98,7 @@ const Group = ({parentRef}) => {
     <div className={"groupbox"}>
     <div className={"groupdp"}>
     <div className={"firstdiv"}>
-    <FaChevronDown className={click ? "open" : ""} onClick={()=>{handleClick()}}/> 
+    <FaChevronDown className={click ? "" : "open"} onClick={()=>{handleClick()}}/> 
     {<img src={""} alt='' className={'groupimg'}/>}
     <p className={"openMenu"} onClick={handleClick}>My Menu</p>
     </div>

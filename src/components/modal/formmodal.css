@@ -88,4 +88,8 @@
   background-color: #fff;
   color: black;
   border: solid 2px black;
+  padding: 7px 18px;
+  text-align: center;
+  border-radius: 8px;
+  width: 100%;
 }

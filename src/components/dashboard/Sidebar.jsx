@@ -351,7 +351,7 @@ export const Sidebar = () => {
         </Link>
         <div className={"pp"}>
        
-        <Link to={""}>
+        <Link to={'/profile'}>
           <div className={"profilepic"}>
             <img src={""} alt=''/>
           </div>
