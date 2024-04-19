@@ -159,7 +159,7 @@ export const Signup = () => {
 
     if (!error.username && !error.password && !error.confirmPassword) {
       try{
-        const response = await fetch("https://foodgrab.africa/merchants/api/v1/signup",{
+        const response = await fetch("https://api.foodgrab.africa/merchants/api/v1/signup",{
           method: 'POST',
           headers:{
             'content-Type':'application/json'

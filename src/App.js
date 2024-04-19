@@ -27,24 +27,24 @@ import "./fonts/Sherika ExtraBold.ttf"
 function App() {
   return (
     <div >
-    <Router>
-      <Routes>
-        <Route path={'/'} element={<Home />} />
-        <Route path={'/Merchantsignup'} element={<Merchantsignup />} />
-        <Route path={'/Merchantlogin'} element={<Merchantlogin />} />
+      <Router>
+        <Routes>
+          <Route path={'/'} element={<Home />} />
+          <Route path={'/Merchantsignup'} element={<Merchantsignup />} />
+          <Route path={'/Merchantlogin'} element={<Merchantlogin />} />
 
-        <Route element = {<ProtectedRoute/>}>
-          <Route path={'/Dashboard'} element= { <Dashboard />} />
-          <Route path={'/order'} element= {<OrderPage /> }  />
-          <Route path={'/menu'} element= {<MenuPage />}  />
-          <Route path={'/wallet'} element= { <WalletPage />} />
-          <Route path={'/support'} element = {<SupportPage /> } />
-          <Route path={'/profile'} element = {<ProfilePage /> }  />
-          <Route path={"/settings"} element = {<SettingsPage/>} />
-        </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path={'/Dashboard'} element={<Dashboard />} />
+            <Route path={'/order'} element={<OrderPage />} />
+            <Route path={'/menu'} element={<MenuPage />} />
+            <Route path={'/wallet'} element={<WalletPage />} />
+            <Route path={'/support'} element={<SupportPage />} />
+            <Route path={'/profile'} element={<ProfilePage />} />
+            <Route path={"/settings"} element={<SettingsPage />} />
+          </Route>
 
-      </Routes> 
-    </Router>
+        </Routes>
+      </Router>
     </div>
   );
 }
