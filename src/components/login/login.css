@@ -75,7 +75,7 @@ a{
 .linebox{
   display: flex;
   width: 400px;
-  padding: 20px 0px;
+  padding: 5px 0px;
   align-items: center;
   justify-content: center;
   gap: 20px;

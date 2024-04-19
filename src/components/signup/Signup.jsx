@@ -340,12 +340,12 @@ export const Signup = () => {
         <div className={"linebox"} >
           <div className='line'></div> Or <div className='line'></div>
         </div>
-        <button className={"gog"}>
+        {/* <button className={"gog"}>
           <img src={GOOGLE} alt=''/>Continue with Google
         </button>
         <button className={"twit"}>
           <Twitter className={"twiticon"}/> Continue with Twitter
-        </button>
+        </button> */}
         <div className={"signlink"}>
           <p>Already Have an Account</p>
           <Link to={"/Merchantlogin"}>
