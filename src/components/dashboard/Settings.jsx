@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./settings.css"
 import { MdMailOutline } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
 import { MdLockOutline } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import { UpdateProfileModal } from '../modal/UpdateProfileModal';
 
 
 export const Settings = () => {
-
+  const [click, setClick] = useState(false)
+  const handleClick =()=>{
+    setClick(!click)
+  }
   return (
     <div className={"settings"}>
       <section className={"settingsSec1"}>
@@ -34,11 +38,9 @@ export const Settings = () => {
           <p className={"setTitle"}>Profile</p>
           <p className={"subtext"}> Change and edit profile details</p>
         </div>
-        <Link to={"/profile"}>
-          <div className={"edit"}>
+          <div className={"edit"} onClick={handleClick}>
             <MdOutlineEdit />
           </div>
-          </Link>
         </div>
           <div className={"set"}>
           <div className={"iconcont"}>
@@ -55,6 +57,8 @@ export const Settings = () => {
           </Link>
         </div>
         </div>
+        <div className={click ? "overlay":"not-active"} onClick={handleClick}></div>
+      {click && <UpdateProfileModal/>}
       </section>
     </div>
   )

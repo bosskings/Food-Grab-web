@@ -8,7 +8,7 @@ import Menu from "../../media/Menu.jpg"
 
 const columns=['Product', 'Price', 'Stock']
 
-// const data = [{Product: "yam", Price: "300"}]
+const data = [{Product: "yam", Price: "300"}]
 
 const Group = ({parentRef}) => {
   const [click, setClick] = useState(true)
@@ -108,7 +108,7 @@ const Group = ({parentRef}) => {
     </div>
     {click && (
         <div className={"grouploader"} style={{top:parentRef ? parentRef.current.getBoundingclient().top+parentRef.current.getBoundingclient().height:0,left : parentRef ? parentRef.current.getBoundingclient().left :0}}>{
-          tableData.length > 0 ?  <MenuTable columns={columns} data={tableData}/> : <NoData />
+          data.length > 0 ?  <MenuTable columns={columns} data={data}/> : <NoData />
         }
         </div>
       )
