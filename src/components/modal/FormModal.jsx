@@ -38,7 +38,7 @@ export const FormModal = () => {
 
 
   return (
-    <div className={"menumodal"}>
+    <div className={click ? "not-active":"menumodal"}>
     <div className={click ? "not-active":"overlay"} onClick={handleClick}></div>
       <div className={click ? "not-active" : "formModal"}>
        <div>

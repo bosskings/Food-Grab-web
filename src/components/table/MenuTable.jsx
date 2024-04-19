@@ -1,10 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './menutable.css'
 
 
 export const MenuTable = (props) => {
   const {columns, data}= props
   const [checkedItems, setCheckedItems] = useState({});
+  const [selectedOption, setSelectedOption] = useState(()=>{
+    const savedOption = localStorage.getItem('selectedOption')
+    try{
+      if (savedOption){
+        return savedOption ? JSON.parse(savedOption):setSelectedOption(savedOption)
+      }
+    }
+    catch (error) {
+      console.error('Error parsing localStorage data:', error);
+      return savedOption;
+    }
+  })
+
+
+  const handleOptionChange =(e)=>{
+    setSelectedOption(e.target.value)
+  }
+  useEffect(()=>{
+    localStorage.setItem('selectedOption',selectedOption)
+  },[selectedOption])
+
+  useEffect(()=>{
+    
+    
+  },[])
 
 
   const handleCheckboxChange =(event, id)=>{
@@ -40,9 +65,9 @@ export const MenuTable = (props) => {
            {columns.map((column, index)=>(
             <td key={index} className={"rowCont"}>
             {index===2 && column === "Stock" &&(
-              <select className='stock'>
-                <option>In-Stock</option>
-                <option>Out of Stock </option>
+              <select className='stock' value={selectedOption} onChange={handleOptionChange}>
+                <option value={"In-stock"}>In-Stock</option>
+                <option value={"Out of Stock"}>Out of Stock </option>
               </select>
             )}
             {row[column]}
