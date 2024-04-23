@@ -64,6 +64,10 @@
 }
 .edit{
   color: var(--darkmedium);
+  cursor: pointer;
+}
+.not-active{
+  display: none;
 }
 .overlay{
   width:100%;
@@ -75,6 +79,10 @@
   opacity: 30%;
   display: block;
 }
-.not-active{
-  display: none;
+.closePf{
+  color: red;
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  right: 0;
 }

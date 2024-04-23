@@ -6,15 +6,22 @@ import { BsPerson } from "react-icons/bs";
 import { MdLockOutline } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { UpdateProfileModal } from '../modal/UpdateProfileModal';
+import { ChnagePasswordModal } from '../modal/ChnagePasswordModal';
 
 
 export const Settings = () => {
   const [click, setClick] = useState(false)
-  const handleClick =()=>{
+  const [open, setOpen] = useState(false)
+
+  const handleClick = ()=>[
     setClick(!click)
-  }
+  ]
+  const handleOpen = ()=>[
+    setOpen(!open)
+  ]
+
   return (
-    <div className={"settings"}>
+    <div className={"settings"} >
       <section className={"settingsSec1"}>
         <p className='txt2'>Settings</p>
         <p className={"take"}>Take a look at your policies and the new policy to see what is covered</p>
@@ -38,8 +45,8 @@ export const Settings = () => {
           <p className={"setTitle"}>Profile</p>
           <p className={"subtext"}> Change and edit profile details</p>
         </div>
-          <div className={"edit"} onClick={handleClick}>
-            <MdOutlineEdit />
+          <div className={"edit"}>
+            <MdOutlineEdit onClick={handleClick}/>
           </div>
         </div>
           <div className={"set"}>
@@ -52,13 +59,13 @@ export const Settings = () => {
           </div>
           <Link to={""}>
           <div className={"edit"}>
-            <MdOutlineEdit />
+            <MdOutlineEdit onClick={handleOpen}/>
           </div>
           </Link>
         </div>
         </div>
-        <div className={click ? "overlay":"not-active"} onClick={handleClick}></div>
-      {click && <UpdateProfileModal/>}
+      { click && <UpdateProfileModal CloseComponent onClose={()=>{setClick(false)}} /> }
+      {open && <ChnagePasswordModal onClose ={()=>{setClick(false)}} /> }
       </section>
     </div>
   )

@@ -35,7 +35,10 @@ a{
 .a{
   border: solid 1px #0f973d;
 }
-.b{
+.b{.pass{
+  display: flex;
+  position: relative;
+}
   border: solid 1px #cfcfcf;
 }
 .mailbox{

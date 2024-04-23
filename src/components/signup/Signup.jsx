@@ -5,7 +5,6 @@ import ERROR from "../media/error.jpg"
 import "./signup.css"
 import { Eye, EyeSlash, Twitter } from 'react-bootstrap-icons'
 import { Link, useNavigate } from 'react-router-dom'
-import { use } from 'i18next'
 
 
 export const Signup = () => {
