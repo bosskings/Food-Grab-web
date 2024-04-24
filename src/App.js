@@ -20,6 +20,7 @@ import "./fonts/Sherika Regular.ttf"
 import "./fonts/Sherika Medium.ttf"
 import "./fonts/Sherika Bold.ttf"
 import "./fonts/Sherika ExtraBold.ttf"
+import { ShopPage } from './pages/ShopPage';
 
 
 
@@ -41,6 +42,7 @@ function App() {
             <Route path={'/support'} element={<SupportPage />} />
             <Route path={'/profile'} element={<ProfilePage />} />
             <Route path={"/settings"} element={<SettingsPage />} />
+            <Route path={"/shop"} element={<ShopPage />}/>
           </Route>
 
         </Routes>

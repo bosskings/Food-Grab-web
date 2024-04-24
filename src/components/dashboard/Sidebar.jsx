@@ -30,6 +30,7 @@ export const Sidebar = () => {
     four: {},
     five: {},
     six: {},
+    seven:{},
   });
 
   const handleClick =()=>{
@@ -147,6 +148,9 @@ export const Sidebar = () => {
       case "six":
         setButtonStyles({...buttonStyles, six: activeStyles})
         break
+      case "seven":
+        setButtonStyles({...buttonStyles, seven: activeStyles})
+        break
 
       default:
         if (path === "/Dashboard") {
@@ -157,6 +161,7 @@ export const Sidebar = () => {
             four: defaultStyles,
             five: defaultStyles,
             six: defaultStyles,
+            seven: defaultStyles,
           });
         } else if (path === "/order") {
           setButtonStyles({
@@ -166,6 +171,7 @@ export const Sidebar = () => {
             four: defaultStyles,
             five: defaultStyles,
             six: defaultStyles,
+            seven: defaultStyles,
           });
         } else if (path === "/menu") {
           setButtonStyles({
@@ -175,6 +181,7 @@ export const Sidebar = () => {
             four: defaultStyles,
             five: defaultStyles,
             six: defaultStyles,
+            seven: defaultStyles,
           });
         } else if (path === "/wallet") {
           setButtonStyles({
@@ -184,6 +191,7 @@ export const Sidebar = () => {
             four: activeStyles,
             five: defaultStyles,
             six: defaultStyles,
+            seven: defaultStyles,
           });
         }else if (path === "/support"){
           setButtonStyles({
@@ -193,6 +201,7 @@ export const Sidebar = () => {
             four: defaultStyles,
             five: activeStyles,
             six: defaultStyles,
+            seven: defaultStyles,
           })
         }else if(path === '/settings'){
           setButtonStyles({
@@ -202,6 +211,18 @@ export const Sidebar = () => {
             four: defaultStyles,
             five: defaultStyles,
             six: activeStyles,
+            seven: defaultStyles,
+          })
+        }
+        else if(path === '/shop'){
+          setButtonStyles({
+            one: defaultStyles,
+            two: defaultStyles,
+            three: defaultStyles,
+            four: defaultStyles,
+            five: defaultStyles,
+            six: defaultStyles,
+            seven: activeStyles,
           })
         }
     }
@@ -262,6 +283,7 @@ export const Sidebar = () => {
         style={buttonStyles.four}>
          <RiWallet3Line className='dashicon' style={iconStyles.icon4}/>  <p>Wallet</p>
         </Link> 
+
       </div>
       
         <div className={"pref"}>
@@ -331,6 +353,14 @@ export const Sidebar = () => {
         style={buttonStyles.four}>
          <RiWallet3Line className='dashicon' style={iconStyles.icon4}/>  <p>Wallet</p>
         </Link> 
+
+        <Link to={'/shop'} className={"list"} 
+        onClick={()=>{
+          setActive("seven line7")
+        }}
+        style={buttonStyles.seven}>  
+        <p>Shop</p>
+        </Link>
       </div>
       
         <div className={"pref"}>

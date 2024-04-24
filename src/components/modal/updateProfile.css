@@ -199,7 +199,7 @@
 .formproper input{
   padding: 10px;
   border-radius: 8px;
-  border: solid gray 1px;
+  border: solid #afafaf 1px;
 }
 .formproper label{
   font-size: 12px;
@@ -218,6 +218,6 @@
 .gender{
   padding: 10px;
   border-radius: 8px;
-  border: solid gray 1px;
+  border: solid #afafaf 1px;
   background-color: #FFF;
 }
