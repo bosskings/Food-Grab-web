@@ -35,7 +35,7 @@ a{
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 15px;
+  gap: 8px;
 }
 .logobox1{
   width: 100px;
@@ -198,6 +198,11 @@ a{
   height: 100vh;
 }
 .profile1{
+  background-color: var(--medium);
+  width: 100%;
+  height: 100vh;
+}
+.shop{
   background-color: var(--medium);
   width: 100%;
   height: 100vh;

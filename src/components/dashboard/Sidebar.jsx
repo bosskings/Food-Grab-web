@@ -10,6 +10,7 @@ import { RxExit } from "react-icons/rx";
 import { IoSettingsOutline } from "react-icons/io5";
 import { BiSupport } from "react-icons/bi";
 import { MenuApp } from 'react-bootstrap-icons';
+import { FaPlus } from "react-icons/fa6";
 
 export const Sidebar = () => {
   const location = useLocation()
@@ -22,6 +23,7 @@ export const Sidebar = () => {
     icon4:{},
     icon5:{},
     icon6:{},
+    icon7:{},
   })
   const [buttonStyles, setButtonStyles] = useState({
     one: {},
@@ -61,6 +63,9 @@ export const Sidebar = () => {
       case "icon6":
         setIconStyles({...iconStyles, icon6: activeStyles2})
         break
+      case "icon7":
+        setIconStyles({...iconStyles, icon7: activeStyles2})
+        break
       
       default:
         if (path2 === "/Dashboard"){
@@ -70,7 +75,8 @@ export const Sidebar = () => {
             icon3: defaultStyles2,
             icon4: defaultStyles2,
             icon5: defaultStyles2,
-            icon6: defaultStyles2
+            icon6: defaultStyles2,
+            icon7: defaultStyles2,
           })
         }else if(path2 === '/order'){
           setIconStyles({
@@ -88,7 +94,8 @@ export const Sidebar = () => {
             icon3: activeStyles2,
             icon4: defaultStyles2,
             icon5: defaultStyles2,
-            icon6: defaultStyles2
+            icon6: defaultStyles2,
+            icon7: defaultStyles2,
           })
         }else if (path2 === '/wallet'){
           setIconStyles({
@@ -97,7 +104,8 @@ export const Sidebar = () => {
             icon3: defaultStyles2,
             icon4: activeStyles2,
             icon5: defaultStyles2,
-            icon6: defaultStyles2
+            icon6: defaultStyles2,
+            icon7: defaultStyles2,
           })
         }else if (path2 === '/support'){
           setIconStyles({
@@ -106,7 +114,8 @@ export const Sidebar = () => {
             icon3: defaultStyles2,
             icon4: defaultStyles2,
             icon5: activeStyles2,
-            icon6: defaultStyles2
+            icon6: defaultStyles2,
+            icon7: defaultStyles2,
           })
         }else if (path2 === '/settings'){
           setIconStyles({
@@ -115,7 +124,18 @@ export const Sidebar = () => {
             icon3: defaultStyles2,
             icon4: defaultStyles2,
             icon5: defaultStyles2,
-            icon6: activeStyles2
+            icon6: activeStyles2,
+            icon7: defaultStyles2,
+          })
+        }else if (path2 === '/shop'){
+          setIconStyles({
+            icon1: defaultStyles2,
+            icon2: defaultStyles2,
+            icon3: defaultStyles2,
+            icon4: defaultStyles2,
+            icon5: defaultStyles2,
+            icon6: defaultStyles2,
+            icon7: activeStyles2,
           })
         }
     }
@@ -252,23 +272,23 @@ export const Sidebar = () => {
           }}
       /> </div>
       <div className='logobox1'>
-        <Link to={'/' + 'Dashboard'}>
+        <Link to={'/Dashboard'}>
           <img src={LOGO} alt=''/>
         </Link>
       </div>
-        <Link to={'/' + 'Dashboard'} className={"list"} onClick={()=>{
+        <Link to={'/Dashboard'} className={"list"} onClick={()=>{
           setActive("one line1")
         }}
         style={buttonStyles.one}>
           <LiaHomeSolid className='dashicon' style={iconStyles.icon1} /> <p>Home</p>
         </Link>
-        <Link to={'/' + 'order'} className={"list"} onClick={()=>{
+        <Link to={'/order'} className={"list"} onClick={()=>{
           setActive("two line2")
         }}
         style={buttonStyles.two}>
          <FaClipboardList className='dashicon' style={iconStyles.icon2}/> <p>Orders</p>
         </Link>
-        <Link to={'/' + 'menu'} className={"list"}
+        <Link to={'/menu'} className={"list"}
         onClick={()=>{
           setActive("three line3")
         }}
@@ -276,7 +296,7 @@ export const Sidebar = () => {
          <SiJusteat className='dashicon' style={iconStyles.icon3} /> <p>Menu</p>
         </Link>
 
-        <Link to={'/' + 'wallet'} className={"list"}
+        <Link to={'/wallet'} className={"list"}
         onClick={()=>{
           setActive("four line4")
         }}
@@ -284,10 +304,18 @@ export const Sidebar = () => {
          <RiWallet3Line className='dashicon' style={iconStyles.icon4}/>  <p>Wallet</p>
         </Link> 
 
+           <Link to={'/shop'} className={"list"} 
+        onClick={()=>{
+          setActive("seven line7")
+        }}
+        style={buttonStyles.seven}>  
+        <FaPlus className='dashicon' style={iconStyles.icon7}/><p>Shop</p>
+        </Link>
+
       </div>
       
         <div className={"pref"}>
-        <Link to={'/' + "support"} className={"list"}
+        <Link to={'/support'} className={"list"}
          onClick={()=>{
           setActive("five line5")
         }}
@@ -295,7 +323,7 @@ export const Sidebar = () => {
         >
          <BiSupport className={"dashicon"} style={iconStyles.icon5} /> Support
         </Link>
-        <Link to={'/' + "settings"} className={"list"} 
+        <Link to={'/settings'} className={"list"} 
          onClick={()=>{
           setActive("six line6")
         }}
@@ -322,23 +350,23 @@ export const Sidebar = () => {
       <div className={"sidebar"}>
       <div className={"navigation"} >
       <div className='logobox1'>
-        <Link to={'/' + 'Dashboard'}>
+        <Link to={'/Dashboard'}>
           <img src={LOGO} alt=''/>
         </Link>
       </div>
-        <Link to={'/' + 'Dashboard'} className={"list"} onClick={()=>{
+        <Link to={'/Dashboard'} className={"list"} onClick={()=>{
           setActive("one line1")
         }}
         style={buttonStyles.one}>
           <LiaHomeSolid className='dashicon' style={iconStyles.icon1} /> <p>Home</p>
         </Link>
-        <Link to={'/' + 'order'} className={"list"} onClick={()=>{
+        <Link to={'/order'} className={"list"} onClick={()=>{
           setActive("two line2")
         }}
         style={buttonStyles.two}>
          <FaClipboardList className='dashicon' style={iconStyles.icon2}/> <p>Orders</p>
         </Link>
-        <Link to={'/' + 'menu'} className={"list"}
+        <Link to={'/menu'} className={"list"}
         onClick={()=>{
           setActive("three line3")
         }}
@@ -346,7 +374,7 @@ export const Sidebar = () => {
          <SiJusteat className='dashicon' style={iconStyles.icon3} /> <p>Menu</p>
         </Link>
 
-        <Link to={'/' + 'wallet'} className={"list"}
+        <Link to={'/wallet'} className={"list"}
         onClick={()=>{
           setActive("four line4")
         }}
@@ -356,15 +384,16 @@ export const Sidebar = () => {
 
         <Link to={'/shop'} className={"list"} 
         onClick={()=>{
-          setActive("seven line7")
+          setActive("seven line")
         }}
         style={buttonStyles.seven}>  
-        <p>Shop</p>
+        <FaPlus className='dashicon' style={iconStyles.icon7} /> <p>Shop</p>
         </Link>
+
       </div>
       
         <div className={"pref"}>
-        <Link to={'/' + "support"} className={"list"}
+        <Link to={'/support'} className={"list"}
          onClick={()=>{
           setActive("five line5")
         }}
@@ -372,7 +401,7 @@ export const Sidebar = () => {
         >
          <BiSupport className={"dashicon"} style={iconStyles.icon5} /> Support
         </Link>
-        <Link to={'/' + "settings"} className={"list"} 
+        <Link to={'/settings'} className={"list"} 
          onClick={()=>{
           setActive("six line6")
         }}

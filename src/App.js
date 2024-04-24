@@ -12,6 +12,7 @@ import { SupportPage } from './pages/SupportPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { ProtectedRoute } from './ProtectedRoute';
+import { ShopPage } from './pages/ShopPage';
 
 //fonts
 
@@ -20,7 +21,6 @@ import "./fonts/Sherika Regular.ttf"
 import "./fonts/Sherika Medium.ttf"
 import "./fonts/Sherika Bold.ttf"
 import "./fonts/Sherika ExtraBold.ttf"
-import { ShopPage } from './pages/ShopPage';
 
 
 
