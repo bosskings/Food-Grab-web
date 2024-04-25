@@ -1,9 +1,9 @@
 .shopSec1{
   padding: 20px;
 }
-.shopSec2{
+.shopSec2a{
   width: 100%;
-  height: 500px;
+  height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,4 +31,79 @@
 }
 .createShopBtn:active{
   background-color: black;
+}
+.shopCreatedfirstdiv{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.editshop{
+  padding: 10px 25px;
+  background-color: black;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+.shopProfile{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.shopSec2b{
+  width: 100%;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.shoppfsec1{
+  width: 100%;
+}
+.coverImage{
+  width: 100%;
+  height: 180px;
+  background-color: lightgray;
+  border-radius: 20px;
+}
+.shoppfsec2{
+  display: flex;
+}
+.shopProfileDpHolder{
+  position: relative;
+  flex: 1;
+}
+.ShopProfileDp{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: rgb(121, 121, 121);
+  position: relative;
+  top: -40px;
+  left: 30px;
+}
+.customcheckbox{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 15px;
+  top: 50px;
+}
+.shopDetails{
+  flex: 5 ;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.shopDetailsSec2{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 600px;
+}
+.shopDetailsSec2 div{
+  display: inline-flex;
+  gap: 5px;
 }
