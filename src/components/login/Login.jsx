@@ -102,13 +102,13 @@ export const Login = () => {
         </div>
         <div className={'boxcont'}>
         <div className={"first"}>
-          <input 
+          {/* <input 
           type='checkbox' 
           className={"check"}
           checked={rememberMe} 
           onChange={(e) => setRememberMe(e.target.checked)}
           />
-          <p>Remember me for 30 days</p>
+          <p>Remember me for 30 days</p> */}
           </div>
           <Link to={""}>
           <div className='forgot'>

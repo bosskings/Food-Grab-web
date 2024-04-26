@@ -89,7 +89,7 @@ export const Wallet = () => {
         <div className={"firstq"}>
         <div className="cy">
         <div className={"avialableblance"}>  <p className='init1'>Available Balance </p>
-        <div className='eye' onClick={()=>{handleClick();}}>
+        <div className='eye3' onClick={()=>{handleClick();}}>
           <FaRegEyeSlash  className={click ? "not-active":"eyeslash"}/>
           <FaRegEye className={click ? "active":"eyenot-slash"}/>
         </div>

@@ -50,19 +50,7 @@ a{
   right: 20px;
   top: 15px;
 }
-.pass{
-  display: flex;
-  position: relative;
-}
-.eye{
-  position: absolute;
-  right: 20px;
-  top: 15px;
-}
-.unsee{
-  position: absolute;
-  display: none;
-}
+
 .unsee.is-vivible{
   display: block;
 }
