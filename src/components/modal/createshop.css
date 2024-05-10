@@ -1,0 +1,168 @@
+.createshdiv{
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+.createShop{
+  width: 95%;
+  height: 540px;
+  position: absolute;
+  top: 3%;
+  left: 2%;
+  align-self: center;
+  background-color: #fff;
+  border-radius: 20px;
+  z-index: 10;
+  padding: 20px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.createshform{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+}
+.overlay{
+  width:100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 30%;
+  display: block;
+}
+.not-active{
+  display: none;
+}
+.cvholder{
+  position: relative;
+}
+.uploadCvImg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: black;
+  border-radius: 20px;
+  opacity: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  z-index: 6;
+  gap: 8px;
+  border: none;
+}
+.uploadCvImg p{
+  opacity: 80%;
+}
+
+.uploadCvImg input[type=file]{
+  opacity: 0%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 20px;
+  border: none;
+}
+
+.update{
+  overflow: hidden;
+}
+.update img{
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+}
+.creatshopSec1{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.overlay{
+  width:100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 30%;
+  display: block;
+}
+.createShopSec2{
+  display: flex;
+  gap: 20px;
+  align-items: top;
+  width: 100%;;
+}
+.checkboxContainer2{
+  position: relative;
+}
+.customcheckbox2{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: -8px;
+  top: -30px;
+}
+.submitShopProfile{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 380px;
+  flex: 1;
+}
+.createShopFormProper{
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap:8px;
+  max-height: 130px;
+  padding: 10px;
+  flex: 2;
+}
+.createinput{
+  padding: 10px;
+  border-radius: 8px;
+  border: solid 1px lightgrey;
+}
+.cate{
+  padding: 10px;
+  border-radius: 8px;
+  border: solid 1px lightgrey;
+  background-color: #fff;
+}
+.work{
+  display: flex;
+  width: 100%;
+  gap: 5px;
+}
+.workHours{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  gap: 5px;
+  align-items: center;
+  border-radius: 8px;
+  padding: 10px;
+  border: solid 1px lightgrey;
+}
+.workinput{
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+.inittxt{
+  color: lightgrey;
+  font-size: 12px;
+}
+.clock{
+  color: lightgrey;
+  font-size: 16px;
+}

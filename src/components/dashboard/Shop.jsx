@@ -7,7 +7,7 @@ import { GoClock } from "react-icons/go";
 import { MdOutlineInterests } from "react-icons/md";
 import { SiCodechef } from "react-icons/si";
 import { MdVerifiedUser } from "react-icons/md";
-
+import { CreateShopModal } from '../modal/CreateShopModal';
 
 export const Shop = () => {
 
@@ -37,14 +37,19 @@ export const Shop = () => {
   return (
     <div className='shop'>
       {shop ? <Shop2 data = {shop} /> : <NoShop />}
-      {/* <Shop2 data = {shop}/> */}
     </div>
   )
 }  
 
  const NoShop =()=>{
+
+  const [openModal,  setOpenModal] = useState(false)
+
+  const handleOpenModal = ()=>{
+    setOpenModal(!openModal)
+  }
     return(
-      <div>
+      <div className={"noshdiv"}>
       <section className='shopSec1'>
       <div>
         <p className='txt2'>Shop</p>
@@ -55,9 +60,11 @@ export const Shop = () => {
         <div className='empty'>
         <p className={"txt3"}>You have not created any shop yet!</p>
         <p className={"subtxt2"}>Create a shop to get orders, recieve orders and perform various transactions</p>
-        <button className='createShopBtn'>create Shop</button>
+        <button className='createShopBtn' onClick={handleOpenModal}>create Shop</button>
         </div>
       </section>
+      <div className={openModal ?"overlay":"not-active"} onClick={handleOpenModal}></div>
+      {openModal && <CreateShopModal/>}
       </div>
     )
   }

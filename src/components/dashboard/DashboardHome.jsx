@@ -1,10 +1,10 @@
-import React, {useState}from 'react'
+import React, {useEffect, useState}from 'react'
 import "./dashboard.css"
 import BOXES from "../media/boxes.png"
 import { RiInformationFill } from "react-icons/ri";
 import { FaChevronRight } from "react-icons/fa6";
 import { Table } from '../table/Table';
-import { all } from 'axios';
+import axios, { all } from 'axios';
 import { XCircle } from 'react-bootstrap-icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -38,6 +38,9 @@ const columns = ['Order ID', 'Price', 'Order Date', 'Status'];
 export const DashboardHome = () => {
 
   const [show,setShow] = useState(false)
+  const [balance, setBalance] = useState('')
+  const [tableData, setTableData] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const handleShow = ()=>{
     setShow(!show)
   }
@@ -60,6 +63,42 @@ export const DashboardHome = () => {
     return '<span class="' + className + '">' + (index + 1)+ '</span>';
   }
 });
+
+useEffect(()=>{
+  const fetchTableData = async ()=>{
+    try{
+      const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/getOrders');
+      if(!response.ok){
+        throw new Error('Failed to fetch table data')
+      }
+      const table = await response.json();
+      console.log('Response Data:', table)
+      setTableData(table)
+      setIsLoading(false)
+    }
+    catch (error){
+      console.error('Error fetching table data')
+    }
+  }
+},[])
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/overview')
+      if (!response.ok){
+        throw new Error('Failed to fetch data')
+      };
+      const data = await response.json();
+      console.log('Response data:', data);
+      setBalance(data);
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+    }
+  };
+
+  fetchData();
+}, []);
 
   return (
     <div className='dashHome'>
@@ -94,9 +133,8 @@ export const DashboardHome = () => {
       <SwiperSlide className={'dashslide'}>
       <div className="cd">
         <p className='init1'>Available Balance</p>
-        <h3 className='money'>₦ 140,000<span>.00</span> </h3>
+        <h3 className='money'>₦ {balance.accountBalance}<span>.00</span> </h3>
         <div className='balance'>
-        <p>Payout Balance:</p><span>$139,900.99</span> <RiInformationFill className={"balicon"}/>
         <img src={BOXES} alt='' className='bgimg' />
         </div>
       </div>
@@ -104,9 +142,8 @@ export const DashboardHome = () => {
       <SwiperSlide className={'dashslide'}>
       <div className="s">
         <p className='init1'>Total Orders</p>
-        <h3 className='money'>100 </h3>
+        <h3 className='money'>{balance.totalOrders} </h3>
         <div className='balance'>
-        <p>Payout Balance:</p><span>$139,900.99</span>
         </div>
       </div>
       </SwiperSlide> 
@@ -116,7 +153,6 @@ export const DashboardHome = () => {
         <p className='init1'>Available Balance</p>
         <h3 className='money'> 20 </h3>
         <div className='balance'>
-        <p>Payout Balance:</p><span>$139,900.99</span>
         </div>
       </div>
       </SwiperSlide>
@@ -125,7 +161,6 @@ export const DashboardHome = () => {
         <p className='init1'>Available Balance</p>
         <h3 className='money'>80 </h3>
         <div className='balance'>
-        <p>Payout Balance:</p><span>$139,900.99</span>
         </div>
       </div>
       </SwiperSlide>
@@ -139,31 +174,29 @@ export const DashboardHome = () => {
     <div className={"dashcardcont"}>
       <div className="cd">
       <p className='init1'>Available Balance</p>
-        <h3 className='money'>₦ 140,000<span>.00</span> </h3>
+        <h3 className='money'>{balance.accountBalance}<span>.00</span> </h3>
         <div className='balance'>
-        <p>Payout Balance:</p><span>$139,900.99</span> <RiInformationFill className={"balicon"}/>
         <img src={BOXES} alt='' className='bgimg' />
         </div>
       </div>
       <div className="s">
         <p className='init1'>Total Orders</p>
-        <h3 className='money'>100 </h3>
+        <h3 className='money'>{balance.totalOrders} </h3>
         <div className='balance'>
-        <p>Payout Balance:</p><span>$139,900.99</span>
         </div>
       </div>
       <div className="t">
-        <p className='init1'>Available Balance</p>
-        <h3 className='money'> 20 </h3>
+        <p className='init1'>Pending Orders</p>
+        <h3 className='money'> {balance.pendingOrders} </h3>
         <div className='balance'>
-        <p>Payout Balance:</p><span>$139,900.99</span>
+        {/* <p>Payout Balance:</p><span>$139,900.99</span> */}
         </div>
       </div>
       <div className="u">
-        <p className='init1'>Available Balance</p>
-        <h3 className='money'>80 </h3>
+        <p className='init1'>Successful Orders</p>
+        <h3 className='money'>{balance.successfulOrders}</h3>
         <div className='balance'>
-        <p>Payout Balance:</p><span>$139,900.99</span>
+
         </div>
       </div>
     </div>
@@ -178,9 +211,13 @@ export const DashboardHome = () => {
       
       </div>
         <div className={"tablecont"}>
+        {/* {isLoading ? (
+          <p>...Loading</p>
+        ):()
+        } */}
         <Table 
         columns={columns} 
-        data={show ? data : data.slice(0,6)}/>
+        data={show ? tableData : tableData.slice(0,6)}/>
         </div>
       </div>
       <div className={"toporder"} >

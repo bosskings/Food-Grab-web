@@ -185,7 +185,7 @@ export const Signup = () => {
           confirmPassword: ''
         });
 
-        navigate('/Merchantlogin')
+        navigate('/verify')
 
       }catch{
        console.error("signup failed", error)

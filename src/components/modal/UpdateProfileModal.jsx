@@ -3,7 +3,7 @@ import "./updateProfile.css"
 import { AiOutlinePicture } from "react-icons/ai";
 import { XCircle } from 'react-bootstrap-icons';
 
-export const UpdateProfileModal = ({CloseComponent}) => {
+export const UpdateProfileModal = ({closeComponent}) => {
   const [image, setImage] = useState(null)
   const [imageUrl, setImageUrl]= useState(localStorage.getItem('profileImage') || '');
   const [close, setclose] =useState(false)
@@ -15,7 +15,7 @@ export const UpdateProfileModal = ({CloseComponent}) => {
   const ClosePfModal = ()=>{
     return(
       <div>
-      <XCircle className={"closePf"} onClick={handleClose}/>
+      <XCircle className={"closePf"} onClick={closeComponent}/>
       </div>
     )
   }
@@ -34,8 +34,8 @@ export const UpdateProfileModal = ({CloseComponent}) => {
     
 
   return (
-    <div>
-    <div className={close ?"not-active":"overlay"} onClick={handleClose}></div>
+    <div className={close ? "not-active":"updatepff"}>
+    <div className={"overlay"} onClick={closeComponent}></div>
     <div>
       <div className={close ? "not-active":"updateProfile"}>
       <div className={"profileModal"}>
@@ -44,18 +44,13 @@ export const UpdateProfileModal = ({CloseComponent}) => {
           <p className={"txt2"}>Profile</p>
           <p className={"ppsubtxt"}>Change and edit profile details</p>
         </div>
-        {CloseComponent = <ClosePfModal />}
+         <ClosePfModal onClick={handleClose}/>
       </section>
       <section className={"profileModalsec2"}>
         <div className={"profileImage"}>
         {<img src={imageUrl} alt='' className={''}/>}
         <div className="checkboxContainer">
-              <inputImage
-                type='checkbox'
-                className={"verified"}
-                id="verified"
-              />
-              <span className="customCheckbox"></span>
+            
             </div>
    
         </div>
@@ -154,7 +149,7 @@ export const UpdateProfileModal = ({CloseComponent}) => {
     </div>
     </div>
    </div> 
-   {CloseComponent && close }
+   {closeComponent && close }
     </div>
   )
 }
