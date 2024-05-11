@@ -34,7 +34,7 @@ function App() {
           <Route path={'/Merchantsignup'} element={<Merchantsignup />} />
           <Route path={'/Merchantlogin'} element={<Merchantlogin />} />
 
-          <Route element={<ProtectedRoute />}>
+          {/* <Route element={<ProtectedRoute />}> */}
             <Route path={'/Dashboard'} element={<Dashboard />} />
             <Route path={'/order'} element={<OrderPage />} />
             <Route path={'/menu'} element={<MenuPage />} />
@@ -43,7 +43,7 @@ function App() {
             <Route path={'/profile'} element={<ProfilePage />} />
             <Route path={"/settings"} element={<SettingsPage />} />
             <Route path={"/shop"} element={<ShopPage />}/>
-          </Route>
+          {/* </Route> */}
 
         </Routes>
       </Router>
