@@ -185,7 +185,7 @@ export const Signup = () => {
           confirmPassword: ''
         });
 
-        navigate('/verify')
+        // navigate('/verify')
 
       }catch{
        console.error("signup failed", error)

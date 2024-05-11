@@ -13,7 +13,7 @@ export const Verify = () => {
   useEffect(() => {
     const fetchEmail = async () => {
       try {
-        const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/signup');
+        const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/verifyEmail');
         if (response.ok) {
           const data = await response.json();
           setEmail(data.email);
