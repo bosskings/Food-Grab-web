@@ -13,12 +13,13 @@ export const Settings = () => {
   const [click, setClick] = useState(false)
   const [open, setOpen] = useState(false)
 
-  const handleClick = ()=>[
-    setClick(!click)
-  ]
-  const handleOpen = ()=>[
+  const handleClick = ()=>{
+        setClick(!click)
+  }
+    
+  const handleOpen = ()=>{
     setOpen(!open)
-  ]
+  }
 
   return (
     <div className={"settings"} >
@@ -26,7 +27,10 @@ export const Settings = () => {
         <p className='txt2'>Settings</p>
         <p className={"take"}>Take a look at your policies and the new policy to see what is covered</p>
       </section>
-      <section className={"settingsSec2"}>
+      <section className={"settingsSec2"} onChange={()=>{
+        setClick(false);
+        setOpen(false)
+      }}>
         <div className='setdiv'>
         <div className={"set"}>
         <div className={"iconcont"}>
@@ -64,8 +68,9 @@ export const Settings = () => {
           </Link>
         </div>
         </div>
-      { click && <UpdateProfileModal CloseComponent onClose={()=>{setClick(false)}} /> }
-      {open && <ChnagePasswordModal onClose ={()=>{setClick(false)}} /> }
+        
+        { click && <UpdateProfileModal closeComponent={handleClick} /> }
+        {open && <ChnagePasswordModal closeComponent={handleOpen} /> }
       </section>
     </div>
   )

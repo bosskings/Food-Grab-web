@@ -4,7 +4,7 @@ import "../signup/signup.css"
 import "./changepassword.css"
 import { useNavigate } from 'react-router-dom';
 
-export const ChnagePasswordModal = () => {
+export const ChnagePasswordModal = ({closeComponent}) => {
 
   const navigate =  useNavigate()
   const [visible, setVisible] = useState(false)
@@ -164,7 +164,7 @@ const handleSubmitForm = async (e) => {
 const ClosePfModal = ()=>{
   return(
     <div>
-    <XCircle className={"closechpsw"} onClick={handleClose}/>
+    <XCircle className={"closechpsw"} onClick={closeComponent}/>
     </div>
   )
 }
@@ -172,9 +172,9 @@ const ClosePfModal = ()=>{
 
   return (
     <div className={close ?"not-active":"changepasswordmodal"}>
-     <div className={close ?"not-active":"overlay"} onClick={handleClose}></div>
+     <div className={"overlay"} onClick={closeComponent}></div>
       <div className={"changeps"}>
-      <ClosePfModal/>
+      <ClosePfModal onClick={handleClose}/>
         <p className='txt2'>Change Password</p>
         <p className='ppsubtxt'>Change Password and continue enjoying!!</p>
 
@@ -229,6 +229,7 @@ const ClosePfModal = ()=>{
         <button className='chpswbutt'>Change Password</button>
         </form>
       </div>
+      {closeComponent && close}
     </div>
   )
 }
