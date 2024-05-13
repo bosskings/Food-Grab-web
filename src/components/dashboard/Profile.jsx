@@ -32,7 +32,7 @@ export const Profile = () => {
       </div>
       </div>
      <div className={"personalSecondSec"}>
-     <div className={"profileImage"}>
+     <div className={"profileImage2"}>
       <img src={""}  alt=''/>
       </div>
       <div className={"nameholder2"}>
@@ -41,9 +41,47 @@ export const Profile = () => {
       </div>
      </div>
       </div>
-        
-        <div className={"profileCredentials"}>
-
+        <div className={"profileCredentials2"}>
+        <div className={"nameCred"}>
+          <div className={"fstName"}>
+            <p className='txt3'>First Name</p>
+            <div className={"credDisplay"}>
+              {}
+            </div>
+          </div>
+          <div className={"lstname"}>
+          <p className='txt3'>Last Name</p>
+            <div className={"credDisplay"}>
+              {}
+            </div>
+          </div>
+        </div>
+        <p className={"txt3"}>Username</p>
+          <div className={"credDisplay"}>
+              {}
+            </div>
+            <p className={"txt3"}>Email Address</p>
+          <div className={"credDisplay emaildisplay" }>
+              {}
+            </div>
+            <div className={"nameCred"}>
+          <div className={"fstName"}>
+            <p className='txt3'>Date of Birth </p>
+            <div className={"credDisplay"}>
+              {}
+            </div>
+          </div>
+          <div className={"lstname"}>
+          <p className='txt3'>Phone Number</p>
+            <div className={"credDisplay"}>
+              {}
+            </div>
+          </div>
+        </div>
+        <p className={"txt3"}>Gender</p>
+          <div className={"credDisplay" }>
+              {}
+            </div>
         </div>
       </section>
       {open && <UpdateProfileModal closeComponent={handleOpen}/>}

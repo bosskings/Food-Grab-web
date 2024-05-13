@@ -95,15 +95,18 @@ a{
   display: inline-flex;
   flex-direction: column;
   gap: 5px;
+  cursor: pointer;
 }
 .username {
   color: var(--medium);
   font-size: 12px;
+  cursor: pointer;
 }
 .profileicon{
   position: relative;
   left: 80px; 
   font-size: 20px;
+  cursor: pointer;
 }
 .dashHam{
   display: none;
