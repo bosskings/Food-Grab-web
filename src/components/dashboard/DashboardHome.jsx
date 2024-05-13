@@ -39,7 +39,9 @@ export const DashboardHome = () => {
 
   let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
   
-  // console.log(token);
+  console.log(token);
+
+  const id = '' 
 
   const [show,setShow] = useState(false)
   const [balance, setBalance] = useState('')
@@ -76,7 +78,7 @@ export const DashboardHome = () => {
 useEffect(()=>{
   const fetchTableData = async ()=>{
     try{
-      const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/getOrders', {
+      const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getOrders?id=${id}`, {
         headers : {
           'Content-Type': 'application/json',
           "Authorization": `Bearer ${token.token}`,
@@ -257,7 +259,7 @@ useEffect(() => {
         } */}
         <Table 
         columns={columns} 
-        data={tableData.slice(0,6)}/>
+        data={data.slice(0,6)}/>
         </div>
       </div>
       <div className={"toporder"} >
