@@ -257,7 +257,7 @@ useEffect(() => {
         } */}
         <Table 
         columns={columns} 
-        data={show ? tableData : tableData.slice(0,6)}/>
+        data={tableData.slice(0,6)}/>
         </div>
       </div>
       <div className={"toporder"} >
