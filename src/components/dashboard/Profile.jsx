@@ -55,8 +55,8 @@ export const Profile = () => {
       <img src={profile.profileImg}  alt=''/>
       </div>
       <div className={"nameholder2"}>
-      <p className={"txt2"}>Courage Mac Jude</p>
-      <p className={"username2"}>@courage</p>
+      <p className={"txt2"}>{profile.name}</p>
+      <p className={"username2"}> {profile.username} </p>
       </div>
      </div>
       </div>

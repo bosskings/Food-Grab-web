@@ -16,6 +16,7 @@ export const Login = () => {
   const [visible, setVisible] = useState(false)
   const [click, setToggle] = useState(false)
   const [error, setError] = useState("")
+  const [successMssg, setSuccessMssg] = useState('')
   const [rememberMe, setRememberMe] = useState(false);
   
   const handleClick = ()=>{
@@ -42,12 +43,12 @@ export const Login = () => {
   
           const data = await response.json();
           localStorage.setItem('token', JSON.stringify(data));
+          setSuccessMssg("Login successful")
           console.log(data)
-          navigate('/Dashboard')
+          navigate('/profile')
         }else{
           const data = await response.json();
-          setError(data.message)
-  
+          setError(data.mssg)
         }
       } catch(error) {
         console.error('Error:', error);
@@ -60,6 +61,8 @@ export const Login = () => {
 
   return (
     <div className='loginbody'>
+    {successMssg && <div className='successful'> {successMssg}</div> }
+    {error && <div className='error'> {error} </div> }
       <h1>Log In</h1>
 
       <p>Enter your credentials to access your account</p>
