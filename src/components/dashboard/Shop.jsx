@@ -36,7 +36,7 @@ export const Shop = () => {
 
   return (
     <div className='shop'>
-      {shop ? <NoShop /> :<Shop2 data = {shop} />}
+      {shop ? <Shop2 data = {shop} /> : <NoShop />}
     </div>
   )
 }  
