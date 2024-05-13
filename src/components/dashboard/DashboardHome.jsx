@@ -39,7 +39,8 @@ export const DashboardHome = () => {
 
   let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
   
-  console.log(token);
+  // console.log(token);
+
   const [show,setShow] = useState(false)
   const [balance, setBalance] = useState('')
   const [tableData, setTableData] = useState([])
@@ -75,7 +76,12 @@ export const DashboardHome = () => {
 useEffect(()=>{
   const fetchTableData = async ()=>{
     try{
-      const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/getOrders');
+      const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/getOrders', {
+        headers : {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token.token}`,
+        }
+      });
       if(!response.ok){
         throw new Error('Failed to fetch table data')
       }
@@ -88,6 +94,8 @@ useEffect(()=>{
       console.error('Error fetching table data')
     }
   }
+
+  fetchTableData()
 },[])
 
 
@@ -120,7 +128,7 @@ useEffect(() => {
 }, []);
 
 
-  console.log(dataOverview);
+  // console.log(dataOverview);
 
   return (
     <div className='dashHome'>
@@ -248,8 +256,8 @@ useEffect(() => {
         ):()
         } */}
         <Table 
-        columns={columns} 
-        data={show ? tableData : tableData.slice(0,6)}/>
+          columns={columns} 
+          data={data.slice(0,6)}/>
         </div>
       </div>
       <div className={"toporder"} >
