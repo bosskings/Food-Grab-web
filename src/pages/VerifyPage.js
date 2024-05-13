@@ -9,4 +9,4 @@ export const VerifyPage = () => {
   )
 }
 
-export default Verify
+export default VerifyPage

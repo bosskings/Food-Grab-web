@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import './verify.css';
 import Image from "../media/mail2.jpg";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const Verify = () => {
   const [verification, setVerification] = useState('');
-  const [email, setEmail] = useState('');
+  const {email} = useParams();
   const [errorMessage, setErrorMessage] = useState('')
   const [successMssg, setSucessMssg] = useState('')
   const navivgate = useNavigate()
 
-  useEffect(() => {
-    const fetchEmail = async () => {
-      try {
-        const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/verifyEmail');
-        if (response.ok) {
-          const data = await response.json();
-          setEmail(data.email);
-        } else {
-          console.error('Failed to get email data');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-    fetchEmail();
-  }, []);
+  // useEffect(() => {
+  //   const fetchEmail = async () => {
+  //     try {
+  //       const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/verifyEmail');
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         setEmail(data.email);
+  //       } else {
+  //         console.error('Failed to get email data');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error:', error);
+  //     }
+  //   };
+  //   fetchEmail();
+  // }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,7 +52,7 @@ export const Verify = () => {
 
   const handleResend = async ()=>{
     try{
-      const response = await fetch('',{
+      const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/verifyEmail',{
         method: 'POST',
         headers:{
           'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ export const Verify = () => {
       if(response.ok){
         setSucessMssg('Resend request successful')
       }else{
-        errorMessage('Failed to send Request')
+        setErrorMessage('Failed to send Request')
       }
     }
     catch (error){
