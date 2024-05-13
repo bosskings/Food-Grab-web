@@ -1,5 +1,5 @@
   import React, { useState,useEffect } from 'react'
-  import { Camera } from 'react-bootstrap-icons'
+  import { Camera, XCircle } from 'react-bootstrap-icons'
   import './createshop.css'
   import { AiOutlinePicture } from "react-icons/ai";
   import { MdVerifiedUser } from "react-icons/md";
@@ -7,7 +7,7 @@
   import { FaRegCalendarAlt } from "react-icons/fa";
 
 
-  export const CreateShopModal = () => {
+  export const CreateShopModal = ({closeComponent}) => {
     const [coverImage, setCoverImage] = useState(localStorage.getItem('profileImg') || '')
     const [imageUrl, setImageUrl] = useState(localStorage.getItem('coverImg') || '')
     const [open, setOpen] = useState(false)
@@ -83,13 +83,26 @@
       setOpen(!open)
     }
 
+    const CloseCrModal = ()=>{
+      return(
+        <div>
+        <XCircle className={"closePf"} onClick={closeComponent}/>
+        </div>
+      )
+    }
+
     return (
       <div className={open ?"not-active":"createshdiv"}>
+      <div className={"overlay"} onClick={closeComponent}></div>
       <div className={open ? "not-active" : "createShop"}>
-      <div>
-          <p className='txt2'>Shop Profile</p>
+      <div className={"CRTSHPFRST"}>
+         <div>
+         <p className='txt2'>Shop Profile</p>
         <p className='ppsubtxt'>change and edit shop profile detials</p>
+         </div>
+         <CloseCrModal onClick={handleOpen}/>
         </div>
+        {closeComponent  && open }
       <form
       onSubmit={''}
       method='POST'

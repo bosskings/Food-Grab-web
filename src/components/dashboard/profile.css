@@ -7,6 +7,10 @@
   padding: 20px;
   background-color: #fff;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
 }
 .profilesec1{
   width: 100%;
@@ -16,4 +20,42 @@
 }
 .profilesec2{
   display: flex;
+  flex-direction: column;
+}
+.personal{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.personalfirstsec{
+  display: flex;
+  justify-content:space-between ;
+  align-items: center;
+}
+.editProfileBtn{
+  padding: 10px 20px;
+  background-color: black;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+.personalSecondSec{
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items:center;
+}
+.profileImage img{
+  width: 120%;
+  height: 100%;
+  object-fit: cover;
+}
+.username {
+  color: black;
+  font-size: 12px;
+}
+.nameholder2{
+  display: flex;
+  flex-direction: column;
 }

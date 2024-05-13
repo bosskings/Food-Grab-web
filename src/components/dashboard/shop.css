@@ -1,3 +1,6 @@
+.shop{
+  position: relative;
+}
 .noshdiv{
   position: relative;
 }
@@ -117,14 +120,4 @@
 }
 .not-active{
   display: none;
-}
-.overlay{
-  width:100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: black;
-  opacity: 30%;
-  display: block;
 }
