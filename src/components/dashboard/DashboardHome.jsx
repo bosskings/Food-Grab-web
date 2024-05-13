@@ -37,10 +37,18 @@ const columns = ['Order ID', 'Price', 'Order Date', 'Status'];
 
 export const DashboardHome = () => {
 
+  let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
+  
+  console.log(token);
   const [show,setShow] = useState(false)
   const [balance, setBalance] = useState('')
   const [tableData, setTableData] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+
+
+  const [dataOverview, setDataOverview] = useState({})
+
+
   const handleShow = ()=>{
     setShow(!show)
   }
@@ -82,16 +90,27 @@ useEffect(()=>{
   }
 },[])
 
+
+
+// ========== DATA OVERVIEW ===============
 useEffect(() => {
   const fetchData = async () => {
+    setIsLoading(true)
     try {
-      const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/overview')
+      const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/overview', {
+        method : 'GET',
+        headers : {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token.token}`,
+        }
+      })
       if (!response.ok){
         throw new Error('Failed to fetch data')
       };
+
       const data = await response.json();
-      console.log('Response data:', data);
-      setBalance(data);
+      setDataOverview(data.data);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
     }
@@ -99,6 +118,9 @@ useEffect(() => {
 
   fetchData();
 }, []);
+
+
+  console.log(dataOverview);
 
   return (
     <div className='dashHome'>
@@ -133,7 +155,7 @@ useEffect(() => {
       <SwiperSlide className={'dashslide'}>
       <div className="cd">
         <p className='init1'>Available Balance</p>
-        <h3 className='money'>₦ {balance.accountBalance}<span>.00</span> </h3>
+        <h3 className='money'>₦ {dataOverview.accountBalance}<span>.00</span> </h3>
         <div className='balance'>
         <img src={BOXES} alt='' className='bgimg' />
         </div>
@@ -142,7 +164,7 @@ useEffect(() => {
       <SwiperSlide className={'dashslide'}>
       <div className="s">
         <p className='init1'>Total Orders</p>
-        <h3 className='money'>{balance.totalOrders} </h3>
+        <h3 className='money'>{dataOverview.totalOrders} </h3>
         <div className='balance'>
         </div>
       </div>
@@ -150,16 +172,16 @@ useEffect(() => {
       <SwiperSlide className={'dashslide'}>
      
       <div className="t">
-        <p className='init1'>Available Balance</p>
-        <h3 className='money'> 20 </h3>
+        <p className='init1'>Pending Orders</p>
+        <h3 className='money'>{dataOverview.pendingOrders}</h3>
         <div className='balance'>
         </div>
       </div>
       </SwiperSlide>
       <SwiperSlide className={'dashslide'}>
       <div className="u">
-        <p className='init1'>Available Balance</p>
-        <h3 className='money'>80 </h3>
+        <p className='init1'>Successful Orders</p>
+        <h3 className='money'>{dataOverview.successfulOrders}</h3>
         <div className='balance'>
         </div>
       </div>
@@ -170,36 +192,46 @@ useEffect(() => {
    
     </div>
     
+      {isLoading === true ? 
+        <div className='loaderModal'>
+              <span className="loader"></span>
+        </div> :
 
-    <div className={"dashcardcont"}>
-      <div className="cd">
-      <p className='init1'>Available Balance</p>
-        <h3 className='money'>{balance.accountBalance}<span>.00</span> </h3>
-        <div className='balance'>
-        <img src={BOXES} alt='' className='bgimg' />
-        </div>
-      </div>
-      <div className="s">
-        <p className='init1'>Total Orders</p>
-        <h3 className='money'>{balance.totalOrders} </h3>
-        <div className='balance'>
-        </div>
-      </div>
-      <div className="t">
-        <p className='init1'>Pending Orders</p>
-        <h3 className='money'> {balance.pendingOrders} </h3>
-        <div className='balance'>
-        {/* <p>Payout Balance:</p><span>$139,900.99</span> */}
-        </div>
-      </div>
-      <div className="u">
-        <p className='init1'>Successful Orders</p>
-        <h3 className='money'>{balance.successfulOrders}</h3>
-        <div className='balance'>
+        ''
+        }
 
+        <div className={"dashcardcont"}>
+          <div className="cd">
+          <p className='init1'>Available Balance</p>
+            <h3 className='money'>{dataOverview.accountBalance}<span>.00</span> </h3>
+            <div className='balance'>
+            <img src={BOXES} alt='' className='bgimg' />
+            </div>
+          </div>
+          <div className="s">
+            <p className='init1'>Total Orders</p>
+            <h3 className='money'>{dataOverview.totalOrders} </h3>
+            <div className='balance'>
+            </div>
+          </div>
+          <div className="t">
+            <p className='init1'>Pending Orders</p>
+            <h3 className='money'> {dataOverview.pendingOrders} </h3>
+            <div className='balance'>
+            {/* <p>Payout Balance:</p><span>$139,900.99</span> */}
+            </div>
+          </div>
+          <div className="u">
+            <p className='init1'>Successful Orders</p>
+            <h3 className='money'>{dataOverview.successfulOrders}</h3>
+            <div className='balance'>
+
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+
+
+
     </section>
     <section className={"dashsec2"}>
       <div className={"tablebox"}>
