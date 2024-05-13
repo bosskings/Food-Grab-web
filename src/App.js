@@ -13,6 +13,8 @@ import { ProfilePage } from './pages/ProfilePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { ProtectedRoute } from './ProtectedRoute';
 import { ShopPage } from './pages/ShopPage';
+import VerifyPage from './pages/VerifyPage';
+
 
 //fonts
 
@@ -21,7 +23,7 @@ import "./fonts/Sherika Regular.ttf"
 import "./fonts/Sherika Medium.ttf"
 import "./fonts/Sherika Bold.ttf"
 import "./fonts/Sherika ExtraBold.ttf"
-import Verify from './pages/VerifyPage';
+
 
 
 
@@ -34,7 +36,7 @@ function App() {
           <Route path={'/'} element={<Home />} />
           <Route path={'/Merchantsignup'} element={<Merchantsignup />} />
           <Route path={'/Merchantlogin'} element={<Merchantlogin />} />
-          <Route path={'/verify'} element = {<Verify />} />
+          <Route path={"/verify"} element = {<VerifyPage />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path={'/Dashboard'} element={<Dashboard />} />

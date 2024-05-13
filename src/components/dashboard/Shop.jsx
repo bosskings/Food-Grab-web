@@ -36,7 +36,7 @@ export const Shop = () => {
 
   return (
     <div className='shop'>
-      {shop ? <Shop2 data = {shop} /> : <NoShop />}
+      {shop ?<Shop2 data = {shop} />  :<NoShop />}
     </div>
   )
 }  
@@ -69,6 +69,12 @@ export const Shop = () => {
     )
   }
 const Shop2 =({data})=>{
+  const [edit, setEdit] = useState(false)
+
+  const handleEdit = ()=>{
+    setEdit(!edit)
+  }
+
     return(
       <div>
       <section className='shopSec1'>
@@ -77,8 +83,8 @@ const Shop2 =({data})=>{
         <p className='txt2'>Shop</p>
         <p className='ppsubtxt'>create and edit shop</p>
         </div>
-        <button className={'editshop'}>
-          Edit Shop
+        <button className={'editshop'} onClick={handleEdit}>
+          Edit 
         </button>
         </div>
         
@@ -138,7 +144,7 @@ const Shop2 =({data})=>{
           </div>
           </div>
       </section>
-      
+      {edit && <CreateShopModal/>}
       </div>
     )
   }
