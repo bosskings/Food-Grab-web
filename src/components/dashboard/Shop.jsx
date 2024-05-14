@@ -68,6 +68,8 @@ export const Shop = () => {
       </div>
     )
   }
+
+  
 const Shop2 =({data})=>{
   const [edit, setEdit] = useState(false)
 
