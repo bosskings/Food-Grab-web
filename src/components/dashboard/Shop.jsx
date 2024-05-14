@@ -36,7 +36,7 @@ export const Shop = () => {
 
   return (
     <div className='shop'>
-      {shop ?<Shop2 data = {shop} />  :<NoShop />}
+      {shop ? <Shop2 data = {shop} /> : <NoShop />}
     </div>
   )
 }  
@@ -63,8 +63,7 @@ export const Shop = () => {
         <button className='createShopBtn' onClick={handleOpenModal}>create Shop</button>
         </div>
       </section>
-      <div className={openModal ?"overlay":"not-active"} onClick={handleOpenModal}></div>
-      {openModal && <CreateShopModal/>}
+      {openModal && <CreateShopModal closeComponent={handleOpenModal}/>}
       </div>
     )
   }
@@ -86,7 +85,7 @@ const Shop2 =({data})=>{
         <p className='ppsubtxt'>create and edit shop</p>
         </div>
         <button className={'editshop'} onClick={handleEdit}>
-          Edit 
+          Edit Shop 
         </button>
         </div>
         
@@ -146,7 +145,7 @@ const Shop2 =({data})=>{
           </div>
           </div>
       </section>
-      {edit && <CreateShopModal/>}
+      {edit && <CreateShopModal closeComponent={handleEdit}/>}
       </div>
     )
   }

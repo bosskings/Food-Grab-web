@@ -16,6 +16,7 @@ export const Sidebar = () => {
   const location = useLocation()
   const  [active, setActive]= useState()
   const [click, setClick] = useState(false)
+  const [profile, setProfile] = useState('')
   const [iconStyles, setIconStyles] = useState({
     icon1:{},
     icon2:{},
@@ -248,6 +249,23 @@ export const Sidebar = () => {
     }
   }, [location.pathname, active]);
 
+  useEffect(()=>{
+    const fetchProfilePic =  async ()=>{
+      try{
+        const response = await fetch('')
+        if(response.ok){
+          throw new Error('Failed to fetch Profile Image')
+        }
+        const data = await response.json()
+        setProfile(data)
+      }
+      catch (error) {
+        console.error('Error fetching profile data:', error.mssg)
+      }
+    }
+    fetchProfilePic()
+  },[])
+
   return (
     <div>
     <div className={click? "overlay":"not-active"} onClick={handleClick}></div>
@@ -412,13 +430,13 @@ export const Sidebar = () => {
        
         <Link to={'/profile'}>
           <div className={"profilepic"}>
-            <img src={""} alt=''/>
+            <img src={profile.profilePic} alt=''/>
           </div>
         </Link>
         <Link to={"/profile"}>  
           <div className={"profiledetials"}>
-          <p>Alison Eyo</p>
-          <p className={"username"}>@thealisoneyo</p>
+          <p>{profile.fullName}</p>
+          <p className={"username"}>{profile.username}</p>
         </div>
         </Link>
         <RxExit className={"profileicon"} />
