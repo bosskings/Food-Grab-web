@@ -46,7 +46,11 @@ export const Shop = () => {
   const [openModal,  setOpenModal] = useState(false)
 
   const handleOpenModal = ()=>{
-    setOpenModal(!openModal)
+    setOpenModal(true)
+  }
+
+  const handleCloseModal = ()=>{
+    setOpenModal(false)
   }
     return(
       <div className={"noshdiv"}>
@@ -63,7 +67,7 @@ export const Shop = () => {
         <button className='createShopBtn' onClick={handleOpenModal}>create Shop</button>
         </div>
       </section>
-      {openModal && <CreateShopModal closeComponent={handleOpenModal}/>}
+      {openModal === true && <CreateShopModal handleCloseModal={handleCloseModal} handleOpenModal={handleOpenModal} han/>}
       </div>
     )
   }

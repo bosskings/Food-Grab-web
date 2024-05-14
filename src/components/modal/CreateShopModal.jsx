@@ -8,7 +8,7 @@
   import { AiOutlineCloudUpload } from "react-icons/ai";
 
 
-  export const CreateShopModal = () => {
+  export const CreateShopModal = ({handleCloseModal}) => {
     const [coverImage, setCoverImage] = useState(localStorage.getItem('profileImg') || '')
     const [imageUrl, setImageUrl] = useState(localStorage.getItem('coverImg') || '')
     const [open, setOpen] = useState(false)
@@ -92,13 +92,17 @@
     const [fileName, setFileName] = useState("No Selected File Name")
 
     return (
-    <div className={open ?"not-active":"createshdiv "}>
+    <div className={open ?"not-active":"createshdiv "} >
 
 
-        <div className={open ? "not-active" : "createShop"}>
-          <div>
-            <p className='txt2'>Shop Profile</p>
-            <p className='ppsubtxt'>change and edit shop profile detials</p>
+        <div className={open ? "not-active" : "createShop" } >
+          <div className='closeBar'>
+            <div>
+              <p className='txt2'>Shop Profile</p>
+              <p className='ppsubtxt'>change and edit shop profile detials</p>
+            </div>
+
+            <p onClick={handleCloseModal} className='closeP'>X</p>
           </div>
 
           
@@ -145,46 +149,44 @@
             </section>
 
 
-              <div>
                 <section className={"createShopSec2"}>
-             
-                <div className="createShopSecTwo">
+            
+                  <div className="createShopSecTwo">
 
-                  <div className='profileImageFlex'>
-                  
-                    <div className={"profileImage"}>
-                      {<img src={imageUrl} alt='' className={''}/>}
+                    <div className='profileImageFlex'>
+                    
+                      <div className={"profileImage"}>
+                        {<img src={imageUrl} alt='' className={''}/>}
 
-                      <div className="checkboxContainer2">
-                        <MdVerifiedUser className='customcheckbox2' color={shop && shop.verified ? '#0077ff' : 'grey'}/>
+                        <div className="checkboxContainer2">
+                          <MdVerifiedUser className='customcheckbox2' color={shop && shop.verified ? '#0077ff' : 'grey'}/>
+                        </div>
+                
                       </div>
-              
+
+                      <div className="profileCredentials">
+
+                        <p className={"txt3"}>Business Logo</p>
+                        <p className={"subtxt2"}>This Picture will be displayed on your profile</p>
+
+                        <labbel className='change'>
+                          <input type='file' onChange={handleImageChange}/>
+                          <AiOutlinePicture className={"ChIcon"}/>
+                          Change Photo
+                        </labbel>
+
+                      </div>
+
                     </div>
 
-                    <div className="profileCredentials">
 
-                      <p className={"txt3"}>Business Logo</p>
-                      <p className={"subtxt2"}>This Picture will be displayed on your profile</p>
-
-                      <labbel className='change'>
-                        <input type='file' onChange={handleImageChange}/>
-                        <AiOutlinePicture className={"ChIcon"}/>
-                        Change Photo
-                      </labbel>
-
+                    <div className={"submitShopProfile"}>
+                      <p className={'txt3'}>Shop Information</p>
+                      <p className='ppsubtxt cc'>update your personal detials here</p>
+                      <button type='submit' className={"updPfButton"}>Save Changes</button>
                     </div>
 
                   </div>
-
-
-                  <div className={"submitShopProfile"}>
-                    <p className={'txt3'}>Shop Information</p>
-                    <p className='ppsubtxt cc'>update your personal detials here</p>
-                    <button type='submit' className={"updPfButton"}>Save Changes</button>
-                  </div>
-
-                </div>
-
 
                   <div className={"createShopFormProper"}>
 
@@ -271,8 +273,6 @@
 
                   </div>
                 </section>
-              </div>
-
           </form>
         </div>
       
