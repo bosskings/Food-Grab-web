@@ -106,7 +106,8 @@
   display: flex;
   gap: 20px;
   align-items: top;
-  width: 100%;;
+  width: 100%;
+  padding-top: 30px;
 }
 
 
@@ -135,7 +136,7 @@
   flex-direction: column;
   gap:8px;
   height: 80vh;
-  padding: 100px 0;
+  padding: 0 0;
   padding-top: 10px;
   flex: 2;
 }
@@ -183,17 +184,23 @@
 
 .creatshopSecOne{
   border-radius: 10px;
-  height: 310px;
+  height: 300px;
   width: 100%;
   overflow: hidden;
-  background-color: rgb(205, 205, 205);
+  background-color: rgb(229, 229, 229);
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .uploadIconTextDiv{
   text-align: center;
+}
+
+
+.uploadIconTextDiv p{
+  font-size: 20px;
 }
 
 .creatshopSecOne div img{
@@ -226,6 +233,17 @@
 
 .cate option{
   font-size: 15px;
+}
+
+
+.profileImageFlex{
+  display: flex;
+  align-items: top;
+}
+
+
+.profileCredentials{
+  margin-left: auto;
 }
 
 

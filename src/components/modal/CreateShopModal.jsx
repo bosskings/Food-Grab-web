@@ -92,7 +92,7 @@
     const [fileName, setFileName] = useState("No Selected File Name")
 
     return (
-    <div className={open ?"not-active":"createshdiv"}>
+    <div className={open ?"not-active":"createshdiv "}>
 
 
         <div className={open ? "not-active" : "createShop"}>
@@ -101,8 +101,8 @@
             <p className='ppsubtxt'>change and edit shop profile detials</p>
           </div>
 
-
-          <form className="createshform">
+          
+          <form className="createshform " >
             <section className="creatshopSecOne"  
               onClick={()=> document.querySelector(".input-field").click()}>
                 <div>
@@ -146,38 +146,44 @@
 
 
               <div>
-                  <section className="createShopSec2">
-                  <div className={"profileImage"}>
-                    {<img src={imageUrl} alt='' className={''}/>}
-
-                    <div className="checkboxContainer2">
-                      <MdVerifiedUser className='customcheckbox2' color={shop && shop.verified ? '#0077ff' : 'grey'}/>
-                    </div>
-            
-                  </div>
-
-                  <div className="profileCredentials">
-
-                    <p className={"txt3"}>Business Logo</p>
-                    <p className={"subtxt2"}>This Picture will be displayed on your profile</p>
-
-                    <labbel className='change'>
-                      <input type='file' onChange={handleImageChange}/>
-                      <AiOutlinePicture className={"ChIcon"}/>
-                      Change Photo
-                    </labbel>
-
-                  </div>
-
-                </section>
-
-
                 <section className={"createShopSec2"}>
+             
+                <div className="createShopSecTwo">
+
+                  <div className='profileImageFlex'>
+                  
+                    <div className={"profileImage"}>
+                      {<img src={imageUrl} alt='' className={''}/>}
+
+                      <div className="checkboxContainer2">
+                        <MdVerifiedUser className='customcheckbox2' color={shop && shop.verified ? '#0077ff' : 'grey'}/>
+                      </div>
+              
+                    </div>
+
+                    <div className="profileCredentials">
+
+                      <p className={"txt3"}>Business Logo</p>
+                      <p className={"subtxt2"}>This Picture will be displayed on your profile</p>
+
+                      <labbel className='change'>
+                        <input type='file' onChange={handleImageChange}/>
+                        <AiOutlinePicture className={"ChIcon"}/>
+                        Change Photo
+                      </labbel>
+
+                    </div>
+
+                  </div>
+
+
                   <div className={"submitShopProfile"}>
                     <p className={'txt3'}>Shop Information</p>
                     <p className='ppsubtxt cc'>update your personal detials here</p>
                     <button type='submit' className={"updPfButton"}>Save Changes</button>
                   </div>
+
+                </div>
 
 
                   <div className={"createShopFormProper"}>
@@ -268,7 +274,6 @@
               </div>
 
           </form>
-          
         </div>
       
     </div>
