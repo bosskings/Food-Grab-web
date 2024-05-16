@@ -87,9 +87,13 @@
 
 
 
-    const [image, setImage] = useState(null)
     const [cover_image, setCover_image] = useState(null)
     const [fileName, setFileName] = useState("No Selected File Name")
+    const [image, setImage] = useState(null)
+    
+    
+    const [profileImage, setProfileImage] = useState(null)
+    const [cover_image2, setCover_image2] = useState(null)
 
     return (
     <div className={open ?"not-active":"createshdiv "} >
@@ -126,7 +130,7 @@
                         if (image.width === 1350 && image.height === 320) {
                           setFileName(selectedFile.name);
                           setImage(URL.createObjectURL(selectedFile));
-                          setCover_image(selectedFile);
+                          setCover_image(files[0])
                         } else {
                           // Notify the user that the image dimensions are incorrect
                           alert('Please upload an image with dimensions 1350 by 32 pixels.');
@@ -156,7 +160,21 @@
                     <div className='profileImageFlex'>
                     
                       <div className={"profileImage"}>
-                        {<img src={imageUrl} alt='' className={''}/>}
+
+                          <input type="file" accept='image/*' className='input-field2' hidden
+                            onChange={({target: {files}}) =>{
+                                files[0] && setFileName(files[0].name)
+                                if(files){
+                                    setProfileImage(URL.createObjectURL(files[0]))
+                                    setCover_image2(files[0])
+                                }
+                            }}
+                        />
+
+
+
+                        <img src={profileImage} alt='' className={''}/>
+
 
                         <div className="checkboxContainer2">
                           <MdVerifiedUser className='customcheckbox2' color={shop && shop.verified ? '#0077ff' : 'grey'}/>
@@ -169,8 +187,7 @@
                         <p className={"txt3"}>Business Logo</p>
                         <p className={"subtxt2"}>This Picture will be displayed on your profile</p>
 
-                        <labbel className='change'>
-                          <input type='file' onChange={handleImageChange}/>
+                        <labbel className='change' onClick={()=> document.querySelector(".input-field2").click()}>
                           <AiOutlinePicture className={"ChIcon"}/>
                           Change Photo
                         </labbel>
