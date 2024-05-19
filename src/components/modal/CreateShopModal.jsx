@@ -9,83 +9,8 @@
 
 
   export const CreateShopModal = ({handleCloseModal}) => {
-    const [coverImage, setCoverImage] = useState(localStorage.getItem('profileImg') || '')
-    const [imageUrl, setImageUrl] = useState(localStorage.getItem('coverImg') || '')
     const [open, setOpen] = useState(false)
-    const [edit, setEdit]= useState('not-active')
-
-
     const [shop, setShop]= useState('')
-  useEffect(()=>{
-
-   const fetchShopData = async ()=>{
-    try{
-      const response = await fetch('')
-      if (!response.ok){
-        throw new Error('failed to fetch shop data')
-      }
-      const data = await response.json();
-    setShop(data)
-    }
-    catch (error){
-      console.error('Error fetching Shop data:', error.message)
-    }
-   }
-   fetchShopData();
-  },[])
-
-    
-    useEffect(() => {
-      fetchDefaultCoverImage(); 
-    }, []);
-  
-    const fetchDefaultCoverImage = async () => {
-      try {
-        const response = await fetch('your_backend_api_url');
-        if (!response.ok) {
-          throw new Error('Failed to fetch default cover image');
-        }
-        const data = await response.json();
-        setImageUrl(data.defaultCoverImageUrl);
-      } catch (error) {
-        console.error('Error fetching default cover image:', error);
-      }
-    };
-  
-    const handleEdit = () => {
-      setEdit('uploadCvImg');
-    };
-  
-    const handleMouseLeave = () => {
-      setEdit('not-active');
-    };
-  
-    const handleImageChange = async (e) => {
-      const file = e.target.files[0];
-      setCoverImage(file);
-      const formData = new FormData();
-      formData.append('coverImg', file);
-      
-      try {
-        const response = await fetch('', {
-          method: 'POST',
-          body: formData,
-        });
-        if (!response.ok) {
-          throw new Error('Failed to upload cover image');
-        }
-        const data = await response.json();
-        setImageUrl(data.updatedCoverImageUrl); 
-      } catch (error) {
-        console.error('Error uploading cover image:', error);
-      }
-    };
-
-    const handleOpen =()=>{
-      setOpen(!open)
-    }
-
-
 
     const [cover_image, setCover_image] = useState(null)
     const [fileName, setFileName] = useState("No Selected File Name")
@@ -94,6 +19,39 @@
     
     const [profileImage, setProfileImage] = useState(null)
     const [cover_image2, setCover_image2] = useState(null)
+
+
+
+    const url = 'https://api.foodgrab.africa/merchants/api/v1/overview'
+
+    // const handleSubmit = async (e) => {
+    //   e.preventDefault();
+  
+    //   const formData = new FormData();
+    //   formData.append('name', name);
+    //   formData.append('description', description);
+    //   formData.append('image', image);
+  
+    //   try {
+    //     const response = await fetch('/api/posts', {
+    //       method: 'POST',
+    //       body: formData
+    //     });
+  
+    //     if (response.ok) {
+    //       setMessage('Post created successfully!');
+    //       // Clear form fields
+    //       setName('');
+    //       setDescription('');
+    //       setImage(null);
+    //     } else {
+    //       setMessage('Error creating post');
+    //     }
+    //   } catch (error) {
+    //     console.error('Error:', error);
+    //     setMessage('Error creating post');
+    //   }
+    // };
 
     return (
     <div className={open ?"not-active":"createshdiv "} >
