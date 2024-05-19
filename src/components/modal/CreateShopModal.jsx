@@ -1,4 +1,4 @@
-  import React, { useState,useEffect } from 'react'
+  import React, { useState, useEffect } from 'react'
   import { Camera } from 'react-bootstrap-icons'
   import './createshop.css'
   import { AiOutlinePicture } from "react-icons/ai";
@@ -13,45 +13,59 @@
     const [shop, setShop]= useState('')
 
     const [cover_image, setCover_image] = useState(null)
-    const [fileName, setFileName] = useState("No Selected File Name")
     const [image, setImage] = useState(null)
     
-    
     const [profileImage, setProfileImage] = useState(null)
+    const [fileName, setFileName] = useState(null)
     const [cover_image2, setCover_image2] = useState(null)
 
 
 
-    const url = 'https://api.foodgrab.africa/merchants/api/v1/overview'
+    const [message, setMessage] = useState('')
+    const [businessName, setBusinessName] = useState('')
+    const [location, setLocation] = useState('')
+    const [category, setCategory] = useState('')
+    const [workHours, setWorkHours] = useState('')
+    const [workDays, setWorkDays] = useState('')
 
-    // const handleSubmit = async (e) => {
-    //   e.preventDefault();
+
+
+    const url = 'https://api.foodgrab.africa/merchants/api/v1/createShop'
+
+    const handleShopSubmit = async (e) => {
+      e.preventDefault();
   
-    //   const formData = new FormData();
-    //   formData.append('name', name);
-    //   formData.append('description', description);
-    //   formData.append('image', image);
+      const formData = new FormData();
+      formData.append('name', businessName);
+      formData.append('location', location);
+      formData.append('category', category);
+      formData.append('workHours', workHours);
+      formData.append('workDays', workDays);
   
-    //   try {
-    //     const response = await fetch('/api/posts', {
-    //       method: 'POST',
-    //       body: formData
-    //     });
+      try {
+        const response = await fetch('/api/posts', {
+          method: 'POST',
+          body: formData
+        });
   
-    //     if (response.ok) {
-    //       setMessage('Post created successfully!');
-    //       // Clear form fields
-    //       setName('');
-    //       setDescription('');
-    //       setImage(null);
-    //     } else {
-    //       setMessage('Error creating post');
-    //     }
-    //   } catch (error) {
-    //     console.error('Error:', error);
-    //     setMessage('Error creating post');
-    //   }
-    // };
+        if (response.ok) {
+          setMessage('Post created successfully!');
+          setBusinessName('');
+          setLocation('');
+          setCategory('');
+          
+        } else {
+          setMessage('Error creating post');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        setMessage('Error creating post');
+      }
+    };
+
+    useEffect(()=>{
+      handleShopSubmit();
+    }, [])
 
     return (
     <div className={open ?"not-active":"createshdiv "} >
