@@ -21,9 +21,12 @@
 
 
 
-    const [message, setMessage] = useState('')
-    const [businessName, setBusinessName] = useState('')
-    const [location, setLocation] = useState('')
+    const [errMessage, setErrMessage] = useState('')
+
+
+    const [shopName, setShopName] = useState('')
+    const [address, setAddress] = useState({})
+
     const [category, setCategory] = useState('')
     const [workHours, setWorkHours] = useState('')
     const [workDays, setWorkDays] = useState('')
@@ -36,36 +39,33 @@
       e.preventDefault();
   
       const formData = new FormData();
-      formData.append('name', businessName);
-      formData.append('location', location);
+      formData.append('shopName', shopName);
+      formData.append('address', address);
       formData.append('category', category);
       formData.append('workHours', workHours);
       formData.append('workDays', workDays);
   
       try {
-        const response = await fetch('/api/posts', {
+        const response = await fetch(url, {
           method: 'POST',
           body: formData
         });
   
         if (response.ok) {
-          setMessage('Post created successfully!');
-          setBusinessName('');
-          setLocation('');
+          setErrMessage('Post created successfully!');
+          setShopName('');
+          setAddress('');
           setCategory('');
           
         } else {
-          setMessage('Error creating post');
+          setErrMessage('Error creating post');
         }
       } catch (error) {
         console.error('Error:', error);
-        setMessage('Error creating post');
+        setErrMessage('Error creating post');
       }
     };
 
-    useEffect(()=>{
-      handleShopSubmit();
-    }, [])
 
     return (
     <div className={open ?"not-active":"createshdiv "} >
@@ -82,7 +82,7 @@
           </div>
 
           
-          <form className="createshform " >
+          <form className="createshform" onSubmit={handleShopSubmit()}>
             <section className="creatshopSecOne"  
               onClick={()=> document.querySelector(".input-field").click()}>
                 <div>
@@ -95,7 +95,6 @@
                     const selectedFile = files[0];
                     
                     if (selectedFile) {
-                      // Check if the selected file has the correct dimensions
                       const image = new Image();
                       image.src = URL.createObjectURL(selectedFile);
                       image.onload = () => {
@@ -185,6 +184,8 @@
                         type='text'
                         name='business'
                         placeholder='business name'
+                        onChange={(e)=>setAddress(e.target.value)}
+                        value={shopName}
                         required
                     />
 
@@ -195,6 +196,7 @@
                         type='text'
                         name='location'
                         placeholder='location'
+                        onChange={(e)=>setAddress(e.target.value)}
                         required
                     />
 
@@ -202,63 +204,13 @@
 
 
                     <label className={"txt3"}>Category</label>
-                    <select className={"cate"}>
-                      <option>Resturant</option>
-                      <option>Chef</option>
+                    <select className={"cate"}
+                        value={category} 
+                        onChange={(e) =>setCategory(e.target.value)} 
+                    >
+                      <option value={'RESTURANT'}>Resturant</option>
+                      <option value={'CHIEF'}>Chef</option>
                     </select>
-
-
-                    <label className={"txt3"}>Work Hours</label>
-                    <div className={"work"}>
-                      <div className={"workHours"}>
-                        <p className={'inittxt'}>From:</p>
-                        <input 
-                          className='workinput'
-                          type='text'
-                          name='location'
-                          required
-                        />
-                        <GoClock  className={"clock"}/>
-                      </div>
-
-                      <div className={"workHours"}>
-                        <p className={'inittxt'}>To:</p>
-                        <input 
-                          className='workinput'
-                          type='text'
-                          name='location'
-                          required
-                        />
-                        <GoClock className={"clock"}/>
-                      </div>
-                    </div>
-
-
-                  <label className={"txt3"}>Work Days</label>
-                  <div className={"work"}>
-                    <div className={"workHours"}>
-                      <p className={'inittxt'}>From:</p>
-                      <input 
-                        className='workinput'
-                        type='text'
-                        name='location'
-                        required
-                      />
-                      <FaRegCalendarAlt  className={"clock"}/>
-                    </div>
-
-
-                    <div className={"workHours"}>
-                      <p className={'inittxt'}>To:</p>
-                      <input 
-                        className='workinput'
-                        type='text'
-                        name='location'
-                        required
-                      />
-                        <FaRegCalendarAlt className={"clock"}/>
-                    </div>
-                  </div>
 
                   </div>
                 </section>
