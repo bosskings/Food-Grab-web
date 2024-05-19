@@ -1,10 +1,10 @@
 import React, {useEffect, useState}from 'react'
 import "./dashboard.css"
 import BOXES from "../media/boxes.png"
-import { RiInformationFill } from "react-icons/ri";
+// import { RiInformationFill } from "react-icons/ri";
 import { FaChevronRight } from "react-icons/fa6";
 import { Table } from '../table/Table';
-import axios, { all } from 'axios';
+// import axios, { all } from 'axios';
 import { XCircle } from 'react-bootstrap-icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -44,12 +44,12 @@ export const DashboardHome = () => {
   const id = '' 
 
   const [show,setShow] = useState(false)
-  const [balance, setBalance] = useState('')
+  // const [balance, setBalance] = useState('')
   const [tableData, setTableData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-
   const [dataOverview, setDataOverview] = useState({})
+
 
 
   const handleShow = ()=>{
@@ -98,7 +98,7 @@ useEffect(()=>{
   }
 
   fetchTableData()
-},[])
+},[id, token])
 
 
 
@@ -127,7 +127,7 @@ useEffect(() => {
   };
 
   fetchData();
-}, []);
+}, [token]);
 
 
   // console.log(dataOverview);
@@ -206,7 +206,6 @@ useEffect(() => {
         <div className='loaderModal'>
               <span className="loader"></span>
         </div> :
-
         ''
         }
 
@@ -253,10 +252,10 @@ useEffect(() => {
       
       </div>
         <div className={"tablecont"}>
-        {/* {isLoading ? (
+         {/* {isLoading ? (
           <p>...Loading</p>
         ):()
-        } */}
+        }  */}
         <Table 
         columns={columns} 
         data={data.slice(0,6)}/>
