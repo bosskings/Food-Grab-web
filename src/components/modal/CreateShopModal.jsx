@@ -25,13 +25,22 @@
 
 
     const [shopName, setShopName] = useState('')
-    const [address, setAddress] = useState({})
+    const [street, setStreet] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [houseNumber, setHouseNumber] = useState('')
+
+
+    const [address, setAddress] = useState({
+      street : street,
+      city : city,
+      state : state,
+      houseNumber : houseNumber
+
+    })
 
     const [category, setCategory] = useState('')
-    const [workHours, setWorkHours] = useState('')
-    const [workDays, setWorkDays] = useState('')
-
-
+    let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
 
     const url = 'https://api.foodgrab.africa/merchants/api/v1/createShop'
 
@@ -42,14 +51,20 @@
       formData.append('shopName', shopName);
       formData.append('address', address);
       formData.append('category', category);
-      formData.append('workHours', workHours);
-      formData.append('workDays', workDays);
   
       try {
         const response = await fetch(url, {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${token.token}`,
+          },
           body: formData
         });
+
+
+        console.log(response);
+
   
         if (response.ok) {
           setErrMessage('Post created successfully!');
@@ -82,7 +97,7 @@
           </div>
 
           
-          <form className="createshform" onSubmit={handleShopSubmit()}>
+          <form className="createshform" onSubmit={handleShopSubmit}>
             <section className="creatshopSecOne"  
               onClick={()=> document.querySelector(".input-field").click()}>
                 <div>
@@ -184,24 +199,10 @@
                         type='text'
                         name='business'
                         placeholder='business name'
-                        onChange={(e)=>setAddress(e.target.value)}
+                        onChange={(e)=>setShopName(e.target.value)}
                         value={shopName}
                         required
                     />
-
-
-                    <label className={"txt3"}>Location</label>
-                    <input 
-                      className={"createinput"}
-                        type='text'
-                        name='location'
-                        placeholder='location'
-                        onChange={(e)=>setAddress(e.target.value)}
-                        required
-                    />
-
-
-
 
                     <label className={"txt3"}>Category</label>
                     <select className={"cate"}
@@ -211,6 +212,48 @@
                       <option value={'RESTURANT'}>Resturant</option>
                       <option value={'CHIEF'}>Chef</option>
                     </select>
+
+                    <label className={"txt3"}>State</label>
+                    <input 
+                      className={"createinput"}
+                        type='text'
+                        name='state'
+                        placeholder='E.g Lagos State'
+                        onChange={(e)=>setState(e.target.value)}
+                        required
+                    />
+
+
+                    <label className={"txt3"}>City</label>
+                    <input 
+                      className={"createinput"}
+                        type='text'
+                        name='city'
+                        placeholder='E.g Port Hracourt'
+                        onChange={(e)=>setCity(e.target.value)}
+                        required
+                    />
+
+                    <label className={"txt3"}>House Number</label>
+                    <input 
+                      className={"createinput"}
+                        type='text'
+                        name='houseNumber'
+                        placeholder='E.g, 64'
+                        onChange={(e)=>setHouseNumber(e.target.value)}
+                        required
+                    />
+
+
+                    <label className={"txt3"}>Street</label>
+                    <input 
+                      className={"createinput"}
+                        type='text'
+                        name='street'
+                        placeholder='E.g, D/Line Street'
+                        onChange={(e)=>setStreet(e.target.value)}
+                        required
+                    />
 
                   </div>
                 </section>

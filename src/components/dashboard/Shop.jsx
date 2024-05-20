@@ -24,10 +24,10 @@ export const Shop = () => {
     setShop(data)
     }
     catch (error){
-      console.error('Error fetching Shop data:', error.message)
+      console.error('Error fetching Shop data:', error)
     }
    }
-   fetchShopData();
+  //  fetchShopData();
   },[])
 
  

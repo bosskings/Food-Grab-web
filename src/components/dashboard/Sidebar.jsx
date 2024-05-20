@@ -264,7 +264,7 @@ export const Sidebar = () => {
         console.error('Error fetching profile data:', error.mssg)
       }
     }
-    fetchProfilePic()
+    // fetchProfilePic()
   },[])
 
   return (
