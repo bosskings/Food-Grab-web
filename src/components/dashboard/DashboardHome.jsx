@@ -47,6 +47,7 @@ export const DashboardHome = () => {
   // const [balance, setBalance] = useState('')
   const [tableData, setTableData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [mssg, setMssg] = useState('')
 
   const [dataOverview, setDataOverview] = useState({})
 
@@ -79,11 +80,12 @@ useEffect(()=>{
       const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getOrders`, {
         headers : {
           'Content-Type': 'application/json',
-          "Authorization": `Bearer ${token.token}`,
+          "Authorization": `Bearer ${token.token}`
         }
       });
       if(!response.ok){
         throw new Error('Failed to fetch table data')
+        setMssg("An Error occurredError: Merchant doesn't have any shops")
       }
       const data = await response.json();
       console.log('Response Data:', data)

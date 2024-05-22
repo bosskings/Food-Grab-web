@@ -145,7 +145,7 @@ export const Sidebar = () => {
   useEffect(() => {
     const path = window.location.pathname;
     const defaultStyles = { backgroundColor: "none" };
-    const activeStyles = { backgroundColor: "#606060" };
+    const activeStyles = { backgroundColor: "#606060",};
 
     switch (active) {
       case "one":
