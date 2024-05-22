@@ -4,7 +4,7 @@ import { Dropdown } from '../dashboard/dropdown/Dropdown';
 import OrderModal from '../modal/OrderModal';
 
 const OrderTable = (props) => {
-  const { columns, data } = props;
+  const { columns, data, dropdownItems } = props;
   const [checkedItems, setCheckedItems] = useState({});
   const [productImages, setProductImages] = useState({});
   const dropdownRefs = useRef([]);
@@ -93,8 +93,9 @@ const OrderTable = (props) => {
                   )}
                   {index !== 2 &column !== 'Product' ? (row[column]) : ""}
                    {index === 5 && column === 'Action' && (
-                    <Dropdown rowData={row} 
-                     onDropdownItemClick={() => handleDropdownItemClick(rowIndex, row)}
+                    <Dropdown rowData={row}
+                    dropdownItems={dropdownItems} 
+                    onDropdownItemClick={() => handleDropdownItemClick(rowIndex, row)}
                     modalComponent={<OrderModal row={row} />} />
                   )}
                 </td>
