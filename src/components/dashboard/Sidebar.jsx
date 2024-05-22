@@ -250,7 +250,8 @@ export const Sidebar = () => {
   }, [location.pathname, active]);
 
   useEffect(()=>{
-    const fetchProfilePic =  async ()=>{
+    const fetchProfilePic =  async (e)=>{
+        e.preventDefault();
       try{
         const response = await fetch('')
         if(response.ok){
