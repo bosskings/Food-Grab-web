@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./modal.css"
 
-const OrderModal = ({row}) => {
+const OrderModal = ({row, selectedItem}) => {
 
 
   const [click, setClick] = useState(false)
@@ -82,7 +82,10 @@ const OrderModal = ({row}) => {
           </div>
           </div>
         <div className="but">
-          <button>Confirm Order</button>
+        {selectedItem && selectedItem.title !== 'View Details' && 
+        (<button>Confirm</button>)
+        }
+          
           <button onClick={handleClick}>Close
           {click && "not-active"}
           </button>

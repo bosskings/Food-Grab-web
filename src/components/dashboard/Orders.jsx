@@ -40,7 +40,7 @@ import  OrderTable  from '../table/OrderTable'
 //   {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Cancelled", 'Order Date': "08:00 PM, 02 Dec, 2021"},
 // ]
 
-export const Orders = ( n) => {
+export const Orders = () => {
   let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
 
 
@@ -49,6 +49,7 @@ export const Orders = ( n) => {
 
   const [mssg, setMssg] = useState('')
   const[active, setactive]= useState('table1')
+  const [isLoading, setIsLoading] = useState(false)
   const [activeHeader, setActiveHeader] = useState("tableA")
   const [border, setBorder]= useState([
     {
@@ -116,6 +117,7 @@ export const Orders = ( n) => {
 
   useEffect(()=>{
     const fetchTableData = async()=>{
+      setIsLoading(true)
       try{
         const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getOrders`, {
           headers:{
@@ -129,6 +131,7 @@ export const Orders = ( n) => {
         }
         const data = await response.json()
         console.log('Response Data:', data)
+        
 
         const newOrders = data.filter(getOrders => getOrders.status === "New")
         const processingOrders = data.filter(getOrders => getOrders.status === "Processing")
@@ -145,6 +148,7 @@ export const Orders = ( n) => {
           table5: deliveredOrders,
           table6: CancelledOrders,
         })
+        setIsLoading(false)
         
       }
       catch(error){
@@ -248,6 +252,12 @@ export const Orders = ( n) => {
   return (
     <div className='order'>
     <section className='ordersec1'>
+    {isLoading === true ? 
+        <div className='loaderModal'>
+              <span className="loader"></span>
+        </div> :
+        ''
+        }
     <p className='txt2'>Orders</p>
     <div className={"scrollheader"}>
       <div className='headers'>
