@@ -11,23 +11,39 @@ import { CreateShopModal } from '../modal/CreateShopModal';
 
 export const Shop = () => {
 
-  const [shop, setShop]= useState('')
+  let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
+
+  const [shopData, setShopData]= useState({})
+
+  const url = 'https://api.foodgrab.africa/merchants/api/v1/getShop'
   useEffect(()=>{
 
    const fetchShopData = async ()=>{
     try{
-      const response = await fetch('')
-      if (!response.ok){
-        throw new Error('failed to fetch shop data')
-      }
+      const response = await fetch(url, {
+        method: 'GET',
+        headers : {
+          "Authorization": `Bearer ${token.token}`,
+        }
+      })
+
       const data = await response.json();
-    setShop(data)
+      setShopData(data.data)
+
+      if (response.ok){
+        console.log(data);
+      }
+
+      else{
+        console.log('There was an error');
+      }
     }
+
     catch (error){
       console.error('Error fetching Shop data:', error)
     }
    }
-  //  fetchShopData();
+   fetchShopData();
   },[])
 
  
@@ -36,7 +52,7 @@ export const Shop = () => {
 
   return (
     <div className='shop'>
-      {shop ? <Shop2 data = {shop} /> : <NoShop />}
+      {shopData ? <Shop2 data = {shopData} /> : <NoShop />}
     </div>
   )
 }  
@@ -96,58 +112,59 @@ const Shop2 =({data})=>{
       </section>
       <section className={"shopSec2b"}>
         <div className={'shopProfile'}>
+
           <div className={'shoppfsec1'}>
             <div className={"coverImage"}>
-            <img src={data.coverImage} alt=''/>
+              <img src={data.backdropPic} alt=''/>
             </div>
           </div>
-          <div className={'shoppfsec2'}>
-          <div className={"shopProfileDpHolder"}>
-            <div className={"ShopProfileDp"}>
-              <img src={data.shopProfile} alt=''/>
-              
-            </div>
-            <MdVerifiedUser className='customcheckbox' color={data.verified ? "#0077ff":"grey"}/>
-          </div>
-          <div className={"shopDetails"}>
-            <div>
-              <p className={"txt2"}>{data.shopName}</p>
-            </div>
-            <div className={"shopDetailsSec2"}>
 
-            <div>
-            <div>
-            {data.shopCategory === "Restaurant" ? (
-              <>
-                <MdOutlineInterests /> <p>Restaurant</p>
-              </>
-            ) : data.shopCategory === "Chef" ? (
-              <>
-                <SiCodechef /> <p>Chef</p>
-              </>
-            ) : (
-              <> 
-              </>
-            )}
-            </div> 
-            <p> {data.shopCategory}</p>
+
+          <div className={'shoppfsec2'}>
+            <div className={"shopProfileDpHolder"}>
+              <div className={"ShopProfileDp"}>
+                <img src={data.logo} alt=''/>
+              </div>
+              <MdVerifiedUser className='customcheckbox' color={data.verified ? "#0077ff":"grey"}/>
             </div>
-            <div>
-            <MdOutlineLocationOn/> <p>{data.shopLocation}</p>
+
+            <div className={"shopDetails"}>
+              <p className={"txt2"}>{data.shopName}</p>
+              <div className={"shopDetailsSec2"}>
+                <div>
+                  <div>
+                    {data.type === "RESTURANT" ? (
+                      <>
+                        <MdOutlineInterests /> <p>Restaurant</p>
+                      </>
+                    ) : data.type === "CHEFF" ? (
+                      <>
+                        <SiCodechef /> <p>Chef</p>
+                      </>
+                    ) : (
+                      <> 
+                      </>
+                    )}
+                  </div> 
+                  <p> {data.shopCategory}</p>
+                </div>
+
+                <div>
+                  <MdOutlineLocationOn/> <p>{data.shopLocation}</p>
+                </div>
+              {/* <div>
+              <MdOutlineCalendarMonth/><p>{shopDdataata.shopScehduel}</p>
+              </div>
+              <div>
+              <GoClock/> <p>{shopData.shopTiming}</p>
+              </div>
+              <div>
+              <MdOutlineLocalPhone/> <p>{shopData.shopContact}</p>
+              </div> */}
             </div>
-            <div>
-            <MdOutlineCalendarMonth/><p>{data.shopScehduel}</p>
-            </div>
-            <div>
-            <GoClock/> <p>{data.shopTiming}</p>
-            </div>
-            <div>
-            <MdOutlineLocalPhone/> <p>{data.shopContact}</p>
             </div>
           </div>
-          </div>
-          </div>
-          </div>
+        </div>
       </section>
       {edit && <CreateShopModal closeComponent={handleEdit}/>}
       </div>

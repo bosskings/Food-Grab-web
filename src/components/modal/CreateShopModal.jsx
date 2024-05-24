@@ -28,6 +28,7 @@
     const [street, setStreet] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
+    const [description, setDescription] = useState('')
     const [houseNumber, setHouseNumber] = useState('')
 
 
@@ -42,14 +43,15 @@
     const [category, setCategory] = useState('')
     let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
 
+    console.log(token);
     const url = 'https://api.foodgrab.africa/merchants/api/v1/createShop'
 
     const handleShopSubmit = async (e) => {
       e.preventDefault();
-  
+  // .
       const formData = new FormData();
       formData.append('shopName', shopName);
-      formData.append('address', address);
+      // formData.append('address', address);
       formData.append('category', category);
   
       try {
@@ -59,18 +61,20 @@
             'Content-Type': 'application/json',
             "Authorization": `Bearer ${token.token}`,
           },
-          body: formData
+          body: JSON.stringify({
+            shopName : shopName,
+            description : description
+
+          })
         });
-
-
-        console.log(response);
-
-  
+        
+        
         if (response.ok) {
           setErrMessage('Post created successfully!');
-          setShopName('');
-          setAddress('');
-          setCategory('');
+          // setShopName('');
+          // setAddress('');
+          // setCategory('');
+          console.log(response);
           
         } else {
           setErrMessage('Error creating post');
@@ -173,10 +177,10 @@
                         <p className={"txt3"}>Business Logo</p>
                         <p className={"subtxt2"}>This Picture will be displayed on your profile</p>
 
-                        <labbel className='change' onClick={()=> document.querySelector(".input-field2").click()}>
+                        <p className='change' onClick={()=> document.querySelector(".input-field2").click()}>
                           <AiOutlinePicture className={"ChIcon"}/>
                           Change Photo
-                        </labbel>
+                        </p>
 
                       </div>
 
@@ -201,6 +205,18 @@
                         placeholder='business name'
                         onChange={(e)=>setShopName(e.target.value)}
                         value={shopName}
+                        required
+                    />
+
+
+                  <label className={"subtxt"}>Description</label>
+                    <input
+                      className={"createinput"}
+                        type='text'
+                        name='business'
+                        placeholder='business name'
+                        onChange={(e)=>setDescription(e.target.value)}
+                        value={description}
                         required
                     />
 
