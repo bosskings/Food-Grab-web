@@ -121,37 +121,35 @@ const Shop2 =({data})=>{
 
 
           <div className={'shoppfsec2'}>
-            <div className={"shopProfileDpHolder"}>
-              <div className={"ShopProfileDp"}>
-                <img src={data.logo} alt=''/>
+
+              <div className={"shopProfileDpHolder"}>
+                <div className={"ShopProfileDp"}>
+                  <img src={data.logo} alt=''/>
+                </div>
+                <MdVerifiedUser className='customcheckbox' color={data.verified ? "#0077ff":"grey"}/>
               </div>
-              <MdVerifiedUser className='customcheckbox' color={data.verified ? "#0077ff":"grey"}/>
-            </div>
 
             <div className={"shopDetails"}>
-              <p className={"txt2"}>{data.shopName}</p>
+              <h2 >{data.shopName}</h2>
+              <p className='desc'>{data.description}</p>
+              
               <div className={"shopDetailsSec2"}>
-                <div>
-                  <div>
-                    {data.type === "RESTURANT" ? (
-                      <>
-                        <MdOutlineInterests /> <p>Restaurant</p>
-                      </>
-                    ) : data.type === "CHEFF" ? (
-                      <>
-                        <SiCodechef /> <p>Chef</p>
-                      </>
-                    ) : (
-                      <> 
-                      </>
-                    )}
-                  </div> 
-                  <p> {data.shopCategory}</p>
-                </div>
+                  <div className='shopType'>
+        
+                    <div>
+                      <MdOutlineInterests /> <p>{data.type}</p>
+                    </div>
 
-                <div>
-                  <MdOutlineLocationOn/> <p>{data.shopLocation}</p>
-                </div>
+                  </div> 
+
+                  <div className='shopAddress'>
+                    <MdOutlineLocationOn/> 
+                    <p>
+                      {data.address.houseNumber} {data.address.street} , {data.address.city} , {data.address.state}
+                    </p>
+                  </div>
+
+
               {/* <div>
               <MdOutlineCalendarMonth/><p>{shopDdataata.shopScehduel}</p>
               </div>
@@ -163,7 +161,9 @@ const Shop2 =({data})=>{
               </div> */}
             </div>
             </div>
+
           </div>
+
         </div>
       </section>
       {edit && <CreateShopModal closeComponent={handleEdit}/>}
