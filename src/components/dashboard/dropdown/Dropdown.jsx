@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { FaChevronDown } from 'react-icons/fa';
 import "./dropdown.css"
 
-export const Dropdown = ({ parentRef, rowData, modalComponent, dropdownItems}) => {
+export const Dropdown = ({ parentRef, rowData, modalComponent, dropdownItems }) => {
   const [click, setClick] = useState(false);
   const [open,setOpen]= useState(false)
+  const [selectedItem, setSelectedItem] = useState(null);
   const dropdownMenuRef = useRef(null);
 
   
@@ -17,8 +18,10 @@ export const Dropdown = ({ parentRef, rowData, modalComponent, dropdownItems}) =
     setOpen(false)
   };
 
-  const handleItemClick = () => {
+  const handleItemClick = (item) => {
+    setSelectedItem(item)
     setClick(false);
+    handleOpen()
   };
 
   // const OrderItem = [
@@ -45,7 +48,7 @@ export const Dropdown = ({ parentRef, rowData, modalComponent, dropdownItems}) =
           style={{ top: parentRef ? parentRef.current.getBoundingClientRect().top + parentRef.current.getBoundingClientRect().height : 13,left: parentRef ? parentRef.current.getBoundingClientRect().left :-25 }}
           >
           {dropdownItems.map((item, index) => (
-            <li key={index} onClick={()=>{handleItemClick(); handleOpen()}}>
+            <li key={index} onClick={()=>{handleItemClick(item)}}>
               <Link className={item.cName} to={item.path}>
                 {item.title}
               </Link>
@@ -56,7 +59,7 @@ export const Dropdown = ({ parentRef, rowData, modalComponent, dropdownItems}) =
       {open && rowData && (
         <div className="modal-overlay">
           <div className="modal-content">
-            {rowData && React.cloneElement(modalComponent, { data: rowData })}
+            {rowData && React.cloneElement(modalComponent, { data: rowData, selectedItem })}
           </div>
         </div>
       )}

@@ -4,7 +4,7 @@ import { Dropdown } from '../dashboard/dropdown/Dropdown';
 import OrderModal from '../modal/OrderModal';
 
 const OrderTable = (props) => {
-  const { columns, data, dropdownItems } = props;
+  const { columns, data, dropdownItems} = props;
   const [checkedItems, setCheckedItems] = useState({});
   const [productImages, setProductImages] = useState({});
   const dropdownRefs = useRef([]);
