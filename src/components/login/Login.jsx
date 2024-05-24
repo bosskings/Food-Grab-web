@@ -45,7 +45,7 @@ export const Login = () => {
           localStorage.setItem('token', JSON.stringify(data));
           setSuccessMssg("Login successful")
           console.log(data)
-          navigate('/profile')
+          navigate('/Dashboard')
         }else{
           const data = await response.json();
           setError(data.mssg)

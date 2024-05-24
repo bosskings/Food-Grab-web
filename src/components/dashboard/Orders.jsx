@@ -252,12 +252,12 @@ export const Orders = () => {
   return (
     <div className='order'>
     <section className='ordersec1'>
-    {/* {isLoading === true ? 
+    {isLoading === true ? 
         <div className='loaderModal'>
               <span className="loader"></span>
         </div> :
         ''
-        } */}
+        }
     <p className='txt2'>Orders</p>
     <div className={"scrollheader"}>
       <div className='headers'>
