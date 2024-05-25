@@ -57,40 +57,47 @@ export const FormModal = ({click, handleClick}) => {
               method='POST'
             >
 
-            <label>Name</label>
-            <input 
-              type='text'
-              name={"food"}
-              placeholder='Food Name'
-              required
-            />
-
-            <label>Description</label>
-            <textarea 
-              name={"description"}
-              placeholder='write a short descripton'
-              required
-            />
-
-            
-            <label>Price</label>
-            <div className={"numHold"}>
+              <label>Name</label>
               <input 
                 type='text'
-                name={"price"}
-                placeholder='0.00'
+                name={"food"}
+                placeholder='Food Name'
                 required
               />
-            </div>
-          
-            <div className={"buttn"}>
-              <button type='submit' className={"buttn1"}>
-                Save
-              </button>
-              <div className={"c"} onClick={handleClick}>
-                Close
+
+            
+              <label>Price</label>
+              <div className={"numHold"}>
+                <input 
+                  type='text'
+                  name={"price"}
+                  placeholder='0.00'
+                  required
+                />
               </div>
-            </div>
+
+
+              <label>Cusine Image</label>
+              <div className={"numHold"}>
+                <input 
+                  type='file'
+                />
+              </div>
+
+
+              <label>Description</label>
+              <textarea 
+                name={"description"}
+                placeholder='write a short descripton'
+                required
+              />
+          
+              <div className={"buttn"}>
+                <button type='submit' className={"buttn1"}>Save</button>
+                <div className={"c"} onClick={handleClick}>Close</div>
+              </div>
+
+
             </form>
           </div>
 

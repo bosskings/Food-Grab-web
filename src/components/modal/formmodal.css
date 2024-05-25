@@ -2,15 +2,15 @@
 
 .formModal{
   position: absolute;
-  left: 32%;
-  top:5% ;
+  left: 30%;
+  top:10% ;
   background-color: #fff;
   display: flex;
   flex-direction:column ;
-  padding: 20px;
-  border-radius: 20px;
-  width: 450px;
-  height: 480px;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 470px;
+  height: 500px;
   z-index: 10;
   gap: 15px;
 }
@@ -42,6 +42,8 @@
   z-index: 1;
   font-weight: 400;
 }
+
+
 .modalForm{
   width: 100%;
   display: flex;
@@ -50,8 +52,10 @@
   justify-content: space-between;
   height: 85%;
 }
+
+
 .modalForm input{
-  padding: 15px;
+  padding: 13px;
   border-radius: 5px;
   width: 100%;
   border: solid 1px lightgrey;
@@ -61,12 +65,16 @@
   padding-left: 20px;
 }
 
+
+.formModal h3{
+  font-size: 15px;
+}
 .modalForm textarea{
   min-width: 100%;
   width: 100%;
   max-width: 100%;
-  min-height: 120px;
-  max-height: 120px ;
+  min-height: 100px;
+  max-height: 100px ;
   font-size: 12px;
   border-radius: 5px;
   border: solid 1px lightgrey;
@@ -88,7 +96,7 @@
 .buttn1{
   background-color: black;
   color: #fff;
-  padding: 15px 20px;
+  padding: 13px 20px;
   border-radius: 5px;
   width: 100%;
   border: none;
@@ -99,7 +107,7 @@
   background-color: #fff;
   color: black;
   border: solid 1px black;
-  padding: 14px 20px;
+  padding: 12px 20px;
   text-align: center;
   border-radius: 5px;
   width: 100%;
