@@ -15,17 +15,7 @@ export const MenuAddDropdown = ({parentRef, modalComponent}) => {
     title: "Add new foods",
     path: "",
     cName: "dropdown-link",
-  },
-  // {
-  //   title: "Add sub-group",
-  //   path: "",
-  //   cName: "dropdown-link",
-  // },
-  // {
-  //   title: "Add new group",
-  //   path: "",
-  //   cName: "dropdown-link",
-  // },
+  },  
 ]
 
   const handleClick = ()=>{

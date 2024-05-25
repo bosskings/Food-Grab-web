@@ -16,18 +16,37 @@ export const Menu = () => {
       <section className={"menusec1"}>
         <p className={"txt2"}>Food Menu</p>
       </section>
+
+      
       <section className={"menusec2"}>
-      <div className={"menubox"}>
-      <div className={"firstsec"}>
-      <p>My Menu</p>
-      <MenuAddDropdown onDropdownItemClick = {() => handleDropdownItemClick()} 
-        modalComponent={<FormModal />}
-      />
-      </div>
-      <div className={'secondsec'}>
-      <MenuDropdown />
-      </div>
-      </div>
+        <div className={"menubox"}>
+
+          <div className={"firstsec"}>
+            <p>My Menu</p>
+
+            {/* <MenuAddDropdown onDropdownItemClick = {() => handleDropdownItemClick()} 
+              modalComponent={<FormModal />}
+            /> */}
+
+            <button></button>
+          </div>
+
+
+
+
+          <div>
+              <ul>
+                <li>Menu Name</li>
+                <li>Menu Price</li>
+                <li>Menu State</li>
+              </ul>
+          </div>
+
+          <div className={'secondsec'}>
+            <MenuDropdown />
+          </div>
+
+        </div>
       </section>
     </div>
   )
