@@ -28,7 +28,7 @@ export const Menu = () => {
               modalComponent={<FormModal />}
             /> */}
 
-            <button></button>
+            <button>Add Cusines</button>
           </div>
 
 
