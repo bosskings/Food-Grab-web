@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./dashboard.css"
+import { FaShopSlash } from "react-icons/fa6";
 import "./order.css"
 import  OrderTable  from '../table/OrderTable'
 
@@ -252,12 +253,12 @@ export const Orders = () => {
   return (
     <div className='order'>
     <section className='ordersec1'>
-    {isLoading === true ? 
+    {/* {isLoading === true ? 
         <div className='loaderModal'>
               <span className="loader"></span>
         </div> :
         ''
-        }
+        } */}
     <p className='txt2'>Orders</p>
     <div className={"scrollheader"}>
       <div className='headers'>
@@ -301,13 +302,19 @@ export const Orders = () => {
       columns = {active === 'table1' ? columns : columns2}
       data = {tables[active]}
       /> */}
-
+    
+    {mssg && 
+    <div >
+    <FaShopSlash className={'noData'}/>
+    {mssg}
+    </div>
+    }
 
       {active === 'table1' && <OrderTable columns={columns} data={tables.table1} dropdownItems={dropdownTitles.table1} />}
-          {active === 'table2' && <OrderTable  columns={columns} data={tables.table2} dropdownItems={dropdownTitles.table2} />}
-          {active === 'table3' && <OrderTable columns={columns} data={tables.table3} dropdownItems={dropdownTitles.table3} />}
-          {active === 'table4' && <OrderTable  columns={columns} data={tables.table4} dropdownItems={dropdownTitles.table4} />}
-          {active === 'table5' && <OrderTable  columns={columns} data={tables.table5} dropdownItems={dropdownTitles.table5} />}
+          {active === 'table2' && <OrderTable  columns={columns2} data={tables.table2} dropdownItems={dropdownTitles.table2} />}
+          {active === 'table3' && <OrderTable columns={columns2} data={tables.table3} dropdownItems={dropdownTitles.table3} />}
+          {active === 'table4' && <OrderTable  columns={columns2} data={tables.table4} dropdownItems={dropdownTitles.table4} />}
+          {active === 'table5' && <OrderTable  columns={columns2} data={tables.table5} dropdownItems={dropdownTitles.table5} />}
           {active === 'table6' && <OrderTable columns={columns2} data={tables.table6} dropdownItems={dropdownTitles.table6} />}
       </div>
     </section>
