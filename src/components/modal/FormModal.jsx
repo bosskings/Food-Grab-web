@@ -62,22 +62,24 @@ export const FormModal = ({click, handleClick}) => {
               type='text'
               name={"food"}
               placeholder='Food Name'
+              required
             />
 
             <label>Description</label>
             <textarea 
               name={"description"}
               placeholder='write a short descripton'
+              required
             />
 
             
             <label>Price</label>
             <div className={"numHold"}>
-              <h6 className={'fl'}>N</h6>
               <input 
                 type='text'
                 name={"price"}
                 placeholder='0.00'
+                required
               />
             </div>
           

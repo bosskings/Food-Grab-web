@@ -93,6 +93,7 @@
   width: 100%;
   border: none;
   cursor:pointer;
+  font-size: 12px;
 }
 .c{
   background-color: #fff;
@@ -103,6 +104,7 @@
   border-radius: 5px;
   width: 100%;
   cursor:pointer;
+  font-size: 12px;
 }
 @media screen and (max-width: 699px) {
   .formModal{
