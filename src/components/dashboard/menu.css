@@ -44,10 +44,11 @@
 }
 
 .menubox .cusineTitle ul{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   list-style: none;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   background-color: black;
   color: white;
   padding: 15px;
@@ -55,12 +56,54 @@
 }
 
 
+.middle{
+  margin: auto;
+}
+
+.last{
+  margin-left: auto;
+}
+
 .cusineBody ul {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   list-style: none;
 }
+
+
+
+
+.cusineBody select{
+  background: #70aa67;
+  padding: 10px 20px;
+  border-radius: 30px;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+
+.cusineBody select option{
+  border-radius: 30px;
+  border: none;
+  outline: none;
+}
+
+
+.cusineBody li{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ics{
+  font-size: 13px;
+  color: #70aa67;
+}
+
 
 .secondsec{
   display: flex;
@@ -70,6 +113,8 @@
   scroll-behavior: auto;
   scrollbar-width: 5px;
 }
+
+
 @media screen and (max-width: 699px){
   .menusec2{
     padding: 20px 0;
@@ -81,3 +126,5 @@
   }
  
 }
+
+

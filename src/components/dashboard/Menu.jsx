@@ -3,6 +3,8 @@ import "./menu.css"
 import { MenuAddDropdown } from './dropdown/MenuAddDropdown'
 import { MenuDropdown } from './dropdown/MenuDropdown'
 import { FormModal } from '../modal/FormModal'
+import { TbCircleDotFilled } from "react-icons/tb";
+
 
 export const Menu = () => {
   const dropdownRefs=useRef([])
@@ -37,17 +39,17 @@ export const Menu = () => {
           <div className='cusineTitle'>
             <ul>
               <li>Menu Name</li>
-              <li>Menu Price</li>
-              <li>Menu State</li>
+              <li className='middle'>Menu Price</li>
+              <li className='last'>Menu State</li>
             </ul>
           </div>
 
 
           <div className='cusineBody'>
             <ul>
-              <li>Fried Rice</li>
-              <li>₦ 3,500.00</li>
-              <select>
+              <li><TbCircleDotFilled className='ics'/>Fried Rice</li>
+              <li className='middle'>₦ 3,500.00</li>
+              <select className='last'>
                 <option value="">In-Stock</option>
                 <option value="">Out-Of-Stock</option>
               </select>
