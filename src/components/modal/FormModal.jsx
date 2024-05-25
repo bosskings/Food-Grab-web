@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react'
 import "./formmodal.css"
 
 export const FormModal = ({click, handleClick}) => {
-  const [food, setFood] = useState('');
+  const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-
-
 
 
     const handleSubmit = async (e)=>{
@@ -19,13 +17,18 @@ export const FormModal = ({click, handleClick}) => {
           headers: {
             'Content-Type': 'application/json'
           },
-          body:JSON.stringify({food, description, price})
+          body:JSON.stringify({
+            name, 
+            description, 
+            price
+          })
         })
-        if (response.ok || response.status === 200){
+
+        if (response.ok || response.status === 201){
           const data = await response.json()
           console.log(data)
         }else{
-          const data = await response.json();
+          console.log('There was an error');
         }
       }
     catch (error) {
@@ -60,7 +63,8 @@ export const FormModal = ({click, handleClick}) => {
               <label>Name</label>
               <input 
                 type='text'
-                name={"food"}
+                value={name}
+                onChange={(e)=>setName(e.target.value)}
                 placeholder='Food Name'
                 required
               />
@@ -70,7 +74,8 @@ export const FormModal = ({click, handleClick}) => {
               <div className={"numHold"}>
                 <input 
                   type='text'
-                  name={"price"}
+                  value={price}
+                  onChange={(e)=>setPrice(e.target.value)}
                   placeholder='0.00'
                   required
                 />
@@ -87,7 +92,8 @@ export const FormModal = ({click, handleClick}) => {
 
               <label>Description</label>
               <textarea 
-                name={"description"}
+                value={description}
+                onChange={(e)=>setDescription(e.target.value)}
                 placeholder='write a short descripton'
                 required
               />

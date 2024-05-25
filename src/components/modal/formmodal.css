@@ -14,9 +14,12 @@
   z-index: 10;
   gap: 15px;
 }
+
+
 .formModal p{
   font-size: 12px;
   color: #878787;
+  padding-top: 5px;
 }
 .overlay{
   width:100%;
