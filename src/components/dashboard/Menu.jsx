@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import "./menu.css"
 import { MenuAddDropdown } from './dropdown/MenuAddDropdown'
 import { MenuDropdown } from './dropdown/MenuDropdown'
@@ -7,11 +7,11 @@ import { TbCircleDotFilled } from "react-icons/tb";
 
 
 export const Menu = () => {
-  const dropdownRefs=useRef([])
+  const [ click, setClick] = useState(true)
 
-  const handleDropdownItemClick = (index) => {
-    dropdownRefs.current[index].current.handleOpenModal();
-  };
+  const handleClick = ()=>{
+    setClick(!click)
+  }
 
   return (
     <div className='menu'>
@@ -25,16 +25,8 @@ export const Menu = () => {
 
           <div className={"firstsec"}>
             <p>My Menu</p>
-
-            {/* <MenuAddDropdown onDropdownItemClick = {() => handleDropdownItemClick()} 
-              modalComponent={<FormModal />}
-            /> */}
-
-            <button>Add Cusines</button>
+            <button onClick={handleClick}>Add Cusines</button>
           </div>
-
-
-
 
           <div className='cusineTitle'>
             <ul>
@@ -56,10 +48,7 @@ export const Menu = () => {
             </ul>
           </div>
 
-          {/* <div className={'secondsec'}>
-            <MenuDropdown />
-          </div> */}
-
+          <FormModal click={click} handleClick={handleClick}/>
         </div>
       </section>
     </div>
