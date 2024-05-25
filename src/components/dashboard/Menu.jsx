@@ -34,17 +34,29 @@ export const Menu = () => {
 
 
 
-          <div>
-              <ul>
-                <li>Menu Name</li>
-                <li>Menu Price</li>
-                <li>Menu State</li>
-              </ul>
+          <div className='cusineTitle'>
+            <ul>
+              <li>Menu Name</li>
+              <li>Menu Price</li>
+              <li>Menu State</li>
+            </ul>
           </div>
 
-          <div className={'secondsec'}>
-            <MenuDropdown />
+
+          <div className='cusineBody'>
+            <ul>
+              <li>Fried Rice</li>
+              <li>₦ 3,500.00</li>
+              <select>
+                <option value="">In-Stock</option>
+                <option value="">Out-Of-Stock</option>
+              </select>
+            </ul>
           </div>
+
+          {/* <div className={'secondsec'}>
+            <MenuDropdown />
+          </div> */}
 
         </div>
       </section>

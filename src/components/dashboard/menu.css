@@ -27,6 +27,41 @@
   width: 100%;
   align-items: center;
 }
+
+
+.firstsec button{
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cusineTitle{
+  padding-top: 20px;
+}
+
+.menubox .cusineTitle ul{
+  display: flex;
+  align-items: center;
+  list-style: none;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+
+.cusineBody ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
 .secondsec{
   display: flex;
   width: 100%;
