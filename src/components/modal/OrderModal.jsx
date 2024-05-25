@@ -8,6 +8,7 @@ const OrderModal = ({row, selectedItem}) => {
   // const [closeModal, setCloseModal] = useState("modall")
   const [customerAddress, setCustomerAddress] = useState('');
   const [paymentOption, setPaymentOption] = useState('');
+  const [token, setToken]= useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
 
   const handleClick = () =>{
     setClick(!click)
