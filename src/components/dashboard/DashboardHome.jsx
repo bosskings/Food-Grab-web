@@ -85,7 +85,6 @@ useEffect(()=>{
       });
       if(!response.ok){
         throw new Error('Failed to fetch table data')
-        setMssg("An Error occurredError: Merchant doesn't have any shops")
       }
       const data = await response.json();
       console.log('Response Data:', data)
@@ -102,39 +101,45 @@ useEffect(()=>{
 
 
 
-
-
-
-
 // ========== DATA OVERVIEW ===============
-useEffect(() => {
-  const fetchData = async () => {
-    setIsLoading(true)
-    try {
-      const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/overview', {
-        method : 'GET',
-        headers : {
-          'Content-Type': 'application/json',
-          "Authorization": `Bearer ${token.token}`,
-        }
-      })
-      if (!response.ok){
-        throw new Error('Failed to fetch data')
-      };
 
-      const data = await response.json();
-      setDataOverview(data.data);
-      setIsLoading(false);
+const url = 'https://api.foodgrab.africa/merchants/api/v1/overview'
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/',
+          'Authorization': `Bearer ${token.token}`
+        },
+      })
+
+      if(response.status === 400){
+        const data = await response.json()
+        setDataOverview(data.data)
+        console.log(data);
+        setIsLoading(false)
+      }
+      else{
+        console.log('There was an error');
+        setIsLoading(false)
+      }
     } catch (error) {
-      console.error('Error fetching dashboard data:', error);
+      console.log(error);
+      setIsLoading(false)
     }
   };
 
-  fetchData();
-}, [token]);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
 
-  // console.log(dataOverview);
+  console.log(dataOverview);
+
+  
 
   return (
     <div className='dashHome'>
@@ -248,26 +253,27 @@ useEffect(() => {
     </section>
     <section className={"dashsec2"}>
       <div className={"tablebox"}>
-      <div className={"toptb"}>
-        <h2>Order History</h2>
-      <div>
-      <p onClick={handleShow}>see all</p> <FaChevronRight className={"topbicon"}/>
+        <div className={"toptb"}>
+          <h2>Order History</h2>
+        <div>
+        <p onClick={handleShow}>see all</p> <FaChevronRight className={"topbicon"}/>
       </div>
       
       </div>
-        <div className={"tablecont"}>
-        <Table 
-          columns={columns}
-          tableData={tableData.slice(0,6)}/>
-        </div>
+        {/* <div className={"tablecont"}>
+          <Table 
+            columns={columns}
+            tableData={tableData.slice(0,6)}
+          />
+        </div> */}
       </div>
+
       <div className={"toporder"} >
         <div>
           <h1>Top Order</h1>
         </div>
-        <div>
-        </div>
       </div>
+
     </section>
     {show && <SeeAll /> }
     </div>

@@ -10,15 +10,18 @@ import { MdVerifiedUser } from "react-icons/md";
 import { CreateShopModal } from '../modal/CreateShopModal';
 
 export const Shop = () => {
-
+  
+  const [isLoading, setIsLoading] = useState(false)
   let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
-
   const [shopData, setShopData]= useState({})
 
+
+  
   const url = 'https://api.foodgrab.africa/merchants/api/v1/getShop'
   useEffect(()=>{
 
    const fetchShopData = async ()=>{
+    setIsLoading(true);
     try{
       const response = await fetch(url, {
         method: 'GET',
@@ -32,10 +35,12 @@ export const Shop = () => {
 
       if (response.ok){
         console.log(data);
+        setIsLoading(false)
       }
-
+      
       else{
         console.log('There was an error');
+        setIsLoading(false)
       }
     }
 
@@ -52,7 +57,7 @@ export const Shop = () => {
 
   return (
     <div className='shop'>
-      {shopData ? <Shop2 data = {shopData} /> : <NoShop />}
+      {shopData ? <Shop2 data = {shopData} isLoading={isLoading} /> : <NoShop />}
     </div>
   )
 }  
@@ -89,7 +94,7 @@ export const Shop = () => {
   }
 
   
-const Shop2 =({data})=>{
+const Shop2 =({data, isLoading})=>{
   const [edit, setEdit] = useState(false)
 
   const handleEdit = ()=>{
@@ -100,16 +105,17 @@ const Shop2 =({data})=>{
       <div>
       <section className='shopSec1'>
         <div className={"shopCreatedfirstdiv"}>
-        <div>
-        <p className='txt2'>Shop</p>
-        <p className='ppsubtxt'>create and edit shop</p>
+          <div>
+            <p className='txt2'>Shop</p>
+            <p className='ppsubtxt'>create and edit shop</p>
+          </div>
+          <button className={'editshop'} onClick={handleEdit}>
+            Edit Shop 
+          </button>
         </div>
-        <button className={'editshop'} onClick={handleEdit}>
-          Edit Shop 
-        </button>
-        </div>
-        
       </section>
+
+
       <section className={"shopSec2b"}>
         <div className={'shopProfile'}>
 
@@ -120,20 +126,27 @@ const Shop2 =({data})=>{
           </div>
 
 
-          <div className={'shoppfsec2'}>
+          {isLoading === true ? (
 
-              <div className={"shopProfileDpHolder"}>
-                <div className={"ShopProfileDp"}>
-                  <img src={data.logo} alt=''/>
+            <div className='loaderModal'>
+                <span className="loader"></span>
+            </div>
+          ) : (
+
+            <div className={'shoppfsec2'}>
+
+                <div className={"shopProfileDpHolder"}>
+                  <div className={"ShopProfileDp"}>
+                    <img src={data.logo} alt=''/>
+                  </div>
+                  <MdVerifiedUser className='customcheckbox' color={data.verified ? "#0077ff":"grey"}/>
                 </div>
-                <MdVerifiedUser className='customcheckbox' color={data.verified ? "#0077ff":"grey"}/>
-              </div>
 
-            <div className={"shopDetails"}>
-              <h2 >{data.shopName}</h2>
-              <p className='desc'>{data.description}</p>
-              
-              <div className={"shopDetailsSec2"}>
+              <div className={"shopDetails"}>
+                <h2 >{data.shopName}</h2>
+                <p className='desc'>{data.description}</p>
+
+                <div className={"shopDetailsSec2"}>
                   <div className='shopType'>
         
                     <div>
@@ -144,29 +157,24 @@ const Shop2 =({data})=>{
 
                   <div className='shopAddress'>
                     <MdOutlineLocationOn/> 
-                    <p>
-                      {data.address.houseNumber} {data.address.street} , {data.address.city} , {data.address.state}
-                    </p>
+                      {data.address && (
+                        <p>
+                            {data.address.houseNumber} {data.address.street} , {data.address.city} , {data.address.state}
+                        </p>
+                      )}
                   </div>
 
-
-              {/* <div>
-              <MdOutlineCalendarMonth/><p>{shopDdataata.shopScehduel}</p>
+                </div>
               </div>
-              <div>
-              <GoClock/> <p>{shopData.shopTiming}</p>
-              </div>
-              <div>
-              <MdOutlineLocalPhone/> <p>{shopData.shopContact}</p>
-              </div> */}
             </div>
-            </div>
+          )}
 
-          </div>
 
         </div>
       </section>
+
       {edit && <CreateShopModal closeComponent={handleEdit}/>}
-      </div>
+
+    </div>
     )
   }
