@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import "./formmodal.css";
+import { useNavigate } from 'react-router-dom';
 
 export const FormModal = ({ click, handleClick }) => {
+
+  const navigate = useNavigate()
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
@@ -42,6 +46,8 @@ export const FormModal = ({ click, handleClick }) => {
         const data = await response.json();
         console.log(data);
         console.log('Cuisine Created Successfully');
+        navigate('/menu')
+
       } else {
         console.log('There was an error');
       }

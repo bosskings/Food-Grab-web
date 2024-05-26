@@ -39,7 +39,7 @@ export const DashboardHome = () => {
 
   let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
   
-  console.log(token);
+  // console.log(token);
 
   const id = '' 
 
@@ -116,12 +116,13 @@ const url = 'https://api.foodgrab.africa/merchants/api/v1/overview'
         },
       })
 
-      if(response.status === 400){
+      if(response.status === 400 || response.status ===200 || response.ok){
         const data = await response.json()
         setDataOverview(data.data)
         console.log(data);
         setIsLoading(false)
       }
+
       else{
         console.log('There was an error');
         setIsLoading(false)

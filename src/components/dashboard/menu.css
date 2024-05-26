@@ -45,9 +45,10 @@
 
 .menubox .cusineTitle ul{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
   list-style: none;
+  font-size: 12px;
   /* justify-content: space-between; */
   background-color: black;
   color: white;
@@ -62,23 +63,28 @@
 
 .last{
   margin-left: auto;
+  font-size: 12px;
 }
+
 
 .cusineBody ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
-  /* justify-content: space-between; */
   list-style: none;
+  margin-bottom: 10px;
 }
 
-
+.cusineBody #mystatus{
+  color:#70aa67 !important;
+  font-weight: 500;
+}
 
 
 .cusineBody select{
   background: #70aa67;
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 6px 5px;
+  border-radius: 5px;
   color: white;
   border: none;
   outline: none;
@@ -87,7 +93,6 @@
 
 
 .cusineBody select option{
-  border-radius: 30px;
   border: none;
   outline: none;
 }
@@ -97,6 +102,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  font-size: 12px;
 }
 
 .ics{
@@ -126,5 +132,7 @@
   }
  
 }
+
+
 
 

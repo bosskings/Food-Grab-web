@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./menu.css"
 import { MenuAddDropdown } from './dropdown/MenuAddDropdown'
 import { MenuDropdown } from './dropdown/MenuDropdown'
@@ -12,6 +12,50 @@ export const Menu = () => {
   const handleClick = ()=>{
     setClick(!click)
   }
+
+  let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
+  
+
+  const [menuData, setMenuData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+
+  const url = 'https://api.foodgrab.africa/merchants/api/v1/getCuisine' 
+
+  const getMenuData = async () => {
+    setIsLoading(true)
+    try {
+      const response = await fetch (url, {
+        method: 'GET',
+        headers : {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token.token}`
+
+        }
+      })
+      
+
+
+      if(response.status === 200 || response.ok) {
+        const data = await response.json()
+        setMenuData(data.data)
+        setIsLoading(false)
+      }
+
+      else{
+        console.log('There was an error');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  useEffect(()=>{
+    getMenuData();
+  }, [])
+
+
+console.log(menuData);
 
   return (
     <div className='menu'>
@@ -32,21 +76,34 @@ export const Menu = () => {
             <ul>
               <li>Menu Name</li>
               <li className='middle'>Menu Price</li>
-              <li className='last'>Menu State</li>
+              <li className='middle'>Status</li>
+              <li className='last'>Stock Option</li>
             </ul>
           </div>
 
+          {isLoading === true ? (
+              <div className='loaderModal'>
+                <span className="loader"></span>
+              </div>
+          ) : (
 
-          <div className='cusineBody'>
-            <ul>
-              <li><TbCircleDotFilled className='ics'/>Fried Rice</li>
-              <li className='middle'>₦ 3,500.00</li>
-              <select className='last'>
-                <option value="">In-Stock</option>
-                <option value="">Out-Of-Stock</option>
-              </select>
-            </ul>
-          </div>
+            <div className='cusineBody'>
+              {menuData.map((data, index)=>(
+                <ul key={index}>
+
+                  <li><TbCircleDotFilled className='ics'/>{data.name}</li>
+                  <li className='middle'>₦ {data.price}</li>
+                  <li className='middle' id='mystatus'>{data.status}</li>
+                  
+                  <select className='last'>
+                    <option value="">In-Stock</option>
+                    <option value="">Out-Of-Stock</option>
+                  </select>
+                  
+                </ul>
+              ))}
+            </div>
+          )}
 
           <FormModal click={click} handleClick={handleClick}/>
         </div>
