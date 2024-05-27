@@ -176,3 +176,19 @@
   width: 53%; 
   max-height: 80vh;
 }
+
+.noData{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+  justify-content: center;
+}
+
+
+.noData img{
+  width: 100px;
+  display: flex;
+  margin: auto;
+}

@@ -5,6 +5,8 @@ import { MenuDropdown } from './dropdown/MenuDropdown'
 import { FormModal } from '../modal/FormModal'
 import { TbCircleDotFilled } from "react-icons/tb";
 
+import gif from '../media/gif2.gif'
+
 
 export const Menu = () => {
   const [ click, setClick] = useState(true)
@@ -102,6 +104,14 @@ console.log(menuData);
                   
                 </ul>
               ))}
+            </div>
+          )}
+
+
+          {menuData.length === 0 && (
+            <div className='noData'>
+              No Data Found
+              <img src={gif} alt="" />
             </div>
           )}
 
