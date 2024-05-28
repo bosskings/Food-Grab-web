@@ -6,6 +6,7 @@ import { FaChevronRight } from "react-icons/fa6";
 import { Table } from '../table/Table';
 // import axios, { all } from 'axios';
 import { XCircle } from 'react-bootstrap-icons';
+import gif from '../media/gif2.gif'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
@@ -61,6 +62,12 @@ export const DashboardHome = () => {
     <div className={"seealltable"}>
     <XCircle className={"closeModal"} onClick={handleShow}/>
     <Table columns={columns} data={tableData} />
+    {tableData.length === 0 && (
+            <div className='noData'>
+              You don't have any orders yet
+              <img src={gif} alt="" />
+            </div>
+          )}
     </div>
      <div className={show? "overlay":"not-active"} onClick={handleShow}></div>
     </div>
@@ -261,12 +268,19 @@ const url = 'https://api.foodgrab.africa/merchants/api/v1/overview'
       </div>
       
       </div>
-        {/* <div className={"tablecont"}>
+        <div className={"tablecont"}>
           <Table 
             columns={columns}
             tableData={tableData.slice(0,6)}
           />
-        </div> */}
+
+          {tableData.length === 0 && (
+            <div className='noData'>
+              You don't have any orders yet
+              <img src={gif} alt="" />
+            </div>
+          )}
+        </div>
       </div>
 
       <div className={"toporder"} >

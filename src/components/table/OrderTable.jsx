@@ -58,6 +58,8 @@ const OrderTable = (props) => {
     }
   };
 
+  console.log('this is the tableData', data)
+
   return (
     <div>
       <table className='table11'>

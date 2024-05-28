@@ -8,7 +8,7 @@ const OrderModal = ({row, selectedItem}) => {
   // const [closeModal, setCloseModal] = useState("modall")
   const [customerAddress, setCustomerAddress] = useState('');
   const [paymentOption, setPaymentOption] = useState('');
-  const [token, setToken]= useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
+  const [token, setAuthTokens]= useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
 
   const handleClick = () =>{
     setClick(!click)
@@ -21,11 +21,11 @@ const OrderModal = ({row, selectedItem}) => {
   useEffect(() => {
     const fetchCustomerDetails = async () => {
       try {
-        const addressResponse = await fetch('CUSTOMER_ADDRESS_API_ENDPOINT');
+        const addressResponse = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getOrders`);
         const addressData = await addressResponse.json();
         setCustomerAddress(addressData.address);
 
-        const paymentResponse = await fetch('PAYMENT_OPTION_API_ENDPOINT');
+        const paymentResponse = await fetch('https://api.foodgrab.africa/merchants/api/v1/getOrders');
         const paymentData = await paymentResponse.json();
         setPaymentOption(paymentData.paymentOption);
       } catch (error) {
