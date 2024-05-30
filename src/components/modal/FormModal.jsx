@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./formmodal.css";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaCircleCheck } from "react-icons/fa6";
 
 
@@ -115,7 +115,7 @@ export const FormModal = ({ click, handleClick, setClick }) => {
         </div>
       </div>
 
-      {show === true && <SuccessModal />}
+      {show === true && <SuccessModal show={show} setShow={setShow}/>}
     </div>
   );
 };
@@ -123,16 +123,21 @@ export const FormModal = ({ click, handleClick, setClick }) => {
 
 
 
-const SuccessModal = () => {
+const SuccessModal = ({show, setShow}) => {
 
   
   return (
     <div className='successmodal'>
 
         <div className=' successOverlay'>
-          <p><FaCircleCheck /></p>
-          <h2>Menu created successfully</h2>
-          <button>Go to Dashboard</button>
+          <div>
+            <p><FaCircleCheck /></p>
+            <h2>Menu created</h2>
+           <div className='btnsM'>
+              <Link to={'/Dashboard'}><button className='bbns'>Dashboard</button></Link>
+              <button onClick={()=>setShow(false)}>Close</button>
+           </div>
+          </div>
         </div>
     </div>
   )

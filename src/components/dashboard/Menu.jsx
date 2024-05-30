@@ -76,7 +76,8 @@ console.log(menuData);
 
           <div className='cusineTitle'>
             <ul>
-              <li>Menu Name</li>
+              <li className=''>Thumbnail</li>
+              <li className=''>Menu Name</li>
               <li className='middle'>Menu Price</li>
               <li className='middle'>Status</li>
               <li className='last'>Stock Option</li>
@@ -92,7 +93,7 @@ console.log(menuData);
             <div className='cusineBody'>
               {menuData.map((data, index)=>(
                 <ul key={index}>
-
+                  <p><img src={data.thumbnail} alt=''/></p>
                   <li><TbCircleDotFilled className='ics'/>{data.name}</li>
                   <li className='middle'>₦ {data.price}</li>
                   <li className='middle' id='mystatus'>{data.status}</li>
