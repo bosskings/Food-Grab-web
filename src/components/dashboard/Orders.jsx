@@ -5,12 +5,12 @@ import "./order.css"
 import  OrderTable  from '../table/OrderTable'
 import gif from '../media/gif2.gif'
 
-// const data = [
-//   {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge','Rice'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021" },
-//   {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-//   {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge','Rice'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-//   {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-// ]
+const data = [
+  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge','Rice'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021" },
+  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge','Rice'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+]
 // const data2 = [
 //   {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021" },
 //   {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ["yam porridge"], Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021"},
@@ -75,7 +75,7 @@ export const Orders = () => {
   const dropdownTitles = {
     table1: [
       { title: 'View Details', path: '', cName: 'View Details' },
-      { title: 'Confirm Order', path: '', cName: 'Confirm Order' }
+      { title: 'Confirm ', path: '', cName: 'Confirm' }
     ],
     table2: [
       { title: 'View Details', path: '', cName: 'View Details' },
@@ -306,19 +306,19 @@ export const Orders = () => {
       /> */}
     
     
-      {active === 'table1' && <OrderTable columns={columns} data={tables.table1} dropdownItems={dropdownTitles.table1} />}
+      {active === 'table1' && <OrderTable columns={columns} data={data} dropdownItems={dropdownTitles.table1} />}
           {active === 'table2' && <OrderTable  columns={columns2} data={tables.table2} dropdownItems={dropdownTitles.table2} />}
           {active === 'table3' && <OrderTable columns={columns2} data={tables.table3} dropdownItems={dropdownTitles.table3} />}
           {active === 'table4' && <OrderTable  columns={columns2} data={tables.table4} dropdownItems={dropdownTitles.table4} />}
           {active === 'table5' && <OrderTable  columns={columns2} data={tables.table5} dropdownItems={dropdownTitles.table5} />}
           {active === 'table6' && <OrderTable columns={columns2} data={tables.table6} dropdownItems={dropdownTitles.table6} />}
 
-          {tables[active].length === 0 && (
+          {/* {tables[active].length === 0 && (
         <div className='noData'>
               {mssg}
               <img src={gif} alt="" />
             </div>
-      )}
+      )} */}
       </div>
     </section>
     </div>

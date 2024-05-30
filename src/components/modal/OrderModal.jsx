@@ -6,8 +6,7 @@ const OrderModal = ({row, selectedItem}) => {
 
   const [click, setClick] = useState(false)
   // const [closeModal, setCloseModal] = useState("modall")
-  const [customerAddress, setCustomerAddress] = useState('');
-  const [paymentOption, setPaymentOption] = useState('');
+  const [customerDetials, setCustomerDetials] = useState('');
   const [token, setAuthTokens]= useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
 
   const handleClick = () =>{
@@ -21,13 +20,20 @@ const OrderModal = ({row, selectedItem}) => {
   useEffect(() => {
     const fetchCustomerDetails = async () => {
       try {
-        const addressResponse = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getOrders`);
-        const addressData = await addressResponse.json();
-        setCustomerAddress(addressData.address);
+        const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getOrders`,{
+          headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token.token}`
+          }
+        }
+        );
+        if (!response.ok){
+          throw new Error('failed to fetch customer details')
+        }
+        const data = await response.json();
+        setCustomerDetials(data);
+        console.log('Response Data:', response)
 
-        const paymentResponse = await fetch('https://api.foodgrab.africa/merchants/api/v1/getOrders');
-        const paymentData = await paymentResponse.json();
-        setPaymentOption(paymentData.paymentOption);
       } catch (error) {
         console.error('Error fetching customer details:', error);
       }
@@ -53,11 +59,11 @@ const OrderModal = ({row, selectedItem}) => {
         <div className="customerAdd">
         <div>
             <h3>Customer Address</h3>
-            <p>{customerAddress}</p>
+            <p>{customerDetials.customerAddress}</p>
           </div>
           <div>
             <h3>Payment Option</h3>
-            <p>{paymentOption}</p>
+            <p>{customerDetials.paymentOption}</p>
           </div>
         </div>
           <div className="orderDet">
@@ -80,6 +86,7 @@ const OrderModal = ({row, selectedItem}) => {
           </div>
           <div className={"total"}>
           <h3>Total</h3>
+          <p>{customerDetials.total}</p>
           </div>
           </div>
         <div className="but">
