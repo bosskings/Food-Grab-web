@@ -115,7 +115,7 @@ console.log(menuData);
             </div>
           )}
 
-          <FormModal click={click} handleClick={handleClick}/>
+          <FormModal click={click} setClick={setClick} handleClick={handleClick}/>
         </div>
       </section>
     </div>

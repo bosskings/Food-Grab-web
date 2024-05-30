@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import "./formmodal.css";
 import { useNavigate } from 'react-router-dom';
+import { FaCircleCheck } from "react-icons/fa6";
 
-export const FormModal = ({ click, handleClick }) => {
+
+export const FormModal = ({ click, handleClick, setClick }) => {
 
   const navigate = useNavigate()
+
+  const [show, setShow] = useState(false)
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -23,30 +27,25 @@ export const FormModal = ({ click, handleClick }) => {
     formData.append('name', name);
     formData.append('description', description);
     formData.append('price', price);
-    // if (image) {
-    //   formData.append('image', image);
-    // }
+    formData.append('thumbnail', thumbnail);
 
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token.token}`,
-          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/json'
         },
-        body : JSON.stringify({
-          name: name,
-          price : price,
-          description : description,
-          // thumbnail : thumbnail
-      })
+        body : formData
       });
 
-      if (response.ok) {
+      if (response.ok || response.status === 'SUCCESS') {
         const data = await response.json();
         console.log(data);
         console.log('Cuisine Created Successfully');
         navigate('/menu')
+        setShow(true);
+        handleClick()
 
       } else {
         console.log('There was an error');
@@ -115,6 +114,28 @@ export const FormModal = ({ click, handleClick }) => {
           </form>
         </div>
       </div>
+
+      {show === true && <SuccessModal />}
     </div>
   );
 };
+
+
+
+
+const SuccessModal = () => {
+
+  
+  return (
+    <div className='successmodal'>
+
+        <div className=' successOverlay'>
+          <p><FaCircleCheck /></p>
+          <h2>Menu created successfully</h2>
+          <button>Go to Dashboard</button>
+        </div>
+    </div>
+  )
+}
+
+export default SuccessModal
