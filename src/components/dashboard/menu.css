@@ -45,7 +45,7 @@
 
 .menubox .cusineTitle ul{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   list-style: none;
   font-size: 12px;
@@ -55,6 +55,8 @@
   padding: 15px;
   border-radius: 5px;
 }
+
+
 
 
 .middle{
@@ -69,7 +71,7 @@
 
 .cusineBody ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   list-style: none;
   margin-bottom: 10px;
@@ -110,6 +112,17 @@
   color: #70aa67;
 }
 
+
+.cusineBody p{
+  width: 60px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.cusineBody p img{
+  width: 80px;
+}
 
 .secondsec{
   display: flex;
