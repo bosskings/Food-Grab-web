@@ -56,6 +56,10 @@ export const DashboardHome = () => {
     setShow(!show)
   }
 
+  const handleTableData = [
+    
+  ]
+
   const SeeAll = ()=>{
     return(
     <div className={"seeallModal"}>
@@ -94,17 +98,30 @@ useEffect(()=>{
         throw new Error('Failed to fetch table data')
       }
       const data = await response.json();
+      const formattedData = data.data.map(orders=>({
+        id:orders.id,
+        'Order ID': orders._id,
+        Qty: orders.items.length,
+        Price:orders.items.reduce((sum,item)=> sum + item.price, 0).toLocaleString(),
+        'Order Date': new Date(orders.date).toLocaleString(),
+        Status : orders.requestStatus
+      }))
       console.log('Response Data:', data)
-      setTableData(data.data)
-      setIsLoading(false)
+      console.log(formattedData)
+      setTableData(formattedData)
     }
     catch (error){
       console.error('Error fetching table data')
+    }finally{
+      setIsLoading(false)
     }
+
   }
 
-  fetchTableData()
-},[id, token])
+   if (token) {
+      fetchTableData();
+    }
+},[token])
 
 
 

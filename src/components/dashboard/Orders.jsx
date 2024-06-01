@@ -131,15 +131,25 @@ export const Orders = () => {
           throw new Error("An Error occurredError: Merchant Shop doesnt have any order yet")
         }
         const data = await response.json()
+        const formattedData = data.data.map(orders=>({
+          id:1, 
+          'Order ID': orders.userId.id, 
+          Customer: "Kingsley Temi", 
+          Product: orders.items.map(item => item.name), 
+          Quantity: orders.item.length, 
+          'Order Date': new Date(orders.date).toLocaleString(),
+          Status: orders.requestStatus
+        }))
         console.log('Response Data:', data)
+        console.log('formatted data:', formattedData)
         
 
-        const newOrders = data.filter(getOrders => getOrders.status === "New")
-        const processingOrders = data.filter(getOrders => getOrders.status === "Processing")
-        const packagedOrderss  = data.filter(getOrders => getOrders.status === "Packaged")
-        const inTransitOrders = data.filter(getOrders => getOrders.status === "In-Transit")
-        const deliveredOrders = data.filter(getOrders => getOrders.status === "Delivered")
-        const CancelledOrders = data.filter(getOrders => getOrders.status === "Cancelled")
+        const newOrders =formattedData.map(getOrders => getOrders.requestStatus === "PROCCESSING")
+        const processingOrders =formattedData.filter(getOrders => getOrders.requestStatus === "PROCCESSING")
+        const packagedOrderss  =formattedData.filter(getOrders => getOrders.requestStatus === "PACKAGED")
+        const inTransitOrders =formattedData.filter(getOrders => getOrders.requestStatus === "IN-TRANSIT")
+        const deliveredOrders =formattedData.filter(getOrders => getOrders.requestStatus === "DELIVERED")
+        const CancelledOrders =formattedData.filter(getOrders => getOrders.requestStatus === "CANCELLED")
 
         setTables({
           table1: newOrders,
@@ -149,18 +159,18 @@ export const Orders = () => {
           table5: deliveredOrders,
           table6: CancelledOrders,
         })
-        setIsLoading(false)
-      
-        
       }
       catch(error){
         console.error("An Error occurredError: Merchant Shop doesnt have any order yet", error)
         setMssg("Merchant Shop doesnt have any order yet")
+      }finally{
+        setIsLoading(false)
       }
     }
-
+  if(token){
     fetchTableData()
-  },[])
+  }
+  },[token])
 
   useEffect(()=>{
     const tableLoca = tables
@@ -255,12 +265,12 @@ export const Orders = () => {
   return (
     <div className='order'>
     <section className='ordersec1'>
-    {/* {isLoading === true ? 
+    {isLoading === true ? 
         <div className='loaderModal'>
               <span className="loader"></span>
         </div> :
         ''
-        } */}
+        }
     <p className='txt2'>Orders</p>
     <div className={"scrollheader"}>
       <div className='headers'>
@@ -306,7 +316,7 @@ export const Orders = () => {
       /> */}
     
     
-      {active === 'table1' && <OrderTable columns={columns} data={data} dropdownItems={dropdownTitles.table1} />}
+      {active === 'table1' && <OrderTable columns={columns} data={tables.table1} dropdownItems={dropdownTitles.table1} />}
           {active === 'table2' && <OrderTable  columns={columns2} data={tables.table2} dropdownItems={dropdownTitles.table2} />}
           {active === 'table3' && <OrderTable columns={columns2} data={tables.table3} dropdownItems={dropdownTitles.table3} />}
           {active === 'table4' && <OrderTable  columns={columns2} data={tables.table4} dropdownItems={dropdownTitles.table4} />}

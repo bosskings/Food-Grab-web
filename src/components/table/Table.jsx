@@ -1,6 +1,7 @@
 import React from 'react'
 import "./table.css"
 
+
 export const Table = ({columns, tableData}) => {
 
   // const initialtableData = tableData.slice(0, 6);
@@ -14,7 +15,9 @@ export const Table = ({columns, tableData}) => {
       return 'packaged';
     }else if (value === "In-transit"){
       return 'in-transit';
-    }else{
+    }else if (value === 'PROCESSING'){
+      return "PROCESSING"
+    }else {
       return ""
     }
   };

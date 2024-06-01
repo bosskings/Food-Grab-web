@@ -42,6 +42,17 @@ const OrderModal = ({row, selectedItem}) => {
     fetchCustomerDetails();
   }, []);
 
+  useEffect(()=>{
+    const updateStatus = async()=>{
+      const response = await fetch('',{
+        headers:{
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${token.token}`
+        }
+      }) 
+    }
+  })
+
   return (
     <div className={click ?"not-active" :'modall'}>
     <div className={click ? "not-active":"overlay"} onClick={handleClick}></div>
@@ -91,7 +102,7 @@ const OrderModal = ({row, selectedItem}) => {
           </div>
         <div className="but">
         {selectedItem && selectedItem.title !== 'View Details' && 
-        (<button>Confirm</button>)
+        (<button type='submit'>Confirm</button>)
         }
           
           <button onClick={handleClick}>Close
