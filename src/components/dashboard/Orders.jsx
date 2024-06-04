@@ -5,12 +5,12 @@ import "./order.css"
 import  OrderTable  from '../table/OrderTable'
 import gif from '../media/gif2.gif'
 
-const data = [
-  {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge','Rice'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021" },
-  {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge','Rice'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-  {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
-]
+// const data = [
+//   {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge','Rice'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021" },
+//   {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+//   {id:3, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge','Rice'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+//   {id:4, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Quantity: "2", 'Order Date': "08:00 PM, 02 Dec, 2021"},
+// ]
 // const data2 = [
 //   {id:1, 'Order ID': "Order#585939", Customer: "Kingsley Temi", Product: ['yam porridge'], Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021" },
 //   {id:2, 'Order ID': "Order#585939", Customer: "Collins Uzoma", Product: ["yam porridge"], Status: "Processing", 'Order Date': "08:00 PM, 02 Dec, 2021"},
@@ -132,33 +132,42 @@ export const Orders = () => {
         }
         const data = await response.json()
         const formattedData = data.data.map(orders=>({
-          id:1, 
-          'Order ID': orders.userId.id, 
+          'Order ID': orders._id, 
           Customer: "Kingsley Temi", 
           Product: orders.items.map(item => item.name), 
-          Quantity: orders.item.length, 
+          Quantity: orders.items.length, 
           'Order Date': new Date(orders.date).toLocaleString(),
           Status: orders.requestStatus
         }))
         console.log('Response Data:', data)
         console.log('formatted data:', formattedData)
         
+        const newTables = {
+          table1: [],
+          table2: [],
+          table3: [],
+          table4: [],
+          table5: [],
+          table6: []
+        };
 
-        const newOrders =formattedData.map(getOrders => getOrders.requestStatus === "PROCCESSING")
-        const processingOrders =formattedData.filter(getOrders => getOrders.requestStatus === "PROCCESSING")
-        const packagedOrderss  =formattedData.filter(getOrders => getOrders.requestStatus === "PACKAGED")
-        const inTransitOrders =formattedData.filter(getOrders => getOrders.requestStatus === "IN-TRANSIT")
-        const deliveredOrders =formattedData.filter(getOrders => getOrders.requestStatus === "DELIVERED")
-        const CancelledOrders =formattedData.filter(getOrders => getOrders.requestStatus === "CANCELLED")
+        formattedData.forEach(order => {
+          if (order.Status === 'PROCESSING') {
+            newTables.table1.push(order);
+          } else if (order.Status === 'PROCESSING') {
+            newTables.table2.push(order);
+          } else if (order.Status === 'PACKAGED') {
+            newTables.table3.push(order);
+          } else if (order.Status === 'IN-TRANSIT') {
+            newTables.table4.push(order);
+          } else if (order.Status === 'DELIVERED') {
+            newTables.table5.push(order);
+          } else if (order.Status === 'CANCELLED') {
+            newTables.table6.push(order);
+          }
+        });
 
-        setTables({
-          table1: newOrders,
-          table2: processingOrders,
-          table3: packagedOrderss,
-          table4: inTransitOrders,
-          table5: deliveredOrders,
-          table6: CancelledOrders,
-        })
+        setTables(newTables);
       }
       catch(error){
         console.error("An Error occurredError: Merchant Shop doesnt have any order yet", error)
@@ -323,12 +332,12 @@ export const Orders = () => {
           {active === 'table5' && <OrderTable  columns={columns2} data={tables.table5} dropdownItems={dropdownTitles.table5} />}
           {active === 'table6' && <OrderTable columns={columns2} data={tables.table6} dropdownItems={dropdownTitles.table6} />}
 
-          {/* {tables[active].length === 0 && (
+          {tables[active].length === 0 && (
         <div className='noData'>
               {mssg}
               <img src={gif} alt="" />
             </div>
-      )} */}
+      )}
       </div>
     </section>
     </div>

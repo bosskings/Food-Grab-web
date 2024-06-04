@@ -8,7 +8,7 @@ const OrderTable = (props) => {
 
   const { columns, data, dropdownItems} = props;
   const [checkedItems, setCheckedItems] = useState({});
-  const [productImages, setProductImages] = useState({});
+  const [productImages, setProductImages] = useState([]);
   const dropdownRefs = useRef([]);
   const [show,setShow] = useState(true)
   const handleShow = ()=>{
@@ -32,7 +32,7 @@ const OrderTable = (props) => {
           }
         });
         const imageData = await response.json();
-        setProductImages(imageData.data.items.cuisineImage);
+        setProductImages(imageData.data);
       } catch (error) {
         console.error('Error fetching product images:', error);
       }
