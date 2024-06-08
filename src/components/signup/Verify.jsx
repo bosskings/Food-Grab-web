@@ -4,6 +4,8 @@ import Image from "../media/mail2.jpg";
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const Verify = () => {
+  let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
+
   const [verification, setVerification] = useState('');
   const {email} = useParams();
   const [errorMessage, setErrorMessage] = useState('')
@@ -27,40 +29,46 @@ export const Verify = () => {
   //   fetchEmail();
   // }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    const handleSubmit = async (event) => {
 
-    try {
-      const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/verifyEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ code: verification })
-      });
-      if (response.ok) {
-        navivgate('/Merchantlogin')
-        setSucessMssg('Verification Successful');
-      } else {
-        const data = await response.json();
-        setErrorMessage(data.message || 'Verification Failed');
+      event.preventDefault();
+  
+      try {
+        const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/verifyEmail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ code: verification })
+        });
+        if (response.ok) {
+          navivgate('/Merchantlogin')
+          setSucessMssg('Verification Successful');
+        } else {
+          const data = await response.json();
+          setErrorMessage(data.message || 'Verification Failed');
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+    };
 
   const handleResend = async ()=>{
     try{
       const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/verifyEmail',{
         method: 'POST',
         headers:{
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorizaation': `Bearer ${token.token}`
         },
-        body: JSON.stringify({email: email})
+        body: JSON.stringify({
+          email: email,
+          code: verification,
+        })
       })
       if(response.ok){
         setSucessMssg('Resend request successful')
+        
       }else{
         setErrorMessage('Failed to send Request')
       }
@@ -83,6 +91,7 @@ export const Verify = () => {
         <form
           className={"verifyForm"}
           onSubmit={handleSubmit}>
+          
           <input
             type='text'
             name='code'

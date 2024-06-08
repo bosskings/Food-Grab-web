@@ -9,7 +9,6 @@ import { Link, useNavigate } from 'react-router-dom'
 
 export const Signup = () => {
   const navigate =  useNavigate();
-  const email =  'example@example.com'; 
   const [visible, setVisible] = useState(false)
   const [click, setToggle] = useState(false)
 
@@ -133,7 +132,7 @@ export const Signup = () => {
     setVisible(!visible)
   }
 
-  
+  const email = input.email; 
 
   const handleSubmitForm = async (e) => {
     e.preventDefault(); 
@@ -187,7 +186,7 @@ export const Signup = () => {
           confirmPassword: ''
         });
           console.log(response.data)
-        navigate(`/verify/${email}`)
+        navigate(`/verify/ ${input.email}`)
 
       }catch{
        console.error("signup failed", error)

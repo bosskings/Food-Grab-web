@@ -34,7 +34,7 @@ import { EffectCube, Pagination, Navigation, Autoplay, } from "swiper/modules";
 //   {id:14, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
 //   {id:15, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
 // ]
-const columns = ['Order ID', 'Qty','Price', 'Order Date', 'Status'];
+const columns = ['Order ID','Price', 'Order Date', 'Status'];
 
 export const DashboardHome = () => {
 
@@ -101,7 +101,7 @@ useEffect(()=>{
       const formattedData = data.data.map(orders=>({
         id:orders.id,
         'Order ID': orders._id,
-        Qty: orders.items.length,
+        // Qty: orders.items.length,
         Price:orders.items.reduce((sum,item)=> sum + item.price, 0).toLocaleString(),
         'Order Date': new Date(orders.date).toLocaleString(),
         Status : orders.requestStatus

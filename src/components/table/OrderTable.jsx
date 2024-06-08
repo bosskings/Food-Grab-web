@@ -83,11 +83,11 @@ const OrderTable = (props) => {
           {data.map((row) => (
             <tr key={row.id} className={'row2'}>
               <td>
-                <input
-                  type='checkbox'
-                  checked={checkedItems[row.id] || false}
-                  onChange={(e) =>{ handleCheckboxChange(e, row.id)}}
-                />
+                  <input
+                    type='checkbox'
+                    checked={checkedItems[row.id] || false}
+                    onChange={(e) =>{ handleCheckboxChange(e, row.id)}}
+                  />
               </td>
               {columns.map((column, index, rowIndex) => (
                 <td key={index} className={`rowcontent2 ${index === 3 ? getFourthContentStyle(row[column]) : ''}`} 
