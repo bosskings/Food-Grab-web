@@ -24,6 +24,8 @@ export const CreateShopModal = ({ handleCloseModal }) => {
   const [backDrop, setBackdrop] = useState(null);
   const [logo, setLogo] = useState(null);
 
+
+
   let [token, setAuthTokens] = useState(() => localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null);
 
   console.log(token);
@@ -74,6 +76,8 @@ export const CreateShopModal = ({ handleCloseModal }) => {
     }
   };
 
+  console.log(type);
+
   return (
     <div className={open ? "not-active" : "createshdiv"}>
       <div className={open ? "not-active" : "createShop"}>
@@ -104,13 +108,13 @@ export const CreateShopModal = ({ handleCloseModal }) => {
                       // setImage(URL.createObjectURL(selectedFile));
                       // setBackdrop(selectedFile);
 
-                      if (image.width === 1350 && image.height === 320) {
+                      // if (image.width === 1350 && image.height === 320) {
                         setFileName(selectedFile.name);
                         setImage(URL.createObjectURL(selectedFile));
                         setBackdrop(selectedFile);
-                      } else {
-                        alert('Image dimensions must be 1350x320 pixels.');
-                      }
+                      // } else {
+                      //   alert('Image dimensions must be 1350x320 pixels.');
+                      // }
                     };
                   }
                 }}
@@ -184,6 +188,7 @@ export const CreateShopModal = ({ handleCloseModal }) => {
                 value={type}
                 onChange={(e) => setType(e.target.value)}
               >
+                <option>Select type</option>
                 <option value={'RESTAURANT'}>RESTAURANT</option>
                 <option value={'CHEF'}>CHEF</option>
               </select>
