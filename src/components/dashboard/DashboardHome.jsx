@@ -34,7 +34,7 @@ import { EffectCube, Pagination, Navigation, Autoplay, } from "swiper/modules";
 //   {id:14, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
 //   {id:15, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
 // ]
-const columns = ['Order ID', 'Qty','Price', 'Order Date', 'Status'];
+const columns = ['Order ID','Price', 'Order Date', 'Status'];
 
 export const DashboardHome = () => {
 
@@ -55,6 +55,10 @@ export const DashboardHome = () => {
   const handleShow = ()=>{
     setShow(!show)
   }
+
+  const handleTableData = [
+    
+  ]
 
   const SeeAll = ()=>{
     return(
@@ -94,17 +98,30 @@ useEffect(()=>{
         throw new Error('Failed to fetch table data')
       }
       const data = await response.json();
+      const formattedData = data.data.map(orders=>({
+        id:orders.id,
+        'Order ID': orders._id,
+        // Qty: orders.items.length,
+        Price:orders.items.reduce((sum,item)=> sum + item.price, 0).toLocaleString(),
+        'Order Date': new Date(orders.date).toLocaleString(),
+        Status : orders.requestStatus
+      }))
       console.log('Response Data:', data)
-      setTableData(data.data)
-      setIsLoading(false)
+      console.log(formattedData)
+      setTableData(formattedData)
     }
     catch (error){
       console.error('Error fetching table data')
+    }finally{
+      setIsLoading(false)
     }
+
   }
 
-  fetchTableData()
-},[id, token])
+   if (token) {
+      fetchTableData();
+    }
+},[token])
 
 
 

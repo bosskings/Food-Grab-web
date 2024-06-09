@@ -6,22 +6,30 @@ import { UpdateProfileModal } from '../modal/UpdateProfileModal'
 export const Profile = () => {
   const [open, setopen] = useState(false)
   const [profile, setProfile] = useState('')
+  const [token, setAuthTokens]= useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')):null)
 
   useEffect(()=>{
     const fetchProfileData = async()=>{
       try{
-        const response = await fetch('')
-        if (response.ok){
+        const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/signin`, {
+          headers:{
+            'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token.token}`
+          }
+        });
+        if (!response.ok){
           throw new Error('Failed to fetch profile data')
         }
-        const data = await response.json()
-        setProfile(data)
+        const profileDetials = await response.json()
+        setProfile(profileDetials)
+        console.log('this is the response:', profileDetials)
       }
       catch (error){
         console.error('Error fetching profile data:', error.message)
       }
     }
     fetchProfileData();
+    
   },[])
 
   const handleOpen = ()=>{
@@ -55,7 +63,7 @@ export const Profile = () => {
       <img src={profile.profileImg}  alt=''/>
       </div>
       <div className={"nameholder2"}>
-      <p className={"txt2"}>{profile.name}</p>
+      <p className={"txt2"}>{profile.firstname}</p>
       <p className={"username2"}> {profile.username} </p>
       </div>
      </div>
@@ -65,13 +73,13 @@ export const Profile = () => {
           <div className={"fstName"}>
             <p className='txt3'>First Name</p>
             <div className={"credDisplay"}>
-              {}
+              {profile.firstname}
             </div>
           </div>
           <div className={"lstname"}>
           <p className='txt3'>Last Name</p>
             <div className={"credDisplay"}>
-              {}
+              {profile.lastname}
             </div>
           </div>
         </div>

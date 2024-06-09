@@ -141,11 +141,13 @@
   height: 20px;
   left: 0px;
   top: 0px;
+  cursor: pointer;
 }
 .eyenot-slash{
   position: absolute;
   left: 0;
   display: none;
+  cursor: pointer;
 }
 .active11{
   display: block;

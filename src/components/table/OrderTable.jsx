@@ -4,9 +4,11 @@ import { Dropdown } from '../dashboard/dropdown/Dropdown';
 import OrderModal from '../modal/OrderModal';
 
 const OrderTable = (props) => {
+  const [token, setAuthTokens] = useState(()=> localStorage.getItem('token')? JSON.parse(localStorage.getItem('token')): null)
+
   const { columns, data, dropdownItems} = props;
   const [checkedItems, setCheckedItems] = useState({});
-  const [productImages, setProductImages] = useState({});
+  const [productImages, setProductImages] = useState([]);
   const dropdownRefs = useRef([]);
   const [show,setShow] = useState(true)
   const handleShow = ()=>{
@@ -23,9 +25,14 @@ const OrderTable = (props) => {
   useEffect(() => {
     const fetchProductImages = async () => {
       try {
-        const response = await fetch('');
+        const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getOrders`,{
+          headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token.token}`
+          }
+        });
         const imageData = await response.json();
-        setProductImages(imageData);
+        setProductImages(imageData.data);
       } catch (error) {
         console.error('Error fetching product images:', error);
       }
@@ -53,8 +60,8 @@ const OrderTable = (props) => {
       return 'packaged';
     } else if (value === 'In-transit') {
       return 'in-transit';
-    } else if (value === "Processing") {
-      return 'processing';
+    } else if (value === "PROCESSING") {
+      return 'PROCESSING';
     }
   };
 
@@ -76,11 +83,11 @@ const OrderTable = (props) => {
           {data.map((row) => (
             <tr key={row.id} className={'row2'}>
               <td>
-                <input
-                  type='checkbox'
-                  checked={checkedItems[row.id] || false}
-                  onChange={(e) =>{ handleCheckboxChange(e, row.id)}}
-                />
+                  <input
+                    type='checkbox'
+                    checked={checkedItems[row.id] || false}
+                    onChange={(e) =>{ handleCheckboxChange(e, row.id)}}
+                  />
               </td>
               {columns.map((column, index, rowIndex) => (
                 <td key={index} className={`rowcontent2 ${index === 3 ? getFourthContentStyle(row[column]) : ''}`} 

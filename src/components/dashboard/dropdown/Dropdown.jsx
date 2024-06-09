@@ -24,18 +24,6 @@ export const Dropdown = ({ parentRef, rowData, modalComponent, dropdownItems }) 
     handleOpen()
   };
 
-  // const OrderItem = [
-  //   {
-  //     title: 'View Details',
-  //     path: "",
-  //     cName: 'View Details'
-  //   },
-  //   {
-  //     title: 'Confirm Order',
-  //     path: "",
-  //     cName: 'Confirm Order'
-  //   }
-  // ];
   return (
     <div className='dpbox'>
       <div className={'dropbox'} onClick={handleDropdown}>

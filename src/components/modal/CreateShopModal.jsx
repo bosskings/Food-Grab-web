@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { AiOutlinePicture, AiOutlineCloudUpload } from "react-icons/ai";
 import { MdVerifiedUser } from "react-icons/md";
 import './createshop.css';
+import { XCircle } from 'react-bootstrap-icons';
 
-export const CreateShopModal = ({ handleCloseModal }) => {
+export const CreateShopModal = ({ closeComponent }) => {
   const [open, setOpen] = useState(false);
   const [shop, setShop] = useState('');
 
@@ -76,17 +77,18 @@ export const CreateShopModal = ({ handleCloseModal }) => {
     }
   };
 
-  console.log(type);
-
   return (
     <div className={open ? "not-active" : "createshdiv"}>
-      <div className={open ? "not-active" : "createShop"}>
+     <div className={"overlay"} onClick={closeComponent}></div>
+      <div className={open ? "not-active" :"createShop"}>
         <div className='closeBar'>
           <div>
             <p className='txt2'>Shop Profile</p>
             <p className='ppsubtxt'>change and edit shop profile details</p>
           </div>
-          <p onClick={handleCloseModal} className='closeP'>X</p>
+          <div>
+         <ClosePfModal onClick={handleOpen} />
+          </div>
         </div>
 
         <form className="createshform" onSubmit={handleShopSubmit}>
