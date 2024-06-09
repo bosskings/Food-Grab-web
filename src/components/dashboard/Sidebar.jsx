@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./dashboard.css"
 import LOGO from "../media/logo dashboard.png"
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaCircleXmark, FaClipboardList} from "react-icons/fa6";
 import { LiaHomeSolid } from "react-icons/lia";
 import { RiWallet3Line } from "react-icons/ri";
@@ -13,6 +13,7 @@ import { MenuApp } from 'react-bootstrap-icons';
 import { FaPlus } from "react-icons/fa6";
 
 export const Sidebar = () => {
+  const navigate = useNavigate()
   const location = useLocation()
   const  [active, setActive]= useState()
   const [click, setClick] = useState(false)
@@ -267,6 +268,13 @@ export const Sidebar = () => {
     // fetchProfilePic()
   },[])
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    navigate('/login');
+  };
+
+
   return (
     <div>
     <div className={click? "overlay":"not-active"} onClick={handleClick}></div>
@@ -440,7 +448,7 @@ export const Sidebar = () => {
           <p className={"username"}>{profile.username}</p>
         </div>
         </Link>
-        <RxExit className={"profileicon"} />
+        <RxExit className={"profileicon"}  onClick={logout}/>
         </div>
       </div>  
       </div>
