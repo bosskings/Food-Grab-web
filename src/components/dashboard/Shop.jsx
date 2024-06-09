@@ -88,7 +88,7 @@ export const Shop = () => {
         <button className='createShopBtn' onClick={handleOpenModal}>create Shop</button>
         </div>
       </section>
-      {openModal === true && <CreateShopModal handleCloseModal={handleCloseModal} handleOpenModal={handleOpenModal} han/>}
+      {openModal && <CreateShopModal closeComponent={handleCloseModal}/>}
       </div>
     )
   }
