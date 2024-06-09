@@ -1,33 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './verify.css';
 import Image from "../media/mail2.jpg";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, } from 'react-router-dom';
 
 export const Verify = () => {
-  let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
-
   const [verification, setVerification] = useState('');
-  const {email} = useParams();
+  const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('')
   const [successMssg, setSucessMssg] = useState('')
   const navivgate = useNavigate()
 
-  // useEffect(() => {
-  //   const fetchEmail = async () => {
-  //     try {
-  //       const response = await fetch('https://api.foodgrab.africa/merchants/api/v1/verifyEmail');
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         setEmail(data.email);
-  //       } else {
-  //         console.error('Failed to get email data');
-  //       }
-  //     } catch (error) {
-  //       console.error('Error:', error);
-  //     }
-  //   };
-  //   fetchEmail();
-  // }, []);
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('newEmail');
+    if (storedEmail) {
+      setEmail(JSON.parse(storedEmail))
+    }
+  }, []);
 
     const handleSubmit = async (event) => {
 
@@ -39,7 +27,10 @@ export const Verify = () => {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ code: verification })
+          body: JSON.stringify({
+            email: email,
+            code: verification,
+          })
         });
         if (response.ok) {
           navivgate('/Merchantlogin')
@@ -59,7 +50,6 @@ export const Verify = () => {
         method: 'POST',
         headers:{
           'Content-Type': 'application/json',
-          'Authorizaation': `Bearer ${token.token}`
         },
         body: JSON.stringify({
           email: email,
@@ -87,11 +77,12 @@ export const Verify = () => {
         <div className='Vrifyimg'>
           <img src={Image} alt='' />
         </div>
-        <p className='subtxt2'>We sent a 4 digit pin code to the email you provided: {email}</p>
         <form
           className={"verifyForm"}
           onSubmit={handleSubmit}>
           
+        <p className='subtxt2'>We sent a 4 digit pin code to the email you provided <span>{email}</span> </p>
+
           <input
             type='text'
             name='code'

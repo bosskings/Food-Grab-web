@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MAIL from "../media/mail.png"
 import GOOGLE from "../media/google.png"
 import ERROR from "../media/error.jpg"
@@ -31,6 +31,8 @@ export const Signup = () => {
     password: '',
     confirmPassword: ''
   })
+
+
  
   const onInputChange = e => {
     const { name, value } = e.target;
@@ -132,8 +134,6 @@ export const Signup = () => {
     setVisible(!visible)
   }
 
-  const email = input.email; 
-
   const handleSubmitForm = async (e) => {
     e.preventDefault(); 
 
@@ -155,6 +155,8 @@ export const Signup = () => {
       password: error.password,
       confirmPassword: error.confirmPassword
     }));
+
+ 
 
     if (!error.username && !error.password && !error.confirmPassword) {
       try{
@@ -186,7 +188,8 @@ export const Signup = () => {
           confirmPassword: ''
         });
           console.log(response.data)
-        navigate(`/verify/ ${input.email}`)
+          localStorage.setItem('newEmail', JSON.stringify(input.email)); 
+        navigate(`/verify`)
 
       }catch{
        console.error("signup failed", error)
