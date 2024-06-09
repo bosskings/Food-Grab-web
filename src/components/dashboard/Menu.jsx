@@ -37,11 +37,11 @@ export const Menu = () => {
       
 
 
+      setIsLoading(false)
       if(response.status === 200 || response.ok) {
         const data = await response.json()
         setMenuData(data.data)
-        setIsLoading(false)
-      }
+        }
 
       else{
         console.log('There was an error');

@@ -25,6 +25,8 @@ export const CreateShopModal = ({ closeComponent }) => {
   const [backDrop, setBackdrop] = useState(null);
   const [logo, setLogo] = useState(null);
 
+
+
   let [token, setAuthTokens] = useState(() => localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null);
 
   console.log(token);
@@ -75,20 +77,6 @@ export const CreateShopModal = ({ closeComponent }) => {
     }
   };
 
-  const handleOpen = ()=>{
-    setOpen(!open)
-  }
-
-
-const ClosePfModal = ()=>{
-      return(
-        <div>
-        <XCircle className={"closePf"} onClick={closeComponent}/>
-        </div>
-      )
-    }
-
-
   return (
     <div className={open ? "not-active" : "createshdiv"}>
      <div className={"overlay"} onClick={closeComponent}></div>
@@ -122,13 +110,13 @@ const ClosePfModal = ()=>{
                       // setImage(URL.createObjectURL(selectedFile));
                       // setBackdrop(selectedFile);
 
-                      if (image.width === 1350 && image.height === 320) {
+                      // if (image.width === 1350 && image.height === 320) {
                         setFileName(selectedFile.name);
                         setImage(URL.createObjectURL(selectedFile));
                         setBackdrop(selectedFile);
-                      } else {
-                        alert('Image dimensions must be 1350x320 pixels.');
-                      }
+                      // } else {
+                      //   alert('Image dimensions must be 1350x320 pixels.');
+                      // }
                     };
                   }
                 }}
@@ -202,6 +190,7 @@ const ClosePfModal = ()=>{
                 value={type}
                 onChange={(e) => setType(e.target.value)}
               >
+                <option>Select type</option>
                 <option value={'RESTAURANT'}>RESTAURANT</option>
                 <option value={'CHEF'}>CHEF</option>
               </select>
