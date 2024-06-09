@@ -76,6 +76,16 @@ export const CreateShopModal = ({ closeComponent }) => {
       setIsLoading(false);
     }
   };
+  const handleOpen = ()=>{
+    setOpen(!open)
+  }
+  const ClosePfModal = ()=>{
+    return(
+      <div>
+      <XCircle className={"closePf"} onClick={closeComponent}/>
+      </div>
+    )
+  }
 
   return (
     <div className={open ? "not-active" : "createshdiv"}>
