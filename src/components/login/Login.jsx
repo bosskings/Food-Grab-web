@@ -3,7 +3,7 @@ import MAIL from "../media/mail.png"
 import GOOGLE from "../media/google.png"
 import "./login.css"
 import { Eye, EyeSlash, Twitter } from 'react-bootstrap-icons'
-import { Link, useNavigate} from 'react-router-dom'
+import { Link, json, useNavigate} from 'react-router-dom'
 import { useTranslation } from "react-i18next";
 
 
@@ -43,7 +43,7 @@ export const Login = () => {
   
           const data = await response.json();
           localStorage.setItem('token', JSON.stringify(data));
-          setSuccessMssg("Login successful")
+          localStorage.setItem('sucessmssg', JSON.stringify(data))
           console.log(data)
           navigate('/Dashboard')
         }else{

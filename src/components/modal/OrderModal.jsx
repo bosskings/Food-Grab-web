@@ -5,16 +5,15 @@ const OrderModal = ({row, selectedItem}) => {
 
 
   const [click, setClick] = useState(false)
-  // const [closeModal, setCloseModal] = useState("modall")
+  const [isLoading, setIsLoading] = useState(false)
   const [customerDetials, setCustomerDetials] = useState('');
   const [token, setAuthTokens]= useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
 
   const handleClick = () =>{
     setClick(!click)
   }
-  // const handleCloseModal =()=>{
-  //   setCloseModal()
-  // }
+
+
 
 
   useEffect(() => {
@@ -102,7 +101,7 @@ const OrderModal = ({row, selectedItem}) => {
           </div>
         <div className="but">
         {selectedItem && selectedItem.title !== 'View Details' && 
-        (<button type='submit'>Confirm</button>)
+        (<button type='submit'>{isLoading === true ? 'Loading . . ' : 'Confirm'}</button>)
         }
           
           <button onClick={handleClick}>Close
