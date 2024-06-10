@@ -238,3 +238,25 @@ display: block;
 .profileCredentials{
   margin-left: auto;
 }
+
+@media screen and (max-width:699px) {
+  .createShopSec2{
+    flex-direction: column;
+  }
+  .createShop{
+    top: 10%;
+    height: 93vh;
+  }
+  .profileCredentials{
+    width: 200px;
+  }
+  .submitShopProfile{
+    width: 100%;
+  }
+  .creatshopSecOne{
+    height: 220px;
+  }
+  .createShopFormProper{
+    height: 75vh;
+  }
+}

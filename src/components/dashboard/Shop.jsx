@@ -150,13 +150,13 @@ const Shop2 =({data, isLoading})=>{
                   <div className='shopType'>
         
                     <div>
-                      <MdOutlineInterests /> <p>{data.type}</p>
+                      <MdOutlineInterests iconn /> <p>{data.type}</p>
                     </div>
 
                   </div> 
 
                   <div className='shopAddress'>
-                    <MdOutlineLocationOn/> 
+                    <MdOutlineLocationOn className='iconn'/> 
                       {data.address && (
                         <p>
                             {data.address.houseNumber} {data.address.street} , {data.address.city} , {data.address.state}

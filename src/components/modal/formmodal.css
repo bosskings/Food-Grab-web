@@ -134,6 +134,9 @@
     top: 0;
     left: 0;
   }
+  .successmodal{
+    
+  }
 }
 @media (min-width: 700px) and (max-width: 1050px){
   .formModal{
