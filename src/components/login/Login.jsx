@@ -12,6 +12,7 @@ export const Login = () => {
   const navigate = useNavigate()
 
   const [password, setPassword]= useState("")
+  const [isLoading, setIsLoading]= useState(false)
   const [email, setEmail] = useState("")
   const [visible, setVisible] = useState(false)
   const [click, setToggle] = useState(false)
@@ -120,7 +121,7 @@ export const Login = () => {
           </Link>
         </div>
         <button type='submit' className={"login"} >
-          Log into Account
+          {isLoading=== true ? '...Loading' : 'Log into Account'}
         </button>
       </form>
       <div className={"bottom2"}>

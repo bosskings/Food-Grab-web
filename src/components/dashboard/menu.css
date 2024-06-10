@@ -44,12 +44,12 @@
 }
 
 .menubox .cusineTitle ul{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   list-style: none;
   font-size: 12px;
-  /* justify-content: space-between; */
+  width: 100%;
   background-color: black;
   color: white;
   padding: 15px;
@@ -143,7 +143,18 @@
     margin-top: 10px;
     height: 100%;
   }
- 
+  .cusineTitle{
+    overflow-x: auto;
+  }
+ .menubox .cusineTitle ul{
+  width: 500px;
+ }
+.cusineBody{
+  overflow: auto;
+}
+ .cusineBody ul {
+  width: 500px;
+ }
 }
 
 

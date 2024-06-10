@@ -78,9 +78,9 @@ console.log(menuData);
             <ul>
               <li className=''>Thumbnail</li>
               <li className=''>Menu Name</li>
-              <li className='middle'>Menu Price</li>
-              <li className='middle'>Status</li>
-              <li className='last'>Stock Option</li>
+              <li className=''>Menu Price</li>
+              <li className=''>Status</li>
+              <li className=''>Stock Option</li>
             </ul>
           </div>
 

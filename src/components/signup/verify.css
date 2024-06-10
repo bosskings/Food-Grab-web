@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   height: 100vh;
+  padding: 0 5%;
 }
 .verifyCont{
   display: flex;
@@ -80,4 +81,10 @@
   right:30px;
   color: green;
   font-size: 12px;
+}
+
+@media screen and (max-width: 699px){
+  .verifyCont{
+    height: 400px;
+  }
 }

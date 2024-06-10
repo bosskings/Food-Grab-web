@@ -35,6 +35,9 @@
   flex: 2;
   position: relative
 }
+.money1{
+  font-size: 30px;
+}
 .withdrawButton{
   width: 100%;
   flex: 1;
@@ -185,4 +188,25 @@
 }
 .not-active{
   display: none;
+}
+
+
+@media screen and (max-width: 699px){
+  .firstq{
+    height: 120px;
+    padding: 20px;
+  }
+  .cy{
+    padding: 0;
+    justify-content:center ;
+  }
+  .activediv{
+    height: 100px;
+  }
+  .star{
+    top: 0;
+  }
+  .historyCont{
+    width: 500px;
+  }
 }

@@ -99,7 +99,7 @@ export const Wallet = () => {
         (<div className={"active11"}>
             <h3 className='money'>₦ 140,000<span>.00</span> </h3>
             <div className='balance'>
-            <p>Payout Balance:</p><span>$139,900.99</span> <RiInformationFill className={"balicon"}/>
+            {/* <p>Payout Balance:</p><span>$139,900.99</span> <RiInformationFill className={"balicon"}/> */}
             </div> 
            </div>
           ):(

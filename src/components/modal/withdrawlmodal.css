@@ -49,3 +49,11 @@
   border: none;
   align-self: center;
 }
+
+@media screen and (max-width: 699px) {
+  .wdModalBox{
+    top: 20%;
+    left: 5%;
+    width: 90%;
+  }
+}
