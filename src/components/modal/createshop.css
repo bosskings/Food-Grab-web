@@ -242,10 +242,12 @@ display: block;
 @media screen and (max-width:699px) {
   .createShopSec2{
     flex-direction: column;
+    padding-top: 20px;
   }
   .createShop{
-    top: 10%;
-    height: 93vh;
+    top: 8%;
+    height: 90vh;
+    z-index: 1;
   }
   .profileCredentials{
     width: 200px;
@@ -257,6 +259,7 @@ display: block;
     height: 220px;
   }
   .createShopFormProper{
-    height: 75vh;
+    height: 40vh;
+    margin-bottom: 30px;
   }
 }

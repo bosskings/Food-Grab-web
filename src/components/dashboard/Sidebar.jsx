@@ -277,7 +277,7 @@ export const Sidebar = () => {
 
   return (
     <div>
-    <div className={click? "overlay":"not-active"} onClick={handleClick}></div>
+    <div className={click? "overlay1":"not-active"} onClick={handleClick}></div>
      <div className={click? "sidebarsmall active":"sidebarsmall"}>
      <MenuApp className='dashHam' onClick={
         handleClick
@@ -365,11 +365,11 @@ export const Sidebar = () => {
           </div>
         </Link>
       <div className={"profiledetials"}>
-          <p>Alison Eyo</p>
-          <p className={"username"}>@thealisoneyo</p>
+          <p>{}</p>
+          <p className={"username"}>@{}</p>
         </div>
         <Link to={""}>
-        <RxExit className={"profileicon"} />
+        <RxExit className={"profileicon"} onClick={logout}/>
         </Link>
         </div>
       </div>  
