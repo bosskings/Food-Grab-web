@@ -20,8 +20,12 @@ export const MenuTable = (props) => {
   })
 
 
-  const handleOptionChange =(e)=>{
-    setSelectedOption(e.target.value)
+  const handleOptionChange =(e,rowId)=>{
+    const newOptions = {
+      ...selectedOption,
+      [rowId]:e.target.value,
+    };
+    setSelectedOption(newOptions)
   }
   useEffect(()=>{
     localStorage.setItem('selectedOption',selectedOption)
@@ -81,7 +85,7 @@ export const MenuTable = (props) => {
               
             )}
             {index===4 && column === "Stock Option" &&(
-              <select className='stock' value={selectedOption} onChange={handleOptionChange}>
+              <select className='stock' value={selectedOption[row.id] || 'in-stock'} onChange={(e)=>handleOptionChange(e, row.id)}>
                 <option value={"In-stock"}>In-Stock</option>
                 <option value={"Out of Stock"}>Out of Stock </option>
               </select>
