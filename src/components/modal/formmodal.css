@@ -134,8 +134,8 @@
     top: 0;
     left: 0;
   }
-  .successmodal{
-    
+  .successOverlay{
+    width: 90%;
   }
 }
 @media (min-width: 700px) and (max-width: 1050px){

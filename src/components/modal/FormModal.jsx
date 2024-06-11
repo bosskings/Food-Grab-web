@@ -124,6 +124,11 @@ export const FormModal = ({ click, handleClick, setClick }) => {
 
 
 const SuccessModal = ({show, setShow}) => {
+  const navigate = useNavigate()
+
+  const handleNavigate = ()=>{
+    navigate('/menu')
+  }
 
   
   return (
@@ -135,7 +140,7 @@ const SuccessModal = ({show, setShow}) => {
             <h2>Menu created</h2>
            <div className='btnsM'>
               <Link to={'/Dashboard'}><button className='bbns'>Dashboard</button></Link>
-              <button onClick={()=>setShow(false)}>Close</button>
+              <button onClick={()=>{setShow(false); handleNavigate()}}>Close</button>
            </div>
           </div>
         </div>

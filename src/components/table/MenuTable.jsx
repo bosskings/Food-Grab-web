@@ -3,8 +3,9 @@ import './menutable.css'
 
 
 export const MenuTable = (props) => {
-  const {columns, data}= props
-  const [checkedItems, setCheckedItems] = useState({});
+  const {columns, data, thumbnails}= props
+  // const [thumbnail, setThumbnail]= useState({})
+  // const [token, setAuthTokens]=useState(()=> localStorage.getItem('token')? JSON.parse(localStorage.getItem('token')):null)
   const [selectedOption, setSelectedOption] = useState(()=>{
     const savedOption = localStorage.getItem('selectedOption')
     try{
@@ -26,18 +27,29 @@ export const MenuTable = (props) => {
     localStorage.setItem('selectedOption',selectedOption)
   },[selectedOption])
 
-  useEffect(()=>{
-    
-    
-  },[])
 
+  // useEffect(() => {
+  //   const fetchProductImages = async () => {
+  //     try {
+  //       const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getCuisine`,{
+  //         headers:{
+  //           'Content-Type': 'application/json',
+  //           'Authorization': `Bearer ${token.token}`
+  //         }
+  //       });
+  //       const imageData = await response.json();
+  //       const imageMap = {};
+  //       imageData.data.forEach(item => {
+  //         imageMap[item.id] = item.thumbnail;
+  //       });
+  //       setThumbnail(imageMap);
+  //     } catch (error) {
+  //       console.error('Error fetching product images:', error);
+  //     }
+  //   };
 
-  const handleCheckboxChange =(event, id)=>{
-    setCheckedItems(prevstate =>({
-      ...prevstate,
-      [id]: event.target.checked,
-    }))
-  }
+  //   fetchProductImages();
+  // }, []);
 
   return (
     <div>
@@ -54,23 +66,27 @@ export const MenuTable = (props) => {
           <tbody className={"rowbd"}>
           {data.map((row)=>(
             <tr key={row.id} className={"row3"}>
-            <td>
-            <input
-                  className={"check"}
-                  type='checkbox'
-                  checked={checkedItems[row.id] || false}
-                  onChange={(e) =>{ handleCheckboxChange(e, row.id)}}
-                />
-            </td>
            {columns.map((column, index)=>(
-            <td key={index} className={"rowCont"}>
-            {index===2 && column === "Stock" &&(
+            <td key={`${row.id}-${index}`} className={"rowCont"}>
+            {index===0 && column === 'Thumbnail' && (
+              <>
+                      {thumbnails[row.id] ? (
+                        <div className={"thumbpics"}>
+                        <img src={thumbnails[row.id]} alt='thumbnail' />
+                        </div>
+                      ):(
+                        <span>No Image</span>
+                      )}
+                    </>
+              
+            )}
+            {index===4 && column === "Stock Option" &&(
               <select className='stock' value={selectedOption} onChange={handleOptionChange}>
                 <option value={"In-stock"}>In-Stock</option>
                 <option value={"Out of Stock"}>Out of Stock </option>
               </select>
             )}
-            {row[column]}
+            {column !== 'Thumbnail' && column !== 'Stock Option' && row[column]}
             </td>
            ))}
             </tr>
