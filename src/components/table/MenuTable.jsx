@@ -10,12 +10,12 @@ export const MenuTable = (props) => {
     const savedOption = localStorage.getItem('selectedOption')
     try{
       if (savedOption){
-        return savedOption ? JSON.parse(savedOption):setSelectedOption(savedOption)
+        return savedOption ? JSON.parse(savedOption):{}
       }
     }
     catch (error) {
       console.error('Error parsing localStorage data:', error);
-      return savedOption;
+      return {};
     }
   })
 
@@ -27,9 +27,9 @@ export const MenuTable = (props) => {
     };
     setSelectedOption(newOptions)
   }
-  useEffect(()=>{
-    localStorage.setItem('selectedOption',selectedOption)
-  },[selectedOption])
+  useEffect(() => {
+    localStorage.setItem('selectedOption', JSON.stringify(selectedOption));
+  }, [selectedOption]);
 
 
   // useEffect(() => {

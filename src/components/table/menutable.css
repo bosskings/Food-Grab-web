@@ -4,11 +4,13 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  overflow-y: auto;
 }
 .menucolwrapper{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow-x: auto;
 }
 .menucol{
   width: 100%;
@@ -64,6 +66,9 @@
 
 @media screen and (max-width:699px){
   .row3{
-    width: 400px;
+    width: 700px;
+  }
+  .menucol{
+    width: 700px;
   }
 }
