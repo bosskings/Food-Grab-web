@@ -33,10 +33,18 @@
   align-items: flex-start;
   gap: 10px;
 }
+.customerName div:nth-child(2){
+  align-items: flex-end;
+}
 .customerAdd{
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+.customerAdd div{
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
 }
 .orderDet{
   width: 100%;
@@ -108,6 +116,11 @@
   background-color: black;
   color: #fff;
   transition:  ease 0.1s;
+}
+.total{
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
 }
 @media screen and (max-width: 699px) {
   .modall{

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import "./modal.css"
+import { use } from 'i18next';
 
 const OrderModal = ({row, selectedItem}) => {
 
 
   const [click, setClick] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [customerDetials, setCustomerDetials] = useState('');
+  const [customerDetials, setCustomerDetials] = useState({});
+  const [addres, setAddress] = useState({})
+  const [price, setPrice]= useState({})
   const [token, setAuthTokens]= useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
 
   const handleClick = () =>{
@@ -30,8 +33,18 @@ const OrderModal = ({row, selectedItem}) => {
           throw new Error('failed to fetch customer details')
         }
         const data = await response.json();
-        setCustomerDetials(data);
-        console.log('Response Data:', response)
+
+        const addressMap = data.data.reduce((acc, order) => {
+          acc[order._id] = order.userId.currentLocation;
+          return acc;
+        }, {});
+
+        
+ 
+        setCustomerDetials(data.data[0]);
+        setAddress(addressMap)
+        console.log('response Data:', data)
+        console.log('response Data:', addressMap)
 
       } catch (error) {
         console.error('Error fetching customer details:', error);
@@ -39,7 +52,7 @@ const OrderModal = ({row, selectedItem}) => {
     };
 
     fetchCustomerDetails();
-  }, []);
+  }, [token]);
 
   useEffect(()=>{
     const updateStatus = async()=>{
@@ -69,21 +82,21 @@ const OrderModal = ({row, selectedItem}) => {
         <div className="customerAdd">
         <div>
             <h3>Customer Address</h3>
-            <p>{customerDetials.customerAddress}</p>
+            {addres[customerDetials._id] ? (<p>{addres[customerDetials._id]}</p>) : ('no address')}
           </div>
           <div>
             <h3>Payment Option</h3>
-            <p>{customerDetials.paymentOption}</p>
+            <p>{customerDetials.paymentMethod}</p>
           </div>
         </div>
           <div className="orderDet">
           <h3>Ordered Items</h3>
           <div className={"orderdetailcontent"}>
-            {row && row.Product && Array.isArray(row.Product) ? (
+          {row && row.Product && Array.isArray(row.Product) ? (
               row.Product.map((product, index) => (
                 <div key={index} className={"rwprod"}>
-                  <span>{product}</span>
-                  <span>{row.Price && row.Price[index] ? ` - $${row.Price[index]}` : 'no price data'}</span>
+                  <span>{product.name}</span>
+                  <span>{product.price|| 'no price data'}</span>
                 </div>
               ))
             ) : (
@@ -96,7 +109,7 @@ const OrderModal = ({row, selectedItem}) => {
           </div>
           <div className={"total"}>
           <h3>Total</h3>
-          <p>{customerDetials.total}</p>
+          <p>{customerDetials.totalPrice}</p>
           </div>
           </div>
         <div className="but">

@@ -4,11 +4,8 @@ import { Dropdown } from '../dashboard/dropdown/Dropdown';
 import OrderModal from '../modal/OrderModal';
 
 const OrderTable = (props) => {
-  const [token, setAuthTokens] = useState(()=> localStorage.getItem('token')? JSON.parse(localStorage.getItem('token')): null)
-
   const { columns, data, dropdownItems} = props;
   const [checkedItems, setCheckedItems] = useState({});
-  const [productImages, setProductImages] = useState([]);
   const dropdownRefs = useRef([]);
   const [show,setShow] = useState(true)
   const handleShow = ()=>{
@@ -22,24 +19,6 @@ const OrderTable = (props) => {
     }));
   };
 
-  useEffect(() => {
-    const fetchProductImages = async () => {
-      try {
-        const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getOrders`,{
-          headers:{
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token.token}`
-          }
-        });
-        const imageData = await response.json();
-        setProductImages(imageData.data);
-      } catch (error) {
-        console.error('Error fetching product images:', error);
-      }
-    };
-
-    fetchProductImages();
-  }, []);
 
   useEffect(() => {
     dropdownRefs.current = Array(data.length).fill().map(( _, index) => dropdownRefs.current[index] || React.createRef());
@@ -94,9 +73,9 @@ const OrderTable = (props) => {
                 ref={dropdownRefs.current[rowIndex]}>
                   {index === 2 && column === 'Product' && (
                     <>
-                    {<img src={productImages[row.id]} alt='' className={'productimage'} />}
+                    {<img src={row.Product[0].image} alt='' className={'productimage'} />}
                     {Array.isArray(row.Product) && row.Product.length > 0 && show ?(
-                      <div>{row.Product[0]}</div>
+                      <div>{row.Product[0].name}</div>
                     ):("")}
                     </>
                   )}

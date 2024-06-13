@@ -133,8 +133,12 @@ export const Orders = () => {
         const data = await response.json()
         const formattedData = data.data.map(orders=>({
           'Order ID': orders._id, 
-          Customer: "Kingsley Temi", 
-          Product: orders.items.map(item => item.name), 
+          Customer: orders.userId.fullname, 
+          Product: orders.items.map(item =>({
+            name:item.name,
+            image:item.cuisineImage,
+            price:item.price
+          })), 
           Quantity: orders.items.length, 
           'Order Date': new Date(orders.date).toLocaleString(),
           Status: orders.requestStatus
@@ -168,6 +172,7 @@ export const Orders = () => {
         });
 
         setTables(newTables);
+
       }
       catch(error){
         console.error("An Error occurredError: Merchant Shop doesnt have any order yet", error)
