@@ -27,17 +27,18 @@ const OrderTable = (props) => {
   const handleDropdownItemClick = (index, rowData) => {
     dropdownRefs.current[index].current.handleOpenModal(rowData);
   };
+  
 
 
 
   const getFourthContentStyle = (value) => {
-    if (value === 'Delivered') {
+    if (value === 'DELIVERED') {
       return 'delivered';
-    } else if (value === 'Cancelled') {
+    } else if (value === 'CANCELLED') {
       return 'cancelled';
-    } else if (value === 'Packaged') {
+    } else if (value === 'PACKAGED') {
       return 'packaged';
-    } else if (value === 'In-transit') {
+    } else if (value === 'IN-TRANSIT') {
       return 'in-transit';
     } else if (value === "PROCESSING") {
       return 'PROCESSING';

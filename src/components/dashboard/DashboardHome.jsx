@@ -1,10 +1,8 @@
 import React, {useEffect, useState}from 'react'
 import "./dashboard.css"
 import BOXES from "../media/boxes.png"
-// import { RiInformationFill } from "react-icons/ri";
 import { FaChevronRight } from "react-icons/fa6";
 import { Table } from '../table/Table';
-// import axios, { all } from 'axios';
 import { XCircle } from 'react-bootstrap-icons';
 import gif from '../media/gif2.gif'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -17,38 +15,21 @@ import "swiper/css/navigation";
 import { EffectCube, Pagination, Navigation, Autoplay, } from "swiper/modules";
 
 
-// const data = [
-//   {id:1, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
-//   {id:2, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
-//   {id:3, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
-//   {id:4, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "In-transit" },
-//   {id:5, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Packaged" },
-//   {id:6, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
-//   {id:7, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Packaged" },
-//   {id:8, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Packaged" },
-//   {id:9, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Packaged" },
-//   {id:10, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
-//   {id:11, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
-//   {id:12, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
-//   {id:13, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
-//   {id:14, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Delivered" },
-//   {id:15, 'Order ID': "Order#585939",Qty:'5', Price: "₦ 20,000.00", 'Order Date': "08:00 PM, 02 Dec, 2021", Status: "Cancelled" },
-// ]
+
 const columns = ['Order ID','Price', 'Order Date', 'Status'];
 
 export const DashboardHome = () => {
 
   let [token, setAuthTokens] = useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
   
-  // console.log(token);
 
-  const id = '' 
+
+
 
   const [show,setShow] = useState(false)
-  // const [balance, setBalance] = useState('')
   const [tableData, setTableData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const [mssg, setMssg] = useState('')
+  const [successMssg, setSuccessMssg] = useState()
 
   const [dataOverview, setDataOverview] = useState({})
 
@@ -123,6 +104,16 @@ useEffect(()=>{
     }
 },[token])
 
+//================= SUCCESS MSSG ===============
+
+useEffect(()=>{
+  const storedMssg = localStorage.getItem('sucessmssg')
+  if (storedMssg){
+    setSuccessMssg(JSON.parse(storedMssg))
+    setTimeout(()=> setSuccessMssg(''),3000)
+  }
+},[])
+
 
 
 // ========== DATA OVERVIEW ===============
@@ -171,6 +162,7 @@ const url = 'https://api.foodgrab.africa/merchants/api/v1/overview'
     <section className={"dashsec1"}>
     <div>
       <p className="txt2">Dashboard</p>
+      {successMssg && <div className='successful'>{successMssg}</div> }
     </div>
 
     

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './verify.css';
 import Image from "../media/mail2.jpg";
-import { useNavigate, } from 'react-router-dom';
+import { json, useNavigate, } from 'react-router-dom';
 
 export const Verify = () => {
   const [verification, setVerification] = useState('');
@@ -38,6 +38,7 @@ export const Verify = () => {
         } else {
           const data = await response.json();
           setErrorMessage(data.message || 'Verification Failed');
+          localStorage.setItem('successMssg', JSON.stringify(data.message))
         }
       } catch (error) {
         console.error('Error:', error);
@@ -72,7 +73,6 @@ export const Verify = () => {
     <div className={"verifybox"}>
       <div className={'verifyCont'}>
       {errorMessage && <p className={"errormessage"}>{errorMessage}</p>}
-      {successMssg && <p className={"successmssg"}>{successMssg}</p>}
         <p className={"txt2"}>Verification</p>
         <div className='Vrifyimg'>
           <img src={Image} alt='' />

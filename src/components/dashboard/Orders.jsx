@@ -50,9 +50,11 @@ export const Orders = () => {
   const columns2 = ['Order ID', 'Customer', 'Product', 'Status', 'Order Date','Action'];
 
   const [mssg, setMssg] = useState('')
+  const [successMssg, setSuccessMssg] = useState('')
   const[active, setactive]= useState('table1')
   const [isLoading, setIsLoading] = useState(false)
   const [activeHeader, setActiveHeader] = useState("tableA")
+  const [orderHistory, setOrderHistory]= useState([])
   const [border, setBorder]= useState([
     {
       border1:{},
@@ -145,6 +147,7 @@ export const Orders = () => {
         }))
         console.log('Response Data:', data)
         console.log('formatted data:', formattedData)
+        setOrderHistory(formattedData)
         
         const newTables = {
           table1: [],
@@ -275,6 +278,49 @@ export const Orders = () => {
     setactive(tableKey) && setActiveHeader(tableKey)
   }
 
+  const updateOrderStatus = (orderId, newStatus) => {
+    const updatedOrderHistory = orderHistory.map(order =>
+      order['Order ID'] === orderId ? { ...order, Status: newStatus } : order
+    );
+    setOrderHistory(updatedOrderHistory);
+
+    const newTables = {
+      table1: [],
+      table2: [],
+      table3: [],
+      table4: [],
+      table5: [],
+      table6: []
+    };
+
+    updatedOrderHistory.forEach(order => {
+      if (order.Status === 'PROCESSING') {
+        newTables.table1.push(order);
+      } else if (order.Status === 'PROCESSING') {
+        newTables.table2.push(order);
+      } else if (order.Status === 'PACKAGED') {
+        newTables.table3.push(order);
+      } else if (order.Status === 'IN-TRANSIT') {
+        newTables.table4.push(order);
+      } else if (order.Status === 'DELIVERED') {
+        newTables.table5.push(order);
+      } else if (order.Status === 'CANCELLED') {
+        newTables.table6.push(order);
+      }
+    });
+
+    setTables(newTables);
+  };
+
+  useEffect(()=>{
+    const storedMssg = localStorage.getItem("successMessage")
+    if (storedMssg){
+      setSuccessMssg(JSON.parse(storedMssg))
+      setTimeout(() => {
+        setSuccessMssg('')
+      },3000 );
+    }
+  })
 
   return (
     <div className='order'>
@@ -286,6 +332,7 @@ export const Orders = () => {
         ''
         }
     <p className='txt2'>Orders</p>
+    {successMssg && <div className={'successful'}>{successMssg}</div>}
     <div className={"scrollheader"}>
       <div className='headers'>
 
@@ -297,6 +344,7 @@ export const Orders = () => {
       setActiveHeader("tableA");
       }} 
       style={border.border1} >New Orders</p>
+
 
 
       <p 

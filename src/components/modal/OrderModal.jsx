@@ -9,7 +9,6 @@ const OrderModal = ({row, selectedItem}) => {
   const [isLoading, setIsLoading] = useState(false)
   const [customerDetials, setCustomerDetials] = useState({});
   const [addres, setAddress] = useState({})
-  const [price, setPrice]= useState({})
   const [token, setAuthTokens]= useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null)
 
   const handleClick = () =>{
@@ -65,6 +64,44 @@ const OrderModal = ({row, selectedItem}) => {
     }
   })
 
+  const handleConfirm = async () => {
+    setIsLoading(true);
+    try {
+      let status;
+      if (row.Status === 'PROCESSING') {
+        status = 'PACKAGED';
+      } else if (row.Status === 'PACKAGED') {
+        status = 'IN-TRANSIT';
+      } else if (row.Status === 'IN-TRANSIT') {
+        status = 'DELIVERED';
+      } else {
+        status = 'CANCELLED';
+      }
+
+      const url = `https://api.foodgrab.africa/merchants/api/v1/updateStatus/${row['Order ID']}`
+      const response = await fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token.token}`
+        },
+        body: JSON.stringify({ 
+          requestStatus: status 
+        })
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update order status');
+      }
+      const data = await response.json();
+      console.log('Order status updated:', data);
+      localStorage.setItem('successMessage',JSON.stringify(data.mssg))
+    } catch (error) {
+      console.error('Error updating order status:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className={click ?"not-active" :'modall'}>
     <div className={click ? "not-active":"overlay"} onClick={handleClick}></div>
@@ -114,7 +151,7 @@ const OrderModal = ({row, selectedItem}) => {
           </div>
         <div className="but">
         {selectedItem && selectedItem.title !== 'View Details' && 
-        (<button type='submit'>{isLoading === true ? 'Loading . . ' : 'Confirm'}</button>)
+        (<button type='submit' onClick={()=>{handleConfirm();handleClick()}}>{isLoading === true ? 'Loading . . ' : 'Confirm'}</button>)
         }
           
           <button onClick={handleClick}>Close

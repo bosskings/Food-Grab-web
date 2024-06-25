@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MAIL from "../media/mail.png"
-import GOOGLE from "../media/google.png"
+// import GOOGLE from "../media/google.png"
 import "./login.css"
-import { Eye, EyeSlash, Twitter } from 'react-bootstrap-icons'
-import { Link, json, useNavigate} from 'react-router-dom'
-import { useTranslation } from "react-i18next";
+import { Eye, EyeSlash } from 'react-bootstrap-icons'
+import { Link, useNavigate} from 'react-router-dom'
+
 
 
 
@@ -12,12 +12,12 @@ export const Login = () => {
   const navigate = useNavigate()
 
   const [password, setPassword]= useState("")
+  const [successMssg, setSuccessMssg] = useState('')
   const [isLoading, setIsLoading]= useState(false)
   const [email, setEmail] = useState("")
   const [visible, setVisible] = useState(false)
   const [click, setToggle] = useState(false)
   const [error, setError] = useState("")
-  const [successMssg, setSuccessMssg] = useState('')
   const [rememberMe, setRememberMe] = useState(false);
   
   const handleClick = ()=>{
@@ -44,12 +44,13 @@ export const Login = () => {
   
           const data = await response.json();
           localStorage.setItem('token', JSON.stringify(data));
-          localStorage.setItem('sucessmssg', JSON.stringify(data))
           console.log(data)
+          localStorage.setItem('sucessmssg', JSON.stringify("Login Successful"))
           navigate('/Dashboard')
         }else{
           const data = await response.json();
           setError(data.mssg)
+          setTimeout(()=> setError(''),3000)
         }
       } catch(error) {
         console.error('Error:', error);
@@ -58,12 +59,21 @@ export const Login = () => {
     }
   
 
+    //=============== SUCCESS MSSG ======== 
+
+    useEffect(()=>{
+      const storedMssg = localStorage.getItem('successMssg')
+      if(storedMssg){
+        setSuccessMssg(JSON.parse(storedMssg))
+      }
+    },[])
+
 
 
   return (
     <div className='loginbody'>
-    {successMssg && <div className='successful'> {successMssg}</div> }
     {error && <div className='error'> {error} </div> }
+    {successMssg && <p className={"successmssg"}>{successMssg}</p>}
       <h1>Log In</h1>
 
       <p>Enter your credentials to access your account</p>

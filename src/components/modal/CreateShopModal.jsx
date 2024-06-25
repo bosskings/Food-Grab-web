@@ -19,6 +19,7 @@ export const CreateShopModal = ({ closeComponent }) => {
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
+  const [addressDescription, setAddressDescription] = useState('')
   const [description, setDescription] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
   const [type, setType] = useState('');
@@ -46,6 +47,7 @@ export const CreateShopModal = ({ closeComponent }) => {
       formData.append('state', state);
       formData.append('houseNumber', houseNumber);
       formData.append('type', type);
+      formData.append('addressDescription', addressDescription)
       if (logo) {
         formData.append('logo', logo);
       }
@@ -244,6 +246,15 @@ export const CreateShopModal = ({ closeComponent }) => {
                 value={street}
                 required
               />
+               <label className={"txt3"}>Street</label>
+               <textarea
+               className={"createinput"}
+               name='addressDescription'
+               placeholder='E.g, oppsite Zenith bank by gra junction'
+               onChange={e => setAddressDescription(e.target.value)}
+               value={addressDescription}
+               required
+               />
             </div>
           </section>
         </form>
