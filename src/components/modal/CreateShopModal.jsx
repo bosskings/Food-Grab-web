@@ -7,6 +7,7 @@ import { XCircle } from 'react-bootstrap-icons';
 export const CreateShopModal = ({ closeComponent }) => {
   const [open, setOpen] = useState(false);
   const [shop, setShop] = useState('');
+  const [success, setSuccess] = useState(false);
 
   const [image, setImage] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
@@ -66,8 +67,10 @@ export const CreateShopModal = ({ closeComponent }) => {
       if (response.ok) {
         setErrMessage('Post created successfully!');
         const data = await response.json();
-        console.log(data);
+        setShop(data.data);
+        console.log(data.data);
         setIsLoading(false);
+        setSuccess(true);
       } else {
         setErrMessage('Error creating post');
         setIsLoading(false);
@@ -104,7 +107,7 @@ export const CreateShopModal = ({ closeComponent }) => {
         </div>
 
         <form className="createshform" onSubmit={handleShopSubmit}>
-          <section className="creatshopSecOne"
+          <section className={image ? "creatshopSecOne" : 'creatshopSecOnea'}
             onClick={() => document.querySelector(".input-field").click()}>
             <div>
               <input
@@ -134,10 +137,12 @@ export const CreateShopModal = ({ closeComponent }) => {
                 }}
               />
               {image ?
-                <img src={image} alt='' /> :
+                <div className='innerImage'><img src={image} alt='' /> </div> :
                 <div className='uploadIconTextDiv'>
+                  <div>
                   <p className='textIcon'><AiOutlineCloudUpload /></p>
                   <p>Upload Cover Image </p>
+                  </div>
                 </div>
               }
             </div>

@@ -177,18 +177,39 @@ display: block;
 
 .creatshopSecOne{
   border-radius: 10px;
-  height: 290px;
+  height: 300px;
   width: 100%;
   overflow: hidden;
   background-color: rgb(229, 229, 229);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
+}
+
+.innerImage img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+
+.creatshopSecOnea{
+  border-radius: 10px;
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgb(229, 229, 229);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .uploadIconTextDiv{
   text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 

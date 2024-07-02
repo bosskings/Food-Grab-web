@@ -72,12 +72,7 @@ export const Menu = () => {
 console.log(menuData);
 
   return (
-    <div className='menu'>
-      <section className={"menusec1"}>
-        <p className={"txt2"}>Food Menu</p>
-      </section>
-
-      
+    <div className='menu'>      
       <section className={"menusec2"}>
         <div className={"menubox"}>
 
