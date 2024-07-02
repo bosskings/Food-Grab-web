@@ -174,10 +174,19 @@ export const Signup = () => {
             password: input.password
           })
         })
+
+
         if (!response.ok){
+          console.log(response);
           throw new Error('Signup request failed');
         }
         
+        if(response.ok || response.status === 200){
+          navigate(`/verify`)
+          console.log(response);
+        }
+
+
         setInput({
           firstname: '',
           lastname:'',
@@ -189,7 +198,6 @@ export const Signup = () => {
         });
           console.log(response.data)
           localStorage.setItem('newEmail', JSON.stringify(input.email)); 
-        navigate(`/verify`)
 
       }catch{
        console.error("signup failed", error)
