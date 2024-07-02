@@ -107,10 +107,11 @@ useEffect(()=>{
 //================= SUCCESS MSSG ===============
 
 useEffect(()=>{
-  const storedMssg = localStorage.getItem('sucessmssg')
+  const storedMssg = localStorage.getItem('loginSuccess')
   if (storedMssg){
-    setSuccessMssg(JSON.parse(storedMssg))
+    setSuccessMssg('Login Successful')
     setTimeout(()=> setSuccessMssg(''),3000)
+    localStorage.removeItem('loginSuccess')
   }
 },[])
 

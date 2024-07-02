@@ -45,7 +45,7 @@ export const Login = () => {
           const data = await response.json();
           localStorage.setItem('token', JSON.stringify(data));
           console.log(data)
-          localStorage.setItem('sucessmssg', JSON.stringify("Login Successful"))
+          localStorage.setItem('loginSuccess', 'true')
           navigate('/Dashboard')
         }else{
           const data = await response.json();
