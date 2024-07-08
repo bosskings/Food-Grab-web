@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AiOutlinePicture, AiOutlineCloudUpload } from "react-icons/ai";
 import { MdVerifiedUser } from "react-icons/md";
 import './createshop.css';
 import { XCircle } from 'react-bootstrap-icons';
+import DEF from "../media/default.png"
+import RESTURANT from "../media/resturant.png"
 
 export const CreateShopModal = ({ closeComponent }) => {
   const [open, setOpen] = useState(false);
   const [shop, setShop] = useState('');
+  const [existingData, setExistingData]= useState('')
   const [success, setSuccess] = useState(false);
 
-  const [image, setImage] = useState(null);
-  const [profileImage, setProfileImage] = useState(null);
+  const [image, setImage] = useState(''||RESTURANT);
+  const [profileImage, setProfileImage] = useState(''||DEF);
   const [fileName, setFileName] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -81,9 +84,58 @@ export const CreateShopModal = ({ closeComponent }) => {
       setIsLoading(false);
     }
   };
+
+
+//   const url2 = 'https://api.foodgrab.africa/merchants/api/v1/getShop'
+//   useEffect(()=>{
+
+//    const fetchShopData = async ()=>{
+//     setIsLoading(true);
+//     try{
+//       const response = await fetch(url2, {
+//         method: 'GET',
+//         headers : {
+//           "Authorization": `Bearer ${token.token}`,
+//         }
+//       })
+
+//       const result = await response.json();
+//       if (response.ok) {
+//         // Destructure the data object
+//         const { data } = result;
+//         setProfileImage(data|| DEF);
+//         setImage(data || RESTURANT);
+//         setExistingData(data);
+
+//         // Optionally set individual state fields
+//         setShopName(data.shopName || '');
+//         setDescription(data.description || '');
+//         setStreet(data.address?.street || '');
+//         setCity(data.address?.city || '');
+//         setState(data.address?.state || '');
+//         setHouseNumber(data.address?.houseNumber || '');
+//         setAddressDescription(data.address?.addressDescription || '');
+//         setType(data.type || '');
+
+//         setIsLoading(false);
+//       } else {
+//         setIsLoading(false);
+//         setErrMessage('Failed to fetch shop data');
+//       }
+//     } catch (error) {
+//       console.error('Error fetching Shop data:', error);
+//       setIsLoading(false);
+//       setErrMessage('Error fetching shop data');
+//     }
+//   };
+//   fetchShopData();
+// }, [token]);
+
+
   const handleOpen = ()=>{
     setOpen(!open)
   }
+
   const ClosePfModal = ()=>{
     return(
       <div>
@@ -137,9 +189,15 @@ export const CreateShopModal = ({ closeComponent }) => {
                 }}
               />
               {image ?
-                <div className='innerImage'><img src={image} alt='' /> </div> :
+                <div className='innerImage'><img src={image.backdropPic} alt='' /> 
+                <div className={"IconTextDiv"}>
+                  <p className='textIcon'><AiOutlineCloudUpload /></p>
+                  <p>Upload Cover Image </p>
+                  </div>
+                </div> :
                 <div className='uploadIconTextDiv'>
-                  <div>
+                <img src={RESTURANT} alt=''/>
+                  <div className={"IconTextDiv"}>
                   <p className='textIcon'><AiOutlineCloudUpload /></p>
                   <p>Upload Cover Image </p>
                   </div>
@@ -161,7 +219,10 @@ export const CreateShopModal = ({ closeComponent }) => {
                       }
                     }}
                   />
-                  <img src={profileImage} alt='' className={''} />
+                  {profileImage ? 
+                  <img src={profileImage.logo} alt='' className={''} /> :
+                  <img src={DEF} alt='' className={''} />
+                  }
                   <div className="checkboxContainer2">
                     <MdVerifiedUser className='customcheckbox2' color={shop && shop.verified ? '#0077ff' : 'grey'} />
                   </div>
@@ -178,7 +239,7 @@ export const CreateShopModal = ({ closeComponent }) => {
               <div className={"submitShopProfile"}>
                 <p className={'txt3'}>Shop Information</p>
                 <p className='ppsubtxt cc'>update your personal details here</p>
-                <button type='submit' className={"updPfButton"}>{isLoading === true ? 'Loading . . ' : 'Submit'}</button>
+                <button type='submit' className={"updPfButton"} >{isLoading === true ? 'Loading . . ' : 'Submit'}</button>
               </div>
             </div>
             <div className={"createShopFormProper"}>
@@ -204,7 +265,7 @@ export const CreateShopModal = ({ closeComponent }) => {
               />
               <label className={"txt3"}>Category</label>
               <select className={"cate"}
-                value={type}
+                value={type? type : existingData.type}
                 onChange={(e) => setType(e.target.value)}
               >
                 <option>Select type</option>
@@ -251,7 +312,7 @@ export const CreateShopModal = ({ closeComponent }) => {
                 value={street}
                 required
               />
-               <label className={"txt3"}>Street</label>
+               <label className={"txt3"}>Address Description</label>
                <textarea
                className={"createinput"}
                name='addressDescription'

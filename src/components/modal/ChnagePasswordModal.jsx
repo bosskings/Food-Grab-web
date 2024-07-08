@@ -7,14 +7,19 @@ import { useNavigate } from 'react-router-dom';
 export const ChnagePasswordModal = ({closeComponent}) => {
 
   const navigate =  useNavigate()
+  let [token, setAuthTokens] = useState(() => localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null);
   const [visible, setVisible] = useState(false)
   const [click, setToggle] = useState(false)
+  const [isLoading, setIsLoading]= useState(false)
+  const [errMssg, setErrMssg] = useState("")
   const [input, setInput] = useState({
-    password: '',
+    oldPassword: '',
+    newPassword:'',
     confirmPassword: ''
-  });
+  }); 
   const [error, setError] = useState({
-    password: '',
+    oldPassword: '',
+    newPassword:'',
     confirmPassword: ''
   })
   const [close, setclose] =useState(false)
@@ -40,6 +45,7 @@ export const ChnagePasswordModal = ({closeComponent}) => {
  const onBlurValidate = e =>{
   validateInput(e)
  }
+
  const validateInput = e => {
   let { name, value } = e.target;
   setError(prev => {
@@ -48,69 +54,24 @@ export const ChnagePasswordModal = ({closeComponent}) => {
 
 
     switch (name) {
-      case "firstname":
+      case "oldPassword":
         if (!value) {
-          stateObj[name] = "Please enter firstname.";
-        } else {
-          stateObj[name] = ""; 
+          stateObj[name] = "Please enter your Password.";
         }
         break;
 
-      case "lastname":
+      case "newPassword":
         if (!value) {
-          stateObj[name] = "Please enter lastname.";
-        } else {
-          stateObj[name] = ""; 
-        }
-        break;
-
-      case "phone":
-        if (!value) {
-          stateObj[name] = "Please enter a valid phone number.";
-        } else if(value.length < 0 || value.length > 11 ){
-          stateObj[name] = "Please enter a valid phone number."; 
-        }else{
-          stateObj[name]= ""
-        }
-        break;
-
-      case "NIN":
-        if (!value) {
-          stateObj[name] = "Please enter a valid NIN.";
-        } else if(value.length > 10 || value.length < 10 ){
-          stateObj[name] = "Please enter a valid NIN"; 
-        } else{
-          stateObj[name]=""
-        }
-        break;
-
-      case "email":
-        if (!value) {
-          stateObj[name] = "Please enter an email.";
-        } else if (!emailPattern.test(value)) {
-          stateObj[name] = "Please enter a valid email address.";
-        } else {
-          stateObj[name] = "";
-        }
-        break;
-        
-
-      case "password":
-        if (!value) {
-          stateObj[name] = "Please enter a Password.";
-        } else { 
-          stateObj[name] = ""; 
+          stateObj[name] = "please enter a new Password";
         }
         break;
 
       case "confirmPassword":
         if (!value) {
           stateObj[name] = "Confirm Password.";
-        } else if (value !== input.password) {
+        } else if (value !== input.newPassword) {
           stateObj[name] = "Password and Confirm Password do not match.";
-        } else {
-          stateObj[name] = ""; 
-        }
+        } 
         break;
 
       default:
@@ -121,42 +82,58 @@ export const ChnagePasswordModal = ({closeComponent}) => {
   });
 };
 
+const logout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('email');
+  navigate('/Merchantlogin');
+};
+
 
 const handleSubmitForm = async (e) => {
   e.preventDefault(); 
 
-  validateInput({ target: { name: 'password', value: input.password } });
+  validateInput({ target: { name: 'oldPassword', value: input.oldPassword } });
+  validateInput({ target: { name: 'newPassword', value: input.newPassword } });
   validateInput({ target: { name: 'confirmPassword', value: input.confirmPassword } });
 
   setError(prevError => ({
     ...prevError,
-    password: error.password,
+    oldPassword: error.oldPassword,
+    newPassword: error.newPassword,
     confirmPassword: error.confirmPassword
   }));
 
-  if (!error.username && !error.password && !error.confirmPassword) {
+  if (!error.oldPassword && !error.newPassword && !error.confirmPassword) {
     try{
-      const response = await fetch("https://api.foodgrab.africa/merchants/api/v1/",{
-        method: 'POST',
+      const response = await fetch("https://api.foodgrab.africa/merchants/api/v1/updatepassword",{
+        method: 'PATCH',
         headers:{
-          'content-Type':'application/json'
+          'content-Type':'application/json',
+          "Authorization": `Bearer ${token.token}`,
         },
         body: JSON.stringify({
-          password: input.password
+          oldPassword: input.oldPassword,
+          newPassword: input.newPassword
         })
       })
+      const data = await response.json()
       if (!response.ok){
-        throw new Error('change password request failed');
+        console.log(data)
+        setInput({
+          oldPassword: '',
+          newPassword: ''
+        });
+        setIsLoading(true)
+        localStorage.setItem('changePassword', 'true')
+      }else{
+        setErrMssg(data.mssg);
+        setIsLoading(false);
       }
-      setInput({
-        password: '',
-        confirmPassword: ''
-      });
-
-      navigate('/Merchantlogin')
 
     }catch{
-     console.error("Change Password failed", error)
+      console.error("Change Password failed", error);
+      setErrMssg('Password change failed');
+      setIsLoading(false);
     }
   }
 };
@@ -171,9 +148,10 @@ const ClosePfModal = ()=>{
 
 
   return (
-    <div className={close ?"not-active":"changepasswordmodal"}>
+    <div className={close ? "not-active":"changepasswordmodal"}>
      <div className={"overlay"} onClick={closeComponent}></div>
       <div className={"changeps"}>
+      {errMssg && <div className='error'> {errMssg} </div> }
       <ClosePfModal onClick={handleClose}/>
         <p className='txt2'>Change Password</p>
         <p className='ppsubtxt'>Change Password and continue enjoying!!</p>
@@ -183,12 +161,12 @@ const ClosePfModal = ()=>{
         onSubmit={handleSubmitForm}>
             <div className={"pass2"} >
           <input 
-            value={input.password} 
+            value={input.oldPassword} 
             onChange={onInputChange}
             onBlur={onBlurValidate}
             type={visible ? "text": "password"}
-            name='password'
-            placeholder='enter password' 
+            name='oldPassword'
+            placeholder='enter old password' 
             className='in b' 
             required
           />
@@ -203,14 +181,37 @@ const ClosePfModal = ()=>{
             }} />
           </div>
         </div>
-        {error.password && <span className='err2'>{error.password}</span>}
+        {error.oldPassword && <span className='err2'>{error.oldPassword}</span>}
+        <div className={"pass2"} >
+          <input 
+            value={input.newPassword} 
+            onChange={onInputChange}
+            onBlur={onBlurValidate}
+            type={visible ? "text": "password"}
+            name='newPassword'
+            placeholder='enter new password' 
+            className='in b' 
+            required
+          />
+          <div className={"eye2"} >
+            <Eye className={click? 'see2 is-visible' : "unsee2"} onClick={()=>{
+              handleVisible();
+              handleClick()
+            }} />
+            <EyeSlash className={ click ? 'unsee2': "see2"} onClick={()=>{
+              handleVisible();
+              handleClick()
+            }} />
+          </div>
+        </div>
+        {error.newPassword && <span className='err2'>{error.newPassword}</span>}
         <div className={"pass2"} >
           <input 
             value={input.confirmPassword} 
             onChange={onInputChange}
             type={visible ? "text": "password"}
             name='confirmPassword'
-            placeholder='confirm password' 
+            placeholder='confirm new password' 
             className='in b' 
             required
           />
@@ -225,8 +226,8 @@ const ClosePfModal = ()=>{
             }} />
           </div>
         </div>
-        {error.password && <span className='err2'>{error.confirmPassword}</span>}
-        <button className='chpswbutt'>Change Password</button>
+        {error.confirmPassword && <span className='err2'>{error.confirmPassword}</span>}
+        <button className='chpswbutt' type='submit'> {isLoading === true ? "Loading..." : "Change Password" }</button>
         </form>
       </div>
       {closeComponent && close}

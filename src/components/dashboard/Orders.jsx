@@ -55,6 +55,7 @@ export const Orders = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [activeHeader, setActiveHeader] = useState("tableA")
   const [orderHistory, setOrderHistory]= useState([])
+  const [refresh, setRefresh] = useState(false)
   const [border, setBorder]= useState([
     {
       border1:{},
@@ -126,7 +127,7 @@ export const Orders = () => {
         const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getOrders`, {
           headers:{
             'Content-Type': 'application/json',
-          "Authorization": `Bearer ${token.token}`
+          'Authorization': `Bearer ${token.token}`
           }
         });
         if (!response.ok){
@@ -187,7 +188,7 @@ export const Orders = () => {
   if(token){
     fetchTableData()
   }
-  },[token])
+  },[token,refresh])
 
   useEffect(()=>{
     const tableLoca = tables
@@ -278,38 +279,38 @@ export const Orders = () => {
     setactive(tableKey) && setActiveHeader(tableKey)
   }
 
-  const updateOrderStatus = (orderId, newStatus) => {
-    const updatedOrderHistory = orderHistory.map(order =>
-      order['Order ID'] === orderId ? { ...order, Status: newStatus } : order
-    );
-    setOrderHistory(updatedOrderHistory);
-
-    const newTables = {
-      table1: [],
-      table2: [],
-      table3: [],
-      table4: [],
-      table5: [],
-      table6: []
-    };
-
-    updatedOrderHistory.forEach(order => {
-      if (order.Status === 'PROCESSING') {
-        newTables.table1.push(order);
-      } else if (order.Status === 'PROCESSING') {
-        newTables.table2.push(order);
-      } else if (order.Status === 'PACKAGED') {
-        newTables.table3.push(order);
-      } else if (order.Status === 'IN-TRANSIT') {
-        newTables.table4.push(order);
-      } else if (order.Status === 'DELIVERED') {
-        newTables.table5.push(order);
-      } else if (order.Status === 'CANCELLED') {
-        newTables.table6.push(order);
-      }
-    });
-
-    setTables(newTables);
+  const updateOrderStatus = (updatedOrder) => {
+      const updatedOrderHistory = orderHistory.map(order =>
+        order['Order ID'] === updatedOrder['Order ID'] ?  updatedOrder : order
+      );
+      setOrderHistory(updatedOrder);
+  
+      const newTables = {
+        table1: [],
+        table2: [],
+        table3: [],
+        table4: [],
+        table5: [],
+        table6: []
+      };
+  
+      updatedOrderHistory.forEach(order => {
+        if (order.Status === 'PROCESSING') {
+          newTables.table1.push(order);
+        } else if (order.Status === 'PROCESSING') {
+          newTables.table2.push(order);
+        } else if (order.Status === 'PACKAGED') {
+          newTables.table3.push(order);
+        } else if (order.Status === 'IN-TRANSIT') {
+          newTables.table4.push(order);
+        } else if (order.Status === 'DELIVERED') {
+          newTables.table5.push(order);
+        } else if (order.Status === 'CANCELLED') {
+          newTables.table6.push(order);
+        }
+      });
+  
+      setTables(newTables);
   };
 
   useEffect(()=>{
@@ -320,7 +321,8 @@ export const Orders = () => {
         setSuccessMssg('')
       },3000 );
     }
-  })
+    localStorage.removeItem("successMessage")
+  },[refresh])
 
   return (
     <div className='order'>
@@ -378,12 +380,12 @@ export const Orders = () => {
       /> */}
     
     
-      {active === 'table1' && <OrderTable columns={columns} data={tables.table1} dropdownItems={dropdownTitles.table1} />}
-          {active === 'table2' && <OrderTable  columns={columns2} data={tables.table2} dropdownItems={dropdownTitles.table2} />}
-          {active === 'table3' && <OrderTable columns={columns2} data={tables.table3} dropdownItems={dropdownTitles.table3} />}
-          {active === 'table4' && <OrderTable  columns={columns2} data={tables.table4} dropdownItems={dropdownTitles.table4} />}
-          {active === 'table5' && <OrderTable  columns={columns2} data={tables.table5} dropdownItems={dropdownTitles.table5} />}
-          {active === 'table6' && <OrderTable columns={columns2} data={tables.table6} dropdownItems={dropdownTitles.table6} />}
+      {active === 'table1' && <OrderTable columns={columns} data={tables.table1} dropdownItems={dropdownTitles.table1} setRefresh={setRefresh} />}
+          {active === 'table2' && <OrderTable  columns={columns2} data={tables.table2} dropdownItems={dropdownTitles.table2} setRefresh={setRefresh} />}
+          {active === 'table3' && <OrderTable columns={columns2} data={tables.table3} dropdownItems={dropdownTitles.table3}  setRefresh={setRefresh}/>}
+          {active === 'table4' && <OrderTable  columns={columns2} data={tables.table4} dropdownItems={dropdownTitles.table4} setRefresh={setRefresh} />}
+          {active === 'table5' && <OrderTable  columns={columns2} data={tables.table5} dropdownItems={dropdownTitles.table5} setRefresh={setRefresh} />}
+          {active === 'table6' && <OrderTable columns={columns2} data={tables.table6} dropdownItems={dropdownTitles.table6}  setRefresh={setRefresh}/>}
 
           {tables[active].length === 0 && (
         <div className='noData'>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./modal.css"
 import { use } from 'i18next';
 
-const OrderModal = ({row, selectedItem}) => {
+const OrderModal = ({row, selectedItem,setRefresh}) => {
 
 
   const [click, setClick] = useState(false)
@@ -95,6 +95,7 @@ const OrderModal = ({row, selectedItem}) => {
       const data = await response.json();
       console.log('Order status updated:', data);
       localStorage.setItem('successMessage',JSON.stringify(data.mssg))
+      setRefresh(prev => !prev)
     } catch (error) {
       console.error('Error updating order status:', error);
     } finally {
@@ -151,7 +152,7 @@ const OrderModal = ({row, selectedItem}) => {
           </div>
         <div className="but">
         {selectedItem && selectedItem.title !== 'View Details' && 
-        (<button type='submit' onClick={()=>{handleConfirm();handleClick()}}>{isLoading === true ? 'Loading . . ' : 'Confirm'}</button>)
+        (<button type='submit' onClick={()=>{handleConfirm();handleClick(); setRefresh(prev =>!prev)}}>{isLoading === true ? 'Loading . . ' : 'Confirm'}</button>)
         }
           
           <button onClick={handleClick}>Close

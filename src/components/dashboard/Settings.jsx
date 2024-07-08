@@ -29,7 +29,7 @@ export const Settings = () => {
       </section>
       <section className={"settingsSec2"} onChange={()=>{
         setClick(false);
-        setOpen(false)
+        setOpen(true)
       }}>
         <div className='setdiv'>
         <div className={"set"}>

@@ -65,6 +65,12 @@
   scroll-behavior: auto;
   scrollbar-width: 5px;
 }
+.successmssg2{
+  padding: 10px;
+  background-color: lightgreen;
+  color: green;
+  border-radius: 5px;
+}
 
 
 @media screen and (max-width: 699px){

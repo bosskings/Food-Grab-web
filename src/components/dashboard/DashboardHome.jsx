@@ -46,8 +46,12 @@ export const DashboardHome = () => {
     <div className={"seeallModal"}>
     <div className={"seealltable"}>
     <XCircle className={"closeModal"} onClick={handleShow}/>
-    <Table columns={columns} data={tableData} />
-    {tableData.length === 0 && (
+    <Table 
+            columns={columns}
+            tableData={tableData}
+          />
+
+          {tableData.length === 0 && (
             <div className='noData'>
               You don't have any orders yet
               <img src={gif} alt="" />

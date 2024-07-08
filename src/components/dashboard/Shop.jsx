@@ -159,7 +159,7 @@ const Shop2 =({data, isLoading})=>{
                     <MdOutlineLocationOn className='iconn'/> 
                       {data.address && (
                         <p>
-                            {data.address.houseNumber} {data.address.street} , {data.address.city} , {data.address.state}
+                            {data.address.houseNumber} {data.address.street} , {data.address.city} , {data.address.state}, {data.address.addressDescription}
                         </p>
                       )}
                   </div>

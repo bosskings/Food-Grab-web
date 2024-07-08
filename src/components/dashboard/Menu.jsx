@@ -8,7 +8,7 @@ import { TbCircleDotFilled } from "react-icons/tb";
 import gif from '../media/gif2.gif'
 import { MenuTable } from '../table/MenuTable'
 
-const column = ['Thumbnail','Menu Name','Menu Price','Status','Stock Option']
+const column = ['Thumbnail','Menu Name','Menu Price','Status','Stock Option', 'Edit']
 export const Menu = () => {
   const [ click, setClick] = useState(true)
 
@@ -22,6 +22,8 @@ export const Menu = () => {
   const [menuData, setMenuData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [thumbnails, setThunbnails]= useState({})
+  const [successMssg, setSuccessMssg] = useState('')
+  const [refresh, setRefresh] = useState(false)
 
   const url = 'https://api.foodgrab.africa/merchants/api/v1/getCuisine' 
 
@@ -66,10 +68,38 @@ export const Menu = () => {
 
   useEffect(()=>{
     getMenuData();
-  }, [])
+  }, [refresh])
 
 
 console.log(menuData);
+useEffect(()=>{
+  const storedMssg = localStorage.getItem('deleteCuisine')
+  if (storedMssg){
+    setSuccessMssg(localStorage.getItem('mssg'))
+    setTimeout(()=> setSuccessMssg(''),3000)
+    localStorage.removeItem('deleteCuisine')
+    localStorage.removeItem('mssg')
+  }
+},[refresh])
+useEffect(()=>{
+  const storedMssg = localStorage.getItem('Stats')
+  if (storedMssg){
+    setSuccessMssg(localStorage.getItem('mssg'))
+    setTimeout(()=> setSuccessMssg(''),3000)
+    localStorage.removeItem('Stats')
+    localStorage.removeItem('mssg')
+  }
+},[refresh])
+
+useEffect(()=>{
+  const storedMssg = localStorage.getItem('createCus')
+  if (storedMssg){
+    setSuccessMssg(localStorage.getItem('mssg'))
+    setTimeout(()=> setSuccessMssg(''),3000)
+    localStorage.removeItem('createCus')
+    localStorage.removeItem('mssg')
+  }
+},[refresh])
 
   return (
     <div className='menu'>      
@@ -78,10 +108,11 @@ console.log(menuData);
 
           <div className={"firstsec"}>
             <p>My Menu</p>
+            {successMssg && <div className={"successmssg2"}>{successMssg}</div>}
             <button onClick={handleClick}>Add Cusines</button>
           </div>
 
-          <MenuTable columns={column} data={menuData} thumbnails={thumbnails} />
+          <MenuTable columns={column} data={menuData} thumbnails={thumbnails} setRefresh={setRefresh}/>
 
           {menuData.length === 0 && (
             <div className='noData'>
@@ -90,7 +121,7 @@ console.log(menuData);
             </div>
           )}
 
-          <FormModal click={click} setClick={setClick} handleClick={handleClick}/>
+          <FormModal click={click} setClick={setClick} handleClick={handleClick} setRefresh={setRefresh}/>
         </div>
       </section>
     </div>

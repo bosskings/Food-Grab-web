@@ -68,12 +68,21 @@ export const Login = () => {
       }
     },[])
 
+    useEffect(()=>{
+      const storedMssg = localStorage.getItem('changePassword')
+      if (storedMssg){
+        setSuccessMssg('Password Changed')
+        setTimeout(()=> setSuccessMssg(''),3000)
+        localStorage.removeItem('changePassword')
+      }
+    },[])
 
 
   return (
     <div className='loginbody'>
     {error && <div className='error'> {error} </div> }
     {successMssg && <p className={"successmssg"}>{successMssg}</p>}
+    
       <h1>Log In</h1>
 
       <p>Enter your credentials to access your account</p>

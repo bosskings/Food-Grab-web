@@ -4,7 +4,7 @@ import { Link, json, useNavigate } from 'react-router-dom';
 import { FaCircleCheck } from "react-icons/fa6";
 
 
-export const FormModal = ({ click, handleClick ,setRefresh}) => {
+export const UpdateCuisineModal = ({ click, handleClick ,setRefresh}) => {
 
   const navigate = useNavigate()
 
@@ -16,7 +16,7 @@ export const FormModal = ({ click, handleClick ,setRefresh}) => {
   const [thumbnail, setThumbnail] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const url = 'https://api.foodgrab.africa/merchants/api/v1/createCuisine';
+  const url = `https://api.foodgrab.africa/merchants/api/v1/updateCuisine/$[rowId]`;
   const [token] = useState(() => localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null);
 
   const handleSubmit = async (e) => {
@@ -31,20 +31,20 @@ export const FormModal = ({ click, handleClick ,setRefresh}) => {
 
     try {
       const response = await fetch(url, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token.token}`,
-          // 'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
-        body : formData
+        body : JSON.stringify(formData)
       });
 
       if (response.ok || response.status === 'SUCCESS') {
         const data = await response.json();
         console.log(data);
-        localStorage.setItem('createCus', "true")
-        localStorage.setItem('mssg', JSON.stringify('Cuisine Created Successfully'))
-        console.log('Cuisine Created Successfully');
+        localStorage.setItem('updateCus', "true")
+        localStorage.setItem('mssg', JSON.stringify('Cuisine updated Successfully'))
+        console.log('Cuisine updated Successfully');
         navigate('/menu')
         setShow(true);
         handleClick()
@@ -140,7 +140,7 @@ const SuccessModal = ({show, setShow, setRefresh}) => {
     <div className={"overlay"} onClick={setShow}></div>
       <div className='successmodal'>
         <p><FaCircleCheck /></p>
-          <h2>Menu created</h2>
+          <h2>Menu Updated</h2>
           <div className='btnsM'>
             <Link to={'/menu'} onClick={()=>{setShow(false)}} > <button className='bbns'>Menu</button></Link>
             <button onClick={()=>{setShow(false); handleNavigate()}}>Close</button>

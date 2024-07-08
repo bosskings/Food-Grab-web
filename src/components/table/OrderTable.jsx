@@ -4,7 +4,7 @@ import { Dropdown } from '../dashboard/dropdown/Dropdown';
 import OrderModal from '../modal/OrderModal';
 
 const OrderTable = (props) => {
-  const { columns, data, dropdownItems} = props;
+  const { columns, data, dropdownItems, setRefresh} = props;
   const [checkedItems, setCheckedItems] = useState({});
   const dropdownRefs = useRef([]);
   const [show,setShow] = useState(true)
@@ -14,7 +14,7 @@ const OrderTable = (props) => {
   
   const handleCheckboxChange = (event, id) => {
     setCheckedItems(prevState => ({
-      ...prevState,
+      ...prevState, 
       [id]: event.target.checked,
     }));
   };
@@ -85,7 +85,8 @@ const OrderTable = (props) => {
                     <Dropdown rowData={row}
                     dropdownItems={dropdownItems} 
                     onDropdownItemClick={() => handleDropdownItemClick(rowIndex, row)}
-                    modalComponent={<OrderModal row={row} />} />
+                    modalComponent={<OrderModal row={row} setRefresh={setRefresh} />} 
+                    />
                   )}
                 </td>
               ))}
