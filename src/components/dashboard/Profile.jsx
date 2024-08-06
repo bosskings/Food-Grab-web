@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import "./profile.css"
 import { UpdateProfileModal } from '../modal/UpdateProfileModal'
+import { MdVerifiedUser } from "react-icons/md";
 
 
 export const Profile = () => {
   const [open, setopen] = useState(false)
-  const [profile, setProfile] = useState('')
+  const [profile, setProfile] = useState([])
   const [token, setAuthTokens]= useState(()=> localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')):null)
 
   useEffect(()=>{
     const fetchProfileData = async()=>{
       try{
-        const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/signin`, {
+        const response = await fetch(`https://api.foodgrab.africa/merchants/api/v1/getProfile`, {
+          method: 'GET',
           headers:{
             'Content-Type': 'application/json',
           "Authorization": `Bearer ${token.token}`
@@ -21,7 +23,7 @@ export const Profile = () => {
           throw new Error('Failed to fetch profile data')
         }
         const profileDetials = await response.json()
-        setProfile(profileDetials)
+        setProfile(profileDetials.data  )
         console.log('this is the response:', profileDetials)
       }
       catch (error){
@@ -30,7 +32,7 @@ export const Profile = () => {
     }
     fetchProfileData();
     
-  },[])
+  },[token])
 
   const handleOpen = ()=>{
     setopen(!open)
@@ -60,11 +62,14 @@ export const Profile = () => {
       </div>
      <div className={"personalSecondSec"}>
      <div className={"profileImage2"}>
-      <img src={profile.profileImg}  alt=''/>
+      <img src={profile.pictureAddress}  alt=''/>
+      <div className="checkboxContainer2">
+        <MdVerifiedUser className='customcheckbox2' color={profile && profile.verificationStatus ? 'grey' :  '#0077ff'} />
+      </div>      
       </div>
       <div className={"nameholder2"}>
       <p className={"txt2"}>{profile.firstname}</p>
-      <p className={"username2"}> {profile.username} </p>
+      <p className={"username2"}> {profile.firstname}</p>
       </div>
      </div>
       </div>
@@ -85,19 +90,19 @@ export const Profile = () => {
         </div>
         <p className={"txt3"}>Username</p>
           <div className={"credDisplay"}>
-              {profile.username}
+              {profile.firstname}
             </div>
             <p className={"txt3"}>Email Address</p>
           <div className={"credDisplay emaildisplay" }>
               {profile.email}
             </div>
             <div className={"nameCred"}>
-          <div className={"fstName"}>
+          {/* <div className={"fstName"}>
             <p className='txt3'>Date of Birth </p>
             <div className={"credDisplay"}>
               {profile.dob}
             </div>
-          </div>
+          </div> */}
           <div className={"lstname"}>
           <p className='txt3'>Phone Number</p>
             <div className={"credDisplay"}>

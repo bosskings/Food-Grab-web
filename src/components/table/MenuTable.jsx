@@ -11,6 +11,7 @@ export const MenuTable = (props) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false)
   const [deleteRowId, setDeleteRowId] = useState(null);
+  const [editRowId, setEditRowId] = useState(null)
   const [token, setAuthTokens]=useState(()=> localStorage.getItem('token')? JSON.parse(localStorage.getItem('token')):null)
   const [selectedOption, setSelectedOption] = useState(()=>{
     const savedOption = localStorage.getItem('selectedOption')
@@ -39,7 +40,7 @@ export const MenuTable = (props) => {
       const response = await fetch(url2,{
         method:'PATCH',
         headers:{
-          'Content-Type': 'applicaton/json',
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token.token}`
         },
         body: JSON.stringify({
@@ -53,10 +54,12 @@ export const MenuTable = (props) => {
 
       setRefresh(prev=>!prev)
       localStorage.setItem("Stats", "true")
-      localStorage.setItem("mssg",JSON.stringify(statusData.mssg))
+      localStorage.setItem("mssg",JSON.stringify('status updated successfully'))
+      console.log('this is the status data:', statusData)
     }
     catch (error){
       console.error('Error updating stock status:', error)
+      localStorage.setItem('error', JSON.stringify('failed to update cuisine'))
     }
   }
   useEffect(() => {
@@ -96,7 +99,8 @@ export const MenuTable = (props) => {
     setShowDeleteModal(true);
   };
 
-  const handleEdit = ()=>{
+  const handleEdit = (rowId)=>{
+    setEditRowId(rowId)
     setShowEditModal(true)
   }
 
@@ -160,7 +164,11 @@ export const MenuTable = (props) => {
       )};
 
       {showEditModal && (
-        <UpdateCuisineModal handleClick={()=> setShowEditModal(false)} />
+        <UpdateCuisineModal 
+        handleClick={()=> setShowEditModal(false)} 
+        setRefresh={setRefresh}
+        rowId={editRowId}
+        />
       )}
 
         

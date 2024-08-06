@@ -105,7 +105,7 @@ const handleSubmitForm = async (e) => {
 
   if (!error.oldPassword && !error.newPassword && !error.confirmPassword) {
     try{
-      const response = await fetch("https://api.foodgrab.africa/merchants/api/v1/updatepassword",{
+      const response = await fetch("https://api.foodgrab.africa/merchants/api/v1/updatePassword",{
         method: 'PATCH',
         headers:{
           'content-Type':'application/json',

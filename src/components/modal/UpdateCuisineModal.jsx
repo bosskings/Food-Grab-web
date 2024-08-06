@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./formmodal.css";
 import { Link, json, useNavigate } from 'react-router-dom';
 import { FaCircleCheck } from "react-icons/fa6";
 
 
-export const UpdateCuisineModal = ({ click, handleClick ,setRefresh}) => {
+export const UpdateCuisineModal = ({ click, handleClick ,setRefresh, rowId}) => {
 
   const navigate = useNavigate()
 
@@ -15,13 +15,46 @@ export const UpdateCuisineModal = ({ click, handleClick ,setRefresh}) => {
   const [price, setPrice] = useState('');
   const [thumbnail, setThumbnail] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  const url = `https://api.foodgrab.africa/merchants/api/v1/updateCuisine/$[rowId]`;
+;
   const [token] = useState(() => localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null);
+
+  useEffect(() => {
+    const fetchCuisineDetails = async () => {
+      const url = `https://api.foodgrab.africa/merchants/api/v1/getCuisine`
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token.token}`
+          }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          const cuisine = data.data.find(cuisine => cuisine._id === rowId); // Find the specific cuisine
+          if (cuisine) {
+            setName(cuisine.name);
+            setDescription(cuisine.description);
+            setPrice(cuisine.price);
+            setThumbnail(cuisine.thumbnail); 
+          }
+        } else {
+          console.error('Failed to fetch cuisine details');
+        }
+      } catch (error) {
+        console.error('Error fetching cuisine details:', error);
+      }
+    };
+
+    if (rowId) {
+      fetchCuisineDetails();
+    }
+  }, [rowId, token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    const url = `https://api.foodgrab.africa/merchants/api/v1/updateCuisine/${rowId}`
+
 
     const formData = new FormData();
     formData.append('name', name);
@@ -34,9 +67,9 @@ export const UpdateCuisineModal = ({ click, handleClick ,setRefresh}) => {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token.token}`,
-          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/json'
         },
-        body : JSON.stringify(formData)
+        body : formData
       });
 
       if (response.ok || response.status === 'SUCCESS') {
@@ -59,6 +92,10 @@ export const UpdateCuisineModal = ({ click, handleClick ,setRefresh}) => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    console.log('rowId:', rowId);
+  }, [rowId]);
 
   return (
     <div>

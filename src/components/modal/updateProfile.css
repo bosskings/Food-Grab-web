@@ -1,5 +1,6 @@
 .updatepff{
   display: block;
+
 }
 .updateProfile{
   width: 90%;
@@ -23,6 +24,8 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
+  padding: 20px;
+  overflow: hidden;
 }
 .profileModalsec1{
   width: 100%;
@@ -48,10 +51,10 @@
 }
 .profileModalsec2 {
   display: flex;
+  width: 100%;
   gap: 20px;
   align-items: center;
   justify-content: space-between;
-  width: 370px;
 }
 .profileImage{
   position: relative;
@@ -171,11 +174,12 @@
 }
 .formproper{
   width: 100%;
-  padding: 10px;
+  max-height: 380px;
+  padding: 20px;
   gap: 5px;
   display: flex;
+  overflow-y: auto;
   flex-direction: column;
-  justify-content: space-between;
 }
 .nameholder{
   display: inline-flex;

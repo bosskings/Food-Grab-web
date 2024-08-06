@@ -7,6 +7,20 @@ export const UpdateProfileModal = ({closeComponent}) => {
   const [image, setImage] = useState(null)
   const [imageUrl, setImageUrl]= useState(localStorage.getItem('profileImage') || '');
   const [close, setclose] =useState(false)
+  const [input, setInput]= useState({
+    firstname: '',
+    lastname: '',
+    username: '',
+    email: 'cmacjude17@gmail.com',
+    dateOfBirth: '',
+    phoneNumber: '',
+    gender: 'Male'
+  })
+
+  const handleInputChange = (e)=>{
+    const{name,value} = e.target
+    setInput((prevState)=>({...prevState,[name]:value}))
+  }
 
   const handleClose = ()=>{
     setclose(!close)
@@ -31,6 +45,8 @@ export const UpdateProfileModal = ({closeComponent}) => {
     };
     reader.readAsDataURL(file);
     }
+
+    const handleSubmit = async 
     
 
   return (
@@ -46,13 +62,16 @@ export const UpdateProfileModal = ({closeComponent}) => {
         </div>
          <ClosePfModal onClick={handleClose}/>
       </section>
+      <form
+      method='PATCH'
+      onSubmit={""}
+      className=''>
+      <section className={"ProfileModalSec3"}>
       <section className={"profileModalsec2"}>
         <div className={"profileImage"}>
         {<img src={imageUrl} alt='' className={''}/>}
         <div className="checkboxContainer">
-            
-            </div>
-   
+        </div>
         </div>
         <div className={"profileCredentials"}>
           <p className={"txt3"}>Profile Picture</p>
@@ -67,21 +86,17 @@ export const UpdateProfileModal = ({closeComponent}) => {
           </labbel>
 
         </div>
-      </section>
-      <section className={"ProfileModalSec3"}>
-      <form
-      onSubmit={""}
-      method={"POST"}
-      className={"ProfilemodalFrom"}
-      >
+
       <div className='frmsubmit'>
+        <button type='submit' className={"updPfButton"}>
+        Save Change 
+        </button>
+      </div>
+      </section>
+     
+      <div className={"formproper"}>
       <p className={'txt3'}>Personal Information</p>
       <p className='ppsubtxt cc'>update your personal detials here</p>
-      <button type='submit' className={"updPfButton"}>
-        Save Changes
-      </button>
-      </div>
-      <div className={"formproper"}>
       <div className='nameholder'>
       <div>
       <label>Firstname</label>
@@ -90,6 +105,8 @@ export const UpdateProfileModal = ({closeComponent}) => {
         placeholder='first name'
         required
         name='firstname'
+        value={input.firstname}
+        onChange={handleInputChange}
         />
       </div>
       <div>
@@ -99,6 +116,9 @@ export const UpdateProfileModal = ({closeComponent}) => {
         placeholder='lastname'
         required
         name='lastname'
+        value={input.lastname}
+        onChange={handleInputChange}
+
         />
       </div>
       </div>
@@ -106,16 +126,18 @@ export const UpdateProfileModal = ({closeComponent}) => {
       <input 
       type='text'
       name='username'
+      value={input.username}
       placeholder='username'
+      onChange={handleInputChange}
       required
       />
       <label>Email</label>
       <input 
         type='email'
         name='email'
-        value='cmacjude17@gmail.com'
+        value={input.email}
         placeholder='Enter a Valid Email'
-        readOnly
+        onChange={handleInputChange}
         required
       />
             <div className='DOB'>
@@ -139,13 +161,13 @@ export const UpdateProfileModal = ({closeComponent}) => {
       </div>
       </div>
       <label>Gender</label>
-      <select className={"gender"}>
+      <select className={"gender"} name='gender' value={input.gender} onChange={handleInputChange}>
         <option>Male</option>
         <option>Female</option>
       </select>
       </div>
-      </form>
       </section>
+      </form>
     </div>
     </div>
    </div> 

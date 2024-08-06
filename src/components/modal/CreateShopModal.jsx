@@ -86,51 +86,6 @@ export const CreateShopModal = ({ closeComponent }) => {
   };
 
 
-//   const url2 = 'https://api.foodgrab.africa/merchants/api/v1/getShop'
-//   useEffect(()=>{
-
-//    const fetchShopData = async ()=>{
-//     setIsLoading(true);
-//     try{
-//       const response = await fetch(url2, {
-//         method: 'GET',
-//         headers : {
-//           "Authorization": `Bearer ${token.token}`,
-//         }
-//       })
-
-//       const result = await response.json();
-//       if (response.ok) {
-//         // Destructure the data object
-//         const { data } = result;
-//         setProfileImage(data|| DEF);
-//         setImage(data || RESTURANT);
-//         setExistingData(data);
-
-//         // Optionally set individual state fields
-//         setShopName(data.shopName || '');
-//         setDescription(data.description || '');
-//         setStreet(data.address?.street || '');
-//         setCity(data.address?.city || '');
-//         setState(data.address?.state || '');
-//         setHouseNumber(data.address?.houseNumber || '');
-//         setAddressDescription(data.address?.addressDescription || '');
-//         setType(data.type || '');
-
-//         setIsLoading(false);
-//       } else {
-//         setIsLoading(false);
-//         setErrMessage('Failed to fetch shop data');
-//       }
-//     } catch (error) {
-//       console.error('Error fetching Shop data:', error);
-//       setIsLoading(false);
-//       setErrMessage('Error fetching shop data');
-//     }
-//   };
-//   fetchShopData();
-// }, [token]);
-
 
   const handleOpen = ()=>{
     setOpen(!open)
@@ -223,9 +178,7 @@ export const CreateShopModal = ({ closeComponent }) => {
                   <img src={profileImage.logo} alt='' className={''} /> :
                   <img src={DEF} alt='' className={''} />
                   }
-                  <div className="checkboxContainer2">
-                    <MdVerifiedUser className='customcheckbox2' color={shop && shop.verified ? '#0077ff' : 'grey'} />
-                  </div>
+                  
                 </div>
                 <div className="profileCredentials">
                   <p className={"txt3"}>Business Logo</p>

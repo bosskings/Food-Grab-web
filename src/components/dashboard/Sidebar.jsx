@@ -17,7 +17,8 @@ export const Sidebar = () => {
   const location = useLocation()
   const  [active, setActive]= useState()
   const [click, setClick] = useState(false)
-  const [profile, setProfile] = useState('')
+  const [profile, setProfile] = useState({})
+  const [token, setAuthTokens] = useState(localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')):null)
   const [iconStyles, setIconStyles] = useState({
     icon1:{},
     icon2:{},
@@ -250,23 +251,36 @@ export const Sidebar = () => {
     }
   }, [location.pathname, active]);
 
+  
+  
   useEffect(()=>{
-    const fetchProfilePic =  async ()=>{
-        
-      try{
-        const response = await fetch('')
-        if(response.ok){
-          throw new Error('Failed to fetch Profile Image')
+      const url = 'https://api.foodgrab.africa/merchants/api/v1/getProfile'
+      const fetchProfilePic =  async ()=>{
+          
+        try{
+          const response = await fetch(url, {
+            method:'GET',
+            headers:{
+              'Content-Type':'application/json',
+              'Authorization': `Bearer ${token.token}`
+            }
+          })
+          if(response.ok){
+            throw new Error('Failed to fetch Profile Image')
+          }
+          const data = await response.json()
+          setProfile(data.data)
+          console.log('this is the profie data',data)
         }
-        const data = await response.json()
-        setProfile(data)
+        catch (error) {
+          console.error('Error fetching profile data:', error.mssg)
+        }
       }
-      catch (error) {
-        console.error('Error fetching profile data:', error.mssg)
+      if (token) {
+        fetchProfilePic();
       }
-    }
-    // fetchProfilePic()
-  },[])
+      
+    },[token])
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -359,14 +373,14 @@ export const Sidebar = () => {
         </Link>
         <div className={"pp"}>
        
-        <Link to={""}>
+        <Link to={"/profile"}>
           <div className={"profilepic"}>
-            <img src={""} alt=''/>
+            <img src={profile.pictureAddress} alt=''/>
           </div>
         </Link>
       <div className={"profiledetials"}>
-          <p>{}</p>
-          <p className={"username"}>@{}</p>
+          <p>{profile.lastname} {profile.firstname}</p>
+          <p className={"username"}>@{profile.firstname}</p>
         </div>
         <Link to={""}>
         <RxExit className={"profileicon"} onClick={logout}/>
@@ -439,13 +453,13 @@ export const Sidebar = () => {
        
         <Link to={'/profile'}>
           <div className={"profilepic"}>
-            <img src={profile.profilePic} alt=''/>
+            <img src={profile.pictureAddress} alt=''/>
           </div>
         </Link>
         <Link to={"/profile"}>  
           <div className={"profiledetials"}>
-          <p>{profile.fullName}</p>
-          <p className={"username"}>{profile.username}</p>
+          <p>{profile.firstname}{profile.lastname}</p>
+          <p className={"username"}>{profile.firstname}</p>
         </div>
         </Link>
         <RxExit className={"profileicon"}  onClick={logout}/>
