@@ -99,42 +99,42 @@ export const CreateShopModal = ({ closeComponent }) => {
     )
   }
 
-  useEffect(() => {
-    const fetchCuisineDetails = async () => {
-      const url = `https://api.foodgrab.africa/merchants/api/v1/getShop`
-      try {
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token.token}`
-          }
-        });
-        if (response.ok) {
-          const data = await response.json();
-          const shop = data.data
-          if (shop) {
-            setBackdrop(shop.backdropPic);
-            setLogo(shop.logo);
-            setHouseNumber(shop.address.houseNumber);
-            setState(shop.address.state);
-            setStreet(shop.address.street) 
-            setShopName(shop.shopName)
-            setCity(shop.address.city)
-            setType(shop.type)
-            setDescription(shop.description)
-            setAddressDescription()
-          }
-        } else {
-          console.error('Failed to fetch cuisine details');
-        }
-      } catch (error) {
-        console.error('Error fetching cuisine details:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchCuisineDetails = async () => {
+  //     const url = `https://api.foodgrab.africa/merchants/api/v1/getShop`
+  //     try {
+  //       const response = await fetch(url, {
+  //         method: 'GET',
+  //         headers: {
+  //           'Authorization': `Bearer ${token.token}`
+  //         }
+  //       });
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         const shop = data.data
+  //         if (shop) {
+  //           setBackdrop(shop.backdropPic);
+  //           setLogo(shop.logo);
+  //           setHouseNumber(shop.address.houseNumber);
+  //           setState(shop.address.state);
+  //           setStreet(shop.address.street) 
+  //           setShopName(shop.shopName)
+  //           setCity(shop.address.city)
+  //           setType(shop.type)
+  //           setDescription(shop.description)
+  //           setAddressDescription()
+  //         }
+  //       } else {
+  //         console.error('Failed to fetch cuisine details');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching cuisine details:', error);
+  //     }
+  //   };
 
-      fetchCuisineDetails();
+  //     fetchCuisineDetails();
     
-  }, [token]);
+  // }, [token]);
 
   return (
     <div className={open ? "not-active" : "createshdiv"}>
