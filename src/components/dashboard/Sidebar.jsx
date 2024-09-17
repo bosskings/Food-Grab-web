@@ -17,7 +17,7 @@ export const Sidebar = () => {
   const location = useLocation()
   const  [active, setActive]= useState()
   const [click, setClick] = useState(false)
-  const [profile, setProfile] = useState({})
+  const [profile, setProfile] = useState([])
   const [token, setAuthTokens] = useState(localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')):null)
   const [iconStyles, setIconStyles] = useState({
     icon1:{},
@@ -269,8 +269,11 @@ export const Sidebar = () => {
             throw new Error('Failed to fetch Profile Image')
           }
           const data = await response.json()
-          setProfile(data.data)
-          console.log('this is the profie data',data)
+          const profileData = data.data
+          if(profileData){
+            setProfile(profileData)
+          }
+          console.log('this is the profie data',profile)
         }
         catch (error) {
           console.error('Error fetching profile data:', error.mssg)

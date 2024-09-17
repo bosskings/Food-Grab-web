@@ -67,7 +67,7 @@ export const UpdateCuisineModal = ({ click, handleClick ,setRefresh, rowId}) => 
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token.token}`,
-          // 'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
         body : formData
       });

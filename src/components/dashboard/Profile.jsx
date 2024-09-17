@@ -110,10 +110,10 @@ export const Profile = () => {
             </div>
           </div>
         </div>
-        <p className={"txt3"}>Gender</p>
+        {/* <p className={"txt3"}>Gender</p>
           <div className={"credDisplay" }>
               {profile.gender}
-            </div>
+            </div> */}
         </div>
       </section>
       {open && <UpdateProfileModal closeComponent={handleOpen}/>}

@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./updateProfile.css"
 import { AiOutlinePicture } from "react-icons/ai";
 import { XCircle } from 'react-bootstrap-icons';
 
 export const UpdateProfileModal = ({closeComponent}) => {
   const [image, setImage] = useState(null)
-  const [imageUrl, setImageUrl]= useState(localStorage.getItem('profileImage') || '');
-  const [close, setclose] =useState(false)
+  const [imageUrl, setImageUrl]= useState('');
+  const [close, setClose] =useState(false)
+  const [token, setAuthTokens]= useState(localStorage.getItem('token')? JSON.parse(localStorage.getItem('token')):null)
   const [input, setInput]= useState({
     firstname: '',
     lastname: '',
@@ -16,6 +17,7 @@ export const UpdateProfileModal = ({closeComponent}) => {
     phoneNumber: '',
     gender: 'Male'
   })
+  const [isLoading, setIsLaoading] = useState(false)
 
   const handleInputChange = (e)=>{
     const{name,value} = e.target
@@ -23,7 +25,7 @@ export const UpdateProfileModal = ({closeComponent}) => {
   }
 
   const handleClose = ()=>{
-    setclose(!close)
+    setClose(!close)
   }
 
   const ClosePfModal = ()=>{
@@ -41,12 +43,90 @@ export const UpdateProfileModal = ({closeComponent}) => {
     reader.onloadend = () => {
       const imageDataUrl = reader.result;
       setImageUrl(imageDataUrl);
-      localStorage.setItem('profileImage', imageDataUrl); 
+      // localStorage.setItem('profileImage', imageDataUrl); 
     };
     reader.readAsDataURL(file);
     }
 
-    const handleSubmit = async 
+    useEffect(() => {
+      const fetchCuisineDetails = async () => {
+        const url = `https://api.foodgrab.africa/merchants/api/v1/getProfile`
+        try {
+          const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token.token}`
+            }
+          });
+          if (response.ok) {
+            const data = await response.json();
+            const profile = data.data
+            if (profile) {
+              setInput({
+                firstname: profile.firstname,
+                 lastname: profile.lastname,
+                 username: profile.firstname,
+                 email: profile.email,
+                 phoneNumber: profile.phone,
+              })
+              setImageUrl(profile.pictureAddress)
+            }
+          } else {
+            console.error('Failed to fetch profile details');
+          }
+        } catch (error) {
+          console.error('Error fetching profile details:', error);
+        }
+      };
+        
+      fetchCuisineDetails();
+      
+    }, [token]);
+
+    const handleSubmit = async (e)=>{
+      e.preventDefault()
+      setIsLaoading(true)
+
+      const url = 'https://api.foodgrab.africa/merchants/api/v1/updateProfile'
+
+      const formData = new FormData();
+      formData.append('firstname', input.firstname);
+      formData.append('lastname', input.lastname);
+      formData.append('username', input.username);
+      formData.append('email', input.email);
+      // formData.append('dateOfBirth', input.dateOfBirth);
+      formData.append('phoneNumber', input.phoneNumber);
+      // formData.append('gender', input.gender);
+      if (image) {
+        formData.append('profilePicture', image);
+      }
+      try{
+        const response = await fetch(url,{
+          method: 'PATCH',
+          headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token.token}`
+          },
+          body: formData
+        })
+        if (response.ok){
+          const data = await response.json();
+          console.log(data)
+          localStorage.setItem('profileUpdate', "true");
+          console.log('Profile updated successfully');
+          setClose(true);
+          closeComponent();
+      } else {
+        console.log('There was an error');
+      }
+      }
+      catch(error){
+        console.error(error)
+      }
+      finally{
+        setIsLaoading(false)
+      }
+    }
     
 
   return (
@@ -64,7 +144,7 @@ export const UpdateProfileModal = ({closeComponent}) => {
       </section>
       <form
       method='PATCH'
-      onSubmit={""}
+      onSubmit={handleSubmit}
       className=''>
       <section className={"ProfileModalSec3"}>
       <section className={"profileModalsec2"}>
@@ -140,8 +220,8 @@ export const UpdateProfileModal = ({closeComponent}) => {
         onChange={handleInputChange}
         required
       />
-            <div className='DOB'>
-      <div>
+      <div className='DOB'>
+      {/* <div>
       <label>Date of Birth</label>
       <input 
         type='text' 
@@ -149,22 +229,24 @@ export const UpdateProfileModal = ({closeComponent}) => {
         required
         name='firstname'
         />
-      </div>
+      </div> */}
       <div>
       <label>Phone Number</label>
       <input 
         type='text' 
+        value={input.phoneNumber}
         placeholder='eg.12345678901'
+        onChange={handleInputChange}
         required
-        name='lastname'
+        name='phoneNumber'
         />
       </div>
       </div>
-      <label>Gender</label>
+      {/* <label>Gender</label>
       <select className={"gender"} name='gender' value={input.gender} onChange={handleInputChange}>
         <option>Male</option>
         <option>Female</option>
-      </select>
+      </select> */}
       </div>
       </section>
       </form>
